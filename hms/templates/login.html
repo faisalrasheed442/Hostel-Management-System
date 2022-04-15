@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% load static %}
+<head>
+    <meta charset="utf-8" />
+    <title>Login Form</title>
+
+    <!-- Bootstrap CSS Stylesheet -->
+    <link rel="stylesheet" href="{% static './vendors/css/bootstrap_form.min.css' %}" />
+
+    <!-- CSS Local File -->
+    <link rel="stylesheet" href="{% static './assets/css/login_style.css' %}" />
+</head>
+
+<body>
+
+    <div class="container login-container">
+        <div class="row min-h_vfull d-flex justify-content-center align-items-center">
+            <div class="col-md-6 login-form-1">
+                <h3>Login Form</h3>
+                <form action="/login/" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="email" name="email"  placeholder="Your Email *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Your Password *" value="" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="Login" name="click"/>
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="ForgetPwd">Forget Password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <!-- Bootstrap -->
+    <script src="{% static './vendors/js/bootstrap_form.min.js' %}"></script>
+
+    <!-- Jquery -->
+    <script src="{% static './vendors/js/jquery-3.6.0_form.min.js' %}"></script>
+</body>
+
+</html>

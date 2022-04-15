@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Profile & Other Page Resources -->
+<!--    <link rel="stylesheet" href="{% static './vendors/css/bootstrap.min.css' %}">-->
+<!--    <link rel="stylesheet" href="{% static './vendors/css/fileinput.min.css' %}" />-->
+<!--    <link rel="stylesheet" href="{% static './vendors/css/bootstrap-select.css' %}" />-->
+<!--    <link rel="stylesheet" href="{% static './vendors/css/awesome-bootstrap-checkbox.css' %}" />-->
+<!--    <link rel="stylesheet" href="{% static './assets/css/other_style.css' %}" />-->
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="{% static './assets/css/dashboard_style.css' %} " />
+
+    <!-- Stylesheet for Responsiveness -->
+    <link rel="stylesheet" href="{% static './assets/css/dashboard_queries.css' %}" />
+
+
+    <!-- Page Title -->
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+    <main class="main_container">
+        <nav class="navigation">
+            <ul>
+                <li>
+                    <a href="http://127.0.0.1:8000">
+                        <span class="icon">
+							<ion-icon name="bed-outline"></ion-icon>
+						</span>
+                        <span class="title">HMS</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8000/dashboard">
+                        <span class="icon">
+							<ion-icon name="home-outline"></ion-icon>
+						</span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8000/profile">
+                        <span class="icon">
+							<ion-icon name="person-outline"></ion-icon>
+						</span>
+                        <span class="title">My Profile</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8000/room">
+                        <span class="icon">
+							<ion-icon name="browsers-outline"></ion-icon>
+							</ion-icon>
+						</span>
+                        <span class="title">My Room</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8000/complains">
+                        <span class="icon">
+							<ion-icon name="chatbox-outline"></ion-icon>
+						</span>
+                        <span class="title">Complains</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8000/fee">
+                        <span class="icon">
+							<ion-icon name="card-outline"></ion-icon>
+						</span>
+                        <span class="title">Fee</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://127.0.0.1:8000/password">
+                        <span class="icon">
+							<ion-icon name="lock-closed-outline"></ion-icon>
+						</span>
+                        <span class="title">Update Password</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+							<ion-icon name="log-out-outline"></ion-icon>
+						</span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <!-- Mainbar -->
+        <main class="main">
+            <!-- Topbar -->
+            <div class="topbar">
+                <!-- Menu Hambarger -->
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <!-- Search bar -->
+                <div class="search">
+                    <label>
+						<input type="text" placeholder="Search here">
+						<ion-icon name="search-outline"></ion-icon>
+					</label>
+                </div>
+                <!-- User Image -->
+                <div class="user">
+                    <img src="{% static './assets/media/avatar1.png' %}">
+                </div>
+            </div>
+            <!-- End of Top Bar -->
+
+            <!-- Code 4 Pages Start from Here  -->
+          <!--   Page Title -->
+             <h1 class="page_title"> {% block page-title %}{% endblock %}</h1>
+
+            <!-- Page Main Content -->
+                {% block content %}{% endblock %}
+
+        </main>
+
+    </main>
+
+    <!-- JS Files -->
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <!-- Bootstrap -->
+
+<!--     <script src="{% static './vendors/js/bootstrap.min.js' %}"></script>-->
+<!--    <script src="{% static './vendors/js/bootstrap-select.min.js' %}"></script>-->
+
+<!--    &lt;!&ndash; jquery &ndash;&gt;-->
+<!--    <script src="{% static './vendors/js/jquery.min.js' %}"></script>-->
+<!--    <script src="{% static './vendors/js/validation.min.js' %}"></script>-->
+
+
+    <!-- Script to add Hovered class in the List item -->
+    <script type="text/javascript" src="{% static './assets/js/dashboard_script.js' %}"></script>
+
+</body>
+
+</html>
