@@ -7,20 +7,16 @@ def index(request):
 
 def login(request):
     if request.method == 'POST':
-        print("hi")
         email = request.POST.get('email')
         password = request.POST.get('password')
         user_data=customer.objects.filter(email=email,password=password)
-        user_data=user_data.get()
-        print(user_data)
-        return HttpResponse(user_data)
-    #     user=authenticate(email=email,password=password)
-    #     if user is not None:
-    #         login(request,user)
-    #         return redirect('Dashboard')
-    #     else:
-    #         messages.error(request,"invalid Logged in")
-    #         return redirect('Home')
+        if user_data:
+            user_data={'profile':user_data[0]}
+            return dashboard(request,user_data)
+        else:
+
+            messages.error(request,'Invalid email and password')
+            return redirect('Login')
     else:
         return render(request, 'login.html')
 
@@ -38,8 +34,8 @@ def handle_login(request):
 def register(request):
     return render(request, 'register.html')
 
-def dashboard(request):
-    return render(request, 'dashboard.html')
+def dashboard(request,data):
+    return render(request, 'dashboard.html',data)
 
 def profile(request):
     return render(request, 'profile.html')
