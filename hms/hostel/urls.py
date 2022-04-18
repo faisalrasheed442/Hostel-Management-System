@@ -1,17 +1,18 @@
 
 from django.urls import path
 from .import views
-
+student=views.student_view()
 urlpatterns = [
 
-    path('', views.index, name='Home'),
-    path('login/', views.login, name='Login'),
-    path('register/', views.register, name='register'),
-    path('dashboard/', views.dashboard, name='Dashboard'),
-    path('profile/', views.profile, name='profile'),
-    path('room/', views.room, name='room'),
-    path('complains/', views.complains, name='complains'),
-    path('fee/', views.fee, name='fee'),
-    path('password/', views.password, name='password'),
+    path('', student.index, name='Home'),
+    path('login/', student.login, name='Login'),
+    path('register/', student.register, name='register'),
+    path('dashboard/', student.dashboard, name='Dashboard'),
+    path('profile/', student.profile, name='profile'),
+    path('room/', student.room, name='room'),
+    path('complains/', student.complains, name='complains'),
+    path('fee/', student.fee, name='fee'),
+    path('password/', student.passwords, name='password'),
+    path('logout/', student.logout, name='logout'),
 
 ]
