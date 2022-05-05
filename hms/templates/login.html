@@ -3,7 +3,7 @@
 {% load static %}
 <head>
     <meta charset="utf-8" />
-    <title>Login Form</title>
+    <title>Login</title>
 
     <!-- Bootstrap CSS Stylesheet -->
     <link rel="stylesheet" href="{% static './vendors/css/bootstrap_form.min.css' %}" />
@@ -46,11 +46,17 @@
     </div>
 
     <!-- JavaScript Files -->
+   <!-- Jquery -->
+    <script src="{% static './vendors/js/jquery-3.6.0_form.min.js' %}"></script>
     <!-- Bootstrap -->
     <script src="{% static './vendors/js/bootstrap_form.min.js' %}"></script>
+<script>
+    $(".close").on("click",function (){
+      $(".alert").fadeOut();
+    })
 
-    <!-- Jquery -->
-    <script src="{% static './vendors/js/jquery-3.6.0_form.min.js' %}"></script>
+</script>
+
 </body>
 
 </html>

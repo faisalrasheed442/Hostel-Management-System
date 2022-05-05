@@ -1,17 +1,14 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
-from django.contrib.auth import authenticate, login,logout
 from .models import customer
 class student_view():
     def __init__(self):
-        self.password=None
-        self.email=None
         self.data={}
     def index(self,request):
         return render(request, 'index.html')
 
     def login(self,request):
-        if self.email and self.password:
+        if 'email' in request.session and 'password' in request.session:
             return self.dashboard(request, self.data)
 
         if request.method == 'POST':
@@ -19,12 +16,12 @@ class student_view():
             password = request.POST.get('password')
             user_data=customer.objects.filter(email=email,password=password)
             if user_data:
+                request.session['email'] = email
+                request.session['password'] = password
                 user_data={'profile':user_data[0]}
-                self.email = email
-                self.password=password
                 self.data=user_data
                 print(self.data['profile'].contact)
-                return self.dashboard(request,self.data)
+                return render(request, 'dashboard.html',self.data)
             else:
                 messages.error(request,'Invalid email and password')
                 return redirect('Login')
@@ -38,25 +35,42 @@ class student_view():
         return render(request, 'dashboard.html',data)
 
     def profile(self,request):
-        if self.email and self.password:
+        if 'email' in request.session and 'password' in request.session:
             return render(request, 'profile.html',self.data)
+        else:
+            return redirect('Login')
+
 
     def room(self,request):
-        return render(request, 'room.html')
+        if 'email' in request.session and 'password' in request.session:
+            return render(request, 'room.html')
+        else:
+            return redirect('Login')
+
 
     def complains(self,request):
-        return render(request, 'complains.html')
+        if 'email' in request.session and 'password' in request.session:
+            return render(request, 'complains.html')
+        else:
+            return redirect('Login')
+
 
     def fee(self,request):
-        return render(request, 'fee.html')
+        if 'email' in request.session and 'password' in request.session:
+            return render(request, 'fee.html')
+        else:
+            return redirect('Login')
+
 
     def passwords(self,request):
-        return render(request, 'password.html')
+        if 'email' in request.session and 'password' in request.session:
+            return render(request, 'password.html')
+        else:
+            return redirect('Login')
+
     def logout(self,request):
-        if self.email and self.password:
-            self.email=None
-            self.password=None
-            self.data={}
+        if 'email' in request.session and 'password' in request.session:
+            request.session.flush()
             return redirect('Login')
         else:
             return redirect('Login')
