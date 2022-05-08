@@ -1,9 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from .models import customer
+import stripe
 class student_view():
-    def __init__(self):
-        self.data={}
     def index(self,request):
         return render(request, 'index.html')
 
@@ -18,10 +17,9 @@ class student_view():
             if user_data:
                 request.session['email'] = email
                 request.session['password'] = password
-                user_data={'profile':user_data[0]}
-                self.data=user_data
-                print(self.data['profile'].contact)
-                return render(request, 'dashboard.html',self.data)
+                data=self.get_data(request.session['email'],request.session['password'])
+                print(data['profile'].Guardian_name)
+                return render(request, 'dashboard.html',data)
             else:
                 messages.error(request,'Invalid email and password')
                 return redirect('Login')
@@ -29,14 +27,39 @@ class student_view():
             return render(request, 'login.html')
 
     def register(self,request):
-        return render(request, 'register.html')
+        # return render(request, 'register.html')
+        stripe.api_key ='pk_test_51KxEWVGdFjCEtQwCJO7cBduPcL51qqfYWqN3gs5BHWhKx7hoSNkkOEszFJp78zFO1ufDziXM5XVncUI5m5utK6Sf00SXncPGiJ'
+
+        def create_checkout_session():
+            session = stripe.checkout.Session.create(
+                line_items=[{
+                    'price_data': {
+                        'currency': 'usd',
+                        'product_data': {
+                            'name': 'T-shirt',
+                        },
+                        'unit_amount': 2000,
+                    },
+                    'quantity': 1,
+                }],
+                mode='payment',
+                success_url='https://example.com/success',
+                cancel_url='https://example.com/cancel',
+            )
+
+            return redirect(session.url, code=303)
 
     def dashboard(self,request,data={}):
-        return render(request, 'dashboard.html',data)
+        if 'email' in request.session and 'password' in request.session:
+            return render(request, 'dashboard.html',data)
+        else:
+            return redirect('Login')
+
 
     def profile(self,request):
         if 'email' in request.session and 'password' in request.session:
-            return render(request, 'profile.html',self.data)
+            data = self.get_data(request.session['email'], request.session['password'])
+            return render(request, 'profile.html',data)
         else:
             return redirect('Login')
 
@@ -74,3 +97,8 @@ class student_view():
             return redirect('Login')
         else:
             return redirect('Login')
+    def get_data(self,email,password):
+        user_data = customer.objects.filter(email=email, password=password)
+        user_data = {'profile': user_data[0]}
+        return user_data
+
