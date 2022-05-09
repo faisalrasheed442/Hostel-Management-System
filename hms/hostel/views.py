@@ -27,27 +27,27 @@ class student_view():
             return render(request, 'login.html')
 
     def register(self,request):
-        # return render(request, 'register.html')
-        stripe.api_key ='pk_test_51KxEWVGdFjCEtQwCJO7cBduPcL51qqfYWqN3gs5BHWhKx7hoSNkkOEszFJp78zFO1ufDziXM5XVncUI5m5utK6Sf00SXncPGiJ'
-
-        def create_checkout_session():
-            session = stripe.checkout.Session.create(
-                line_items=[{
-                    'price_data': {
-                        'currency': 'usd',
-                        'product_data': {
-                            'name': 'T-shirt',
-                        },
-                        'unit_amount': 2000,
-                    },
-                    'quantity': 1,
-                }],
-                mode='payment',
-                success_url='https://example.com/success',
-                cancel_url='https://example.com/cancel',
-            )
-
-            return redirect(session.url, code=303)
+        return render(request, 'register.html')
+        # stripe.api_key ='pk_test_51KxEWVGdFjCEtQwCJO7cBduPcL51qqfYWqN3gs5BHWhKx7hoSNkkOEszFJp78zFO1ufDziXM5XVncUI5m5utK6Sf00SXncPGiJ'
+        #
+        # def create_checkout_session():
+        #     session = stripe.checkout.Session.create(
+        #         line_items=[{
+        #             'price_data': {
+        #                 'currency': 'usd',
+        #                 'product_data': {
+        #                     'name': 'T-shirt',
+        #                 },
+        #                 'unit_amount': 2000,
+        #             },
+        #             'quantity': 1,
+        #         }],
+        #         mode='payment',
+        #         success_url='https://example.com/success',
+        #         cancel_url='https://example.com/cancel',
+        #     )
+        #
+        #     return redirect(session.url, code=303)
 
     def dashboard(self,request,data={}):
         if 'email' in request.session and 'password' in request.session:
