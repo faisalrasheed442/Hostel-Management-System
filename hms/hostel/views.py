@@ -8,7 +8,7 @@ class student_view():
 
     def login(self,request):
         if 'email' in request.session and 'password' in request.session:
-            return self.dashboard(request, self.data)
+            return redirect('Dashboard')
 
         if request.method == 'POST':
             email = request.POST.get('email')
@@ -27,7 +27,10 @@ class student_view():
             return render(request, 'login.html')
 
     def register(self,request):
-        return render(request, 'register.html')
+        if 'email' in request.session and 'password' in request.session:
+            return redirect('Dashboard')
+        else:
+            return render(request, 'register.html')
 
 
     def dashboard(self,request):
