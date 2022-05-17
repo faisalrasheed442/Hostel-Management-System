@@ -2,8 +2,9 @@
 
 <head>
 {% block title %}My Room{% endblock %}
-</head>
 
+</head>
+ {% load static%}
 <!-- Code 4 Pages Start from Here  -->
 
 {% block page-title %}Room{% endblock %}
@@ -31,8 +32,9 @@
                                             <td colspan="4">
                                                 <h4>Room Realted Info</h4>
                                             </td>
-                                            <td><a href="javascript:void(0);" onClick="popUpWindow('#');" title="View Full Details">Print Data</a></td>
-                                        </tr>
+                                            </tr>
+<!--                                            <td><a href="javascript:void(0);" onClick="popUpWindow('#');" title="View Full Details">Print Data</a></td>-->
+
                                         <tr>
                                             <td colspan="6"><b>Reg no. :</b></td>
                                         </tr>
@@ -45,20 +47,23 @@
 
                                             </td>
                                             <td><b>Seater :</b></td>
-                                            <td>
 
-                                            </td>
-                                            <td><b>Fees PM :</b></td>
-                                            <td>
-
-                                            </td>
                                         </tr>
 
                                         <tr>
                                             <td><b>Food Status:</b></td>
                                             <td>
 
+
+
                                             </td>
+                                            <td><b>Fees Per Month :</b></td>
+                                            <td>
+
+
+                                        </tr>
+                                        <tr>
+                                             </td>
                                             <td><b>Stay From :</b></td>
                                             <td>
 
@@ -72,90 +77,18 @@
                                             <td colspan="6"><b>Total Fee :
                                                 </b></td>
                                         </tr>
-                                        <tr>
-                                            <td colspan="6">
-                                                <h4>Personal Info Info</h4>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><b>Reg No. :</b></td>
-                                            <td>
-
-                                            </td>
-                                            <td><b>Full Name :</b></td>
-                                            <td>
-
-                                            </td>
-                                            <td><b>Email :</b></td>
-                                            <td>
-
-
-                                            </td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td><b>Contact No. :</b></td>
-                                            <td>
-
-                                            </td>
-                                            <td><b>Gender :</b></td>
-                                            <td>
-
-                                            </td>
-
-
-                                            <td><b>Department :</b></td>
-                                            <td>
-                                            </td>
-                                        </tr>
-
-
-                                        <tr>
-                                            <td><b>Emergency Contact No. :</b></td>
-                                            <td>
-
-                                            </td>
-                                            <td><b>Guardian Name :</b></td>
-                                            <td>
-
-                                            </td>
-                                            <td><b>Guardian Relation :</b></td>
-                                            <td>
-
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td><b>Guardian Contact No. :</b></td>
-                                            <td colspan="6">
-
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td colspan="6">
-                                                <h4>Addresses</h4>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Correspondense Address</b></td>
-                                            <td colspan="2">
-
-
-
-                                            </td>
-                                            <td><b>Permanent Address</b></td>
-                                            <td colspan="2">
-
-
-                                            </td>
-                                        </tr>
-
 
                                     </tbody>
                                 </table>
+
+                                <form action="http://127.0.0.1:8000/change_room/" method="post">
+                                 <div class="col-sm-6 col-sm-offset-4">
+
+                                            <input type="submit" name="update" Value="Change Room"
+                                                   class="btn btn-primary">
+                                        </div>
+                                    </form>
+
                             </div>
                         </div>
                     </div>

@@ -13,6 +13,7 @@
 </head>
 
 <body>
+
 {% if messages %}
  {% for message in messages  %}
       <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
@@ -37,8 +38,11 @@
                     <div class="form-group">
                         <input type="submit" class="btnSubmit" value="Login" name="click"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group other_options">
                         <a href="#" class="ForgetPwd">Forget Password?</a>
+                    </div>
+                    <div class="form-group other_options">
+                        <a href="http://127.0.0.1:8000/register/" class="RegisterNow">Register Now</a>
                     </div>
                 </form>
             </div>

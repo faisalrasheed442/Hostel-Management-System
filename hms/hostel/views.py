@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from .models import customer
-import stripe
+# import stripe
 class student_view():
     def index(self,request):
         return render(request, 'index.html')
@@ -88,3 +88,5 @@ class student_view():
         user_data = {'profile': user_data}
         return user_data
 
+    def change_room(self,request):
+        return render(request, 'change_room.html')

@@ -43,23 +43,36 @@
                                 <fieldset>
                                     <div class="form-card">
                                         <h2 class="fs-title">Account Information</h2>
-                                        <input type="email" name="email" placeholder="Email Id" required/>
+                                        <input type="email" name="email" placeholder="Email" required/>
                                         <input type="text" name="uname" placeholder="Username" required/>
                                         <input type="password" name="pwd" placeholder="Password" required/>
-                                        <input type="text" name="phno" placeholder="Contact No." required/>
-                                        <label class="d-flex align-items-center" for="male" class="checkbox-inline">
-                                            <input class="my-0 w-auto mr-2 p-0" type="radio" name="gender" value="male"
-                                                id="male" />
-                                            <span> Male</span>
-                                        </label>
-                                        <label class="d-flex align-items-center" for="female" class="checkbox-inline">
-                                            <input class="my-0 w-auto mr-2 p-0" type="radio" name="gender"
-                                                value="female" id="female" />
-                                            Female
-                                        </label>
+                                        <input type="tel" name="phno" placeholder="Contact No" required/>
+
+<!--                                        <label class="d-flex align-items-center" for="male" class="checkbox-inline">-->
+<!--                                            <input class="my-0 w-auto mr-2 p-0" type="radio" name="gender" value="male"-->
+<!--                                                id="male"/>-->
+<!--                                            <span> Male</span>-->
+<!--                                        </label>-->
+<!--                                        <label class="d-flex align-items-center" for="female" class="checkbox-inline">-->
+<!--                                            <input class="my-0 w-auto mr-2 p-0" type="radio" name="gender"-->
+<!--                                                value="female" id="female" />-->
+<!--                                          <span> Female</span>-->
+<!--                                        </label>-->
+<!--                                        <label class="d-flex align-items-center" for="other" class="checkbox-inline">-->
+<!--                                            <input class="my-0 w-auto mr-2 p-0" type="radio" name="gender"-->
+<!--                                                value="other" id="other" />-->
+<!--                                           <span> Other</span>-->
+<!--                                        </label>-->
+
+                                        <label>Gender</label>
+                                        <select name="gender" id="gender">
+                                            <option value="Male" selected>Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select><br><br>
 
 
-                                        <label>Select Room</label>
+                                        <label>Room &nbsp;</label>
                                         <select name="rooms" id="room">
                                             <option value="room1">1</option>
                                             <option value="room2">2</option>

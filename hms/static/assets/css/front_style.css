@@ -219,7 +219,7 @@ input[type="submit"]:active {
 
 header {
     height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(img/umw.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.9)), url(img/header.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
@@ -351,43 +351,7 @@ header {
 
 /* --------------------------------------- */
 
-.section-meals {
-    padding: 0;
-}
 
-.meals-showcase {
-    list-style: none;
-    width: 100%;
-}
-
-.meals-showcase li {
-    display: block;
-    float: left;
-    width: 25%;
-}
-
-.meal-fig {
-    width: 100%;
-    margin: 0;
-    background-color: #000;
-    overflow: hidden;
-}
-
-.meal-fig img {
-    width: 100%;
-    height: auto;
-    opacity: 0.7;
-    transform: scale(1.15);
-    transition: transform 0.5s, opacity 0.5s;
-}
-
-.meal-fig img:hover {
-    opacity: 1;
-    transform: scale(1.03);
-}
-
-
-/* --------------------------------------- */
 
 
 /* HOW-IT-WORKS */
@@ -451,14 +415,14 @@ header {
 /* --------------------------------------- */
 
 
-/* CITIES */
+/* Rooms */
 
 
 /* --------------------------------------- */
 
 .box img {
     width: 100%;
-    height: auto;
+    height: 150px;
     margin-bottom: 15px;
 }
 
