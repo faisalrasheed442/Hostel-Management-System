@@ -16,12 +16,17 @@ class customer(models.Model):
     payment_staus=models.BooleanField()
     registration_date=models.DateField()
     user_image=models.ImageField(upload_to="static/profile_image",default="static/profile_image/avatar1.png")
-    # fee=models.OneToManyField('student_fee')
 
     def __str__(self):
         return self.user_name
-class student_fee(models.Model):
+class customer_fee(models.Model):
     fee_id=models.ForeignKey(customer,on_delete=models.CASCADE)
     start_date=models.DateTimeField()
     end_Date=models.DateField()
     total_amount=models.IntegerField()
+    allow_installment=models.BooleanField(default=True)
+
+class room(models.Model):
+    room_id=models.AutoField(primary_key=True)
+    room_capacity=models.IntegerField(default=5)
+
