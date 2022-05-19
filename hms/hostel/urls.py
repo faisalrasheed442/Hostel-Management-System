@@ -14,6 +14,6 @@ urlpatterns = [
     path('fee/', student.fee, name='fee'),
     path('password/', student.passwords, name='password'),
     path('logout/', student.logout, name='logout'),
-    path('change_room/', student.change_room,  name='change_roon'),
+    path('change_room/', student.change_room,  name='change_room'),
 
 ]
