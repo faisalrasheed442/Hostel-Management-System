@@ -13,6 +13,7 @@ class student_view():
             email = request.POST.get('email')
             password = request.POST.get('password')
             user_data=user_data = customer.objects.get(email=email,password=password)
+            # print(user_data.room.room_id)
             if user_data:
                 request.session['id'] =user_data.user_id
                 return redirect('Dashboard')
@@ -24,7 +25,7 @@ class student_view():
             return render(request, 'login.html')
 
     def register(self,request):
-        if 'email' in request.session and 'password' in request.session:
+        if 'id' in request.session:
             return redirect('Dashboard')
         else:
             return render(request, 'register.html')
@@ -39,6 +40,22 @@ class student_view():
 
 
     def profile(self,request):
+        if request.method == 'POST':
+            username=request.POST.get('name')
+            contact=request.POST.get('contact')
+            gender=request.POST.get('gender')
+            guardian_name=request.POST.get('guardian_name')
+            guardian_contact=request.POST.get('guardian_contact')
+            address=request.POST.get('address')
+            data=customer.objects.get(user_id=request.session['id'])
+            data.user_name=username
+            data.gender=gender
+            data.Guardian_contact=guardian_contact
+            data.Guardian_name=guardian_name
+            data.contact=contact
+            data.address=address
+            data.save()
+            return redirect('profile')
         if 'id' in request.session:
             data = self.get_data(request.session['id'])
             return render(request, 'profile.html',data)
