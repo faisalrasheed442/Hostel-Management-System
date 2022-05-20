@@ -1,12 +1,12 @@
 {% extends "basic.html" %}
 
 <head>
-    {% block title %}Complains{% endblock %}
+    {% block title %}Change Room{% endblock %}
 </head>
 
 <!-- Code 4 Pages Start from Here  -->
 
-{% block page-title %}Complains{% endblock %}
+{% block page-title %}Change Room{% endblock %}
 
 {% block content %}
 
@@ -24,7 +24,7 @@
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
 
-                                    Complain Box :
+                                    Details :
                                 </div>
 
 
@@ -36,8 +36,8 @@
                                             <label class="col-sm-2 control-label"> Name :
                                             </label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="name" id="regno" class="form-control" placeholder="Full name"
-                                                       required="required" value="{{ profile.user_name }}">
+                                                <input type="text" name="name" id="regno" class="form-control"
+                                                       required="required" value="{{ profile.user_name }}" readonly>
                                             </div>
                                         </div>
 
@@ -45,24 +45,24 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Email Id: </label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="email" id="fname" class="form-control" placeholder="email@domain.com"
-                                                       value="{{ profile.email }}" required="required">
+                                                <input type="text" name="email" id="fname" class="form-control"
+                                                       value="{{ profile.email }}" required="required" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Contact No : </label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="contact" id="mname" class="form-control" placeholder="0300-0000000"
-                                                       value="{{ profile.contact }}">
+                                                <input type="text" name="contact" id="mname" class="form-control"
+                                                       value="{{ profile.contact }}" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Room No : </label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="room_no" id="rname" class="form-control" placeholder="Room 1 - 4"
-                                                       value={{ profile.room }}>
+                                                <input type="text" name="room_no" id="rname" class="form-control"
+                                                       value="{{ profile.room.room_id }}" readonly>
                                             </div>
                                         </div>
 
@@ -75,15 +75,15 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Complaint</label>
+                                            <label class="col-sm-2 control-label">Reason For Change</label>
                                             <div class="col-sm-8">
-                                                <textarea name="" id="" cols="30" rows="10" class="form-control" required placeholder="Your Message"></textarea>
+                                                <textarea name="reason_for_change" id="" cols="30" rows="10" class="form-control" required placeholder="Your Message"></textarea>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6 col-sm-offset-4">
 
-                                            <input type="submit" name="update" Value="File Complaint"
+                                            <input type="submit" name="update" Value="Submit"
                                                    class="btn btn-primary">
                                         </div>
                                     </form>

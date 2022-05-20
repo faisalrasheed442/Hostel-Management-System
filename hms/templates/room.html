@@ -81,9 +81,9 @@
                                     </tbody>
                                 </table>
 
-                                <form action="http://127.0.0.1:8000/change_room/" method="post">
+                                <form action="{% url 'change_room' %}">
                                  <div class="col-sm-6 col-sm-offset-4">
-
+                                            {% csrf_token %}
                                             <input type="submit" name="update" Value="Change Room"
                                                    class="btn btn-primary">
                                         </div>

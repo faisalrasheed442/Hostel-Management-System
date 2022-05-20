@@ -120,6 +120,19 @@ class student_view():
         return user_data
 
     def change_room(self,request):
-        return render(request, 'change_room.html')
+        if request.method == 'POST':
+            name=request.POST.get('name')
+            email=request.POST.get('email')
+            contact=request.POST.get('contact')
+            room_no=request.POST.get('room_no')
+            subject=request.POST.get('subject')
+            reason_for_change=request.POST.get('reason_for_change')
+        else:
+            if 'id' in request.session:
+                data=self.get_data(request.session['id'])
+                return render(request, 'change_room.html',data)
+            else:
+                return redirect('Login')
+
 
 
