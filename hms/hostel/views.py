@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from .models import customer
+from django.core import mail
 # import stripe
 class student_view():
     def index(self,request):
@@ -12,13 +13,12 @@ class student_view():
         if request.method == 'POST':
             email = request.POST.get('email')
             password = request.POST.get('password')
-            user_data=user_data = customer.objects.get(email=email,password=password)
-            # print(user_data.room.room_id)
-            if user_data:
-                request.session['id'] =user_data.user_id
+            try:
+                user_data= customer.objects.get(email=email,password=password)
+                request.session['id'] = user_data.user_id
                 return redirect('Dashboard')
-            else:
-                messages.error(request,'Invalid email and password')
+            except customer.DoesNotExist:
+                messages.error(request, 'Invalid email and password')
                 request.session.flush()
                 return redirect('Login')
         else:
@@ -114,6 +114,18 @@ class student_view():
             return redirect('Login')
         else:
             return redirect('Login')
+        # connection = mail.get_connection()
+        # connection.open()
+        # email1 = mail.EmailMessage(
+        #     'Hello',
+        #     'Body goes here',
+        #     'faisalrasheed822@gmail.com',
+        #     ['techwithflash@gmail.com'],
+        #     connection=connection,
+        # )
+        # email1.send()
+        # connection.close()
+
     def get_data(self,id):
         user_data = customer.objects.get(user_id=id)
         user_data = {'profile': user_data}
@@ -127,6 +139,10 @@ class student_view():
             room_no=request.POST.get('room_no')
             subject=request.POST.get('subject')
             reason_for_change=request.POST.get('reason_for_change')
+            messages.error(request, 'Invalid email and password')
+            # request.session.flush()
+            return redirect('change_room')
+
         else:
             if 'id' in request.session:
                 data=self.get_data(request.session['id'])

@@ -30,7 +30,7 @@
 
                                 <div class="panel-body">
                                     <form method="post" action="" name="registration" class="form-horizontal">
-
+                                    {% csrf_token %}
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label"> Name :
@@ -85,8 +85,20 @@
 
                                             <input type="submit" name="update" Value="Submit"
                                                    class="btn btn-primary">
+                                            {% for msg in messages %}
+                                            <span><div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                                            <strong>Message : </strong> {{ msg }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div></span>
+                                            {% endfor %}
                                         </div>
                                     </form>
+<!--                                    {% if messages %}-->
+<!--                                 {% for message in messages  %}-->
+
+<!--                                      {% endfor %} {% endif %}-->
 
                                 </div>
                             </div>
@@ -97,5 +109,6 @@
         </div>
     </div>
 </div>
+
 {% include "basic2.html" %}
 {% endblock %}

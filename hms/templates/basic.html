@@ -145,7 +145,17 @@
 
     <!-- Script to add Hovered class in the List item -->
     <script type="text/javascript" src="{% static './assets/js/dashboard_script.js' %}"></script>
+    <!-- JavaScript Files -->
+   <!-- Jquery -->
+    <script src="{% static './vendors/js/jquery-3.6.0_form.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static './vendors/js/bootstrap_form.min.js' %}"></script>
+<script>
+    $(".close").on("click",function (){
+      $(".alert").fadeOut();
+    })
 
+</script>
 </body>
 
 </html>

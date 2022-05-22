@@ -5,10 +5,20 @@ class rooms(models.Model):
     room_id = models.AutoField(primary_key=True)
     room_name=models.CharField(max_length=30)
     room_capacity=models.IntegerField(default=5)
-    room_price=models.IntegerField()
+    room_price=models.IntegerField(default=6000)
 
     def __str__(self):
         return self.room_name
+class complain(models.Model):
+    complian_id=models.AutoField(primary_key=True)
+    student_id = models.IntegerField()
+    subject=models.CharField(max_length=100)
+    detail=models.CharField(max_length=500)
+    complain_status=models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return self.subject
 
 class customer(models.Model):
     user_id=models.AutoField(primary_key=True)
@@ -26,6 +36,7 @@ class customer(models.Model):
     address=models.CharField(max_length=500)
     food_status=models.BooleanField(default=False)
 
+
     def __str__(self):
         return self.user_name
 class customer_fee(models.Model):
@@ -34,6 +45,8 @@ class customer_fee(models.Model):
     end_Date=models.DateField()
     total_amount=models.IntegerField()
     allow_installment=models.BooleanField(default=True)
+
+
 
 
 
