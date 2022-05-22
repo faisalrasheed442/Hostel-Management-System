@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
-from .models import customer
+from .models import customer,complain
 from django.core import mail
 # import stripe
 class student_view():
@@ -114,17 +114,7 @@ class student_view():
             return redirect('Login')
         else:
             return redirect('Login')
-        # connection = mail.get_connection()
-        # connection.open()
-        # email1 = mail.EmailMessage(
-        #     'Hello',
-        #     'Body goes here',
-        #     'faisalrasheed822@gmail.com',
-        #     ['techwithflash@gmail.com'],
-        #     connection=connection,
-        # )
-        # email1.send()
-        # connection.close()
+
 
     def get_data(self,id):
         user_data = customer.objects.get(user_id=id)
@@ -139,8 +129,14 @@ class student_view():
             room_no=request.POST.get('room_no')
             subject=request.POST.get('subject')
             reason_for_change=request.POST.get('reason_for_change')
-            messages.error(request, 'Invalid email and password')
-            # request.session.flush()
+            student_id = request.session['id']
+            register = complain(student_id=student_id, subject=subject, detail=reason_for_change)
+            register.save()
+            self.send_email("Your complain is registered","Your complain is registered our representative will contact you soon ",email)
+            body=f"subject: {subject} \nUser name: {name} \nUser email: {email} \n Details: {reason_for_change}"
+            self.send_email("New complain registered for room change",body,"faisalrasheed442@gmail.com")
+            messages.success(request, 'You complaint has been registered')
+
             return redirect('change_room')
 
         else:
@@ -149,6 +145,12 @@ class student_view():
                 return render(request, 'change_room.html',data)
             else:
                 return redirect('Login')
+    def send_email(self,subject,text,to):
+        connection = mail.get_connection()
+        connection.open()
+        email1 = mail.EmailMessage(subject,text,"faisalrasheed822@gmail.com",[to],connection=connection,)
+        email1.send()
+        connection.close()
 
 
 
