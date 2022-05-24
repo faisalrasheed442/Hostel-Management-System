@@ -4,6 +4,7 @@ from .import views
 student=views.student_view()
 urlpatterns = [
 
+
     path('', student.index, name='Home'),
     path('login/', student.login, name='Login'),
     path('register/', student.register, name='register'),

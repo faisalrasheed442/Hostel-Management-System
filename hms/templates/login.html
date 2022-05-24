@@ -1,66 +1,105 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-{% load static %}
+{% extends "basic3.html" %}
+
 <head>
-    <meta charset="utf-8" />
-    <title>Login</title>
-
-    <!-- Bootstrap CSS Stylesheet -->
-    <link rel="stylesheet" href="{% static './vendors/css/bootstrap_form.min.css' %}" />
-
-    <!-- CSS Local File -->
-    <link rel="stylesheet" href="{% static './assets/css/login_style.css' %}" />
+    {% block title %}User Login{% endblock %}
 </head>
 
+{% block page-title %}Login{% endblock %}
+
+{% block content %}
+<!-- Code 4 Pages Start from Here  -->
+<!doctype html>
+{% load static %}
+
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+<!--	CSS Files-->
+	<link rel="stylesheet" href="{% static './vendors/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/dataTables.bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/bootstrap-social.css' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/bootstrap-select.css' %}' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/fileinput.min.css' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/awesome-bootstrap-checkbox.css' %}">
+	<link rel="stylesheet" href="{% static './assets/css/register_login_front.css' %}">
+
+<!--	JavaScript Code-->
+<script type="text/javascript" src="{% static './vendors/js/jquery-1.11.3-jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static './vendors/js/validation.min.js' %}"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+function valid()
+{
+if(document.registration.password.value!= document.registration.cpassword.value)
+{
+alert("Password and Re-Type Password Field do not match  !!");
+document.registration.cpassword.focus();
+return false;
+}
+return true;
+}
+</script>
+</head>
 <body>
 
-{% if messages %}
- {% for message in messages  %}
-      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-            <strong>Message : </strong> {{ message }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-      {% endfor %} {% endif %}
-    <div class="container login-container">
-        <div class="row min-h_vfull d-flex justify-content-center align-items-center">
-            <div class="col-md-6 login-form-1">
-                <h3>Login Form</h3>
-                <form action="/login/" method="POST">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="email" name="email"  placeholder="Your Email *" value="" required />
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Your Password *" value="" required />
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="btnSubmit" value="Login" name="click"/>
-                    </div>
-                    <div class="form-group other_options">
-                        <a href="#" class="ForgetPwd">Forget Password?</a>
-                    </div>
-                    <div class="form-group other_options">
-                        <a href="{% url 'register' %}" class="RegisterNow">Register Now</a>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
-    <!-- JavaScript Files -->
-   <!-- Jquery -->
-    <script src="{% static './vendors/js/jquery-3.6.0_form.min.js' %}"></script>
-    <!-- Bootstrap -->
-    <script src="{% static './vendors/js/bootstrap_form.min.js' %}"></script>
-<script>
-    $(".close").on("click",function (){
-      $(".alert").fadeOut();
-    })
 
-</script>
+	<div class="ts-main-content">
 
+		<div class="content-wrapper">
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-md-12">
+
+
+
+						<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+						<div class="well row pt-2x pb-3x bk-light">
+							<div class="col-md-8 col-md-offset-2">
+
+								<form action="" class="mt" method="post">
+									<label for="" class="text-uppercase text-sm">Email</label>
+									<input type="text" placeholder="Email" name="email" class="form-control mb">
+									<label for="" class="text-uppercase text-sm">Password</label>
+									<input type="password" placeholder="Password" name="password" class="form-control mb">
+
+
+									<input type="submit" name="login" class="btn btn-primary btn-block" value="login" >
+								</form>
+							</div>
+						</div>
+						<div class="text-center text-light" style="color:black;">
+							<a href="" style="color:black;">Forgot password?</a>
+						</div>
+					</div>
+				</div>
+						</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{% static './vendors/js/jquery.min.js' %}"></script>
+	<script src="{% static './vendors/js/bootstrap-select.min.js' %}"></script>
+	<script src="{% static './vendors/js/bootstrap.min.js' %}"></script>
+	<script src="{% static './vendors/js/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static './vendors/js/dataTables.bootstrap.min.js' %}"></script>
+	<script src="{% static './vendors/js/Chart.min.js' %}"></script>
+	<script src="{% static './vendors/js/fileinput.js' %}"></script>
+	<script src="{% static './vendors/js/chartData.js' %}"></script>
+	<script src="{% static './vendors/js/main.js' %}"></script>
 </body>
 
 </html>
+{% include "basic2.html" %}
+{% endblock %}

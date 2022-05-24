@@ -1,187 +1,163 @@
-<!DOCTYPE html>
-<html lang="en">
-{% load static %}
+{% extends "basic3.html" %}
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{% static './vendors/css/bootstrap_form.min.css' %}" />
-
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" />
-
-    <!-- Local CSS Stylesheet -->
-    <link rel="stylesheet" href="{% static './assets/css/register_style.css' %}" />
-
-    <title>Register</title>
+    {% block title %}User Registration{% endblock %}
 </head>
 
+{% block page-title %}Register{% endblock %}
+
+{% block content %}
+<!-- Code 4 Pages Start from Here  -->
+
+
+<!doctype html>
+{% load static %}
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+<!--	CSS Files-->
+	<link rel="stylesheet" href="{% static './vendors/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/dataTables.bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/bootstrap-social.css' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/bootstrap-select.css' %}' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/fileinput.min.css' %}">
+	<link rel="stylesheet" href="{% static './vendors/css/awesome-bootstrap-checkbox.css' %}">
+	<link rel="stylesheet" href="{% static './assets/css/register_login_front.css' %}">
+
+<!--	JavaScript Code-->
+<script type="text/javascript" src="{% static './vendors/js/jquery-1.11.3-jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static './vendors/js/validation.min.js' %}"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+function valid()
+{
+if(document.registration.password.value!= document.registration.cpassword.value)
+{
+alert("Password and Re-Type Password Field do not match  !!");
+document.registration.cpassword.focus();
+return false;
+}
+return true;
+}
+</script>
+</head>
 <body>
-    <!-- MultiStep Form -->
-    <div class="container-fluid" id="grad1">
-        <div class="row justify-content-center mt-0">
-            <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
-                <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
-                    <h2><strong>Sign Up Your User Account</strong></h2>
-                    <p>Fill all form field to go to next step</p>
-                    <div class="row">
-                        <div class="col-md-12 mx-0">
-                            <form id="msform">
-                                <!-- progressbar -->
-                                <ul id="progressbar">
-                                    <li class="active" id="account">
-                                        <strong>Account</strong>
-                                    </li>
-                                    <li id="personal"><strong>Personal</strong></li>
-                                    <li id="payment"><strong>Payment</strong></li>
-                                    <li id="confirm"><strong>Finish</strong></li>
-                                </ul>
-                                <!-- fieldsets -->
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">Account Information</h2>
-                                        <input type="email" name="email" placeholder="Email" required/>
-                                        <input type="text" name="uname" placeholder="Username" required/>
-                                        <input type="password" name="pwd" placeholder="Password" required/>
-                                        <input type="tel" name="phno" placeholder="Contact No" required/>
 
-<!--                                        <label class="d-flex align-items-center" for="male" class="checkbox-inline">-->
-<!--                                            <input class="my-0 w-auto mr-2 p-0" type="radio" name="gender" value="male"-->
-<!--                                                id="male"/>-->
-<!--                                            <span> Male</span>-->
-<!--                                        </label>-->
-<!--                                        <label class="d-flex align-items-center" for="female" class="checkbox-inline">-->
-<!--                                            <input class="my-0 w-auto mr-2 p-0" type="radio" name="gender"-->
-<!--                                                value="female" id="female" />-->
-<!--                                          <span> Female</span>-->
-<!--                                        </label>-->
-<!--                                        <label class="d-flex align-items-center" for="other" class="checkbox-inline">-->
-<!--                                            <input class="my-0 w-auto mr-2 p-0" type="radio" name="gender"-->
-<!--                                                value="other" id="other" />-->
-<!--                                           <span> Other</span>-->
-<!--                                        </label>-->
+	<div class="ts-main-content">
 
-                                        <label>Gender</label>
-                                        <select name="gender" id="gender">
-                                            <option value="Male" selected>Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
-                                        </select><br><br>
+		<div class="content-wrapper">
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="row">
+							<div class="col-md-12">
+								<div class="panel panel-primary">
+									<div class="panel-heading">Fill all Info</div>
+									<div class="panel-body">
+			<form method="post" action="" name="registration" class="form-horizontal" onSubmit="return valid();">
 
 
-                                        <label>Room &nbsp;</label>
-                                        <select name="rooms" id="room">
-                                            <option value="room1">1</option>
-                                            <option value="room2">2</option>
-                                            <option value="room3">3</option>
-                                            <option value="room4">4</option>
-                                        </select>
-                                    </div>
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
-                                </fieldset>
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">Personal Information</h2>
-                                        <input type="text" name="fname" placeholder="Guardian Name" />
-                                        <input type="text" name="phno" placeholder="Contact No." />
-                                        <input type="text" name="phno_2" placeholder="Address" />
-                                    </div>
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                    <input type="button" name="next" class="next action-button" value="Next Step" />
-                                </fieldset>
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title">Payment Information</h2>
-                                        <div class="radio-group">
-                                            <div class="radio" data-value="credit">
-                                                <img src="{% static './assets/media/1.PNG' %}" width="200px" height="100px" />
-                                            </div>
-                                            <div class="radio" data-value="paypal">
-                                                <img src="{% static './assets/media/2.PNG' %}" width="200px" height="100px" />
-                                            </div>
-                                            <br />
-                                        </div>
-                                        <label class="pay">Card Holder Name*</label>
-                                        <input type="text" name="holdername" placeholder="" />
-                                        <div class="row">
-                                            <div class="col-9">
-                                                <label class="pay">Card Number*</label>
-                                                <input type="text" name="cardno" placeholder="" />
-                                            </div>
-                                            <div class="col-3">
-                                                <label class="pay">CVC*</label>
-                                                <input type="password" name="cvcpwd" placeholder="***" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <label class="pay">Expiry Date*</label>
-                                            </div>
-                                            <div class="col-9">
-                                                <select class="list-dt" id="month" name="expmonth" >
-                                                    <option selected>Month</option>
-                                                    <option>January</option>
-                                                    <option>February</option>
-                                                    <option>March</option>
-                                                    <option>April</option>
-                                                    <option>May</option>
-                                                    <option>June</option>
-                                                    <option>July</option>
-                                                    <option>August</option>
-                                                    <option>September</option>
-                                                    <option>October</option>
-                                                    <option>November</option>
-                                                    <option>December</option>
-                                                </select>
-                                                <select class="list-dt" id="year" name="expyear">
-                                                    <option selected>Year</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                                    <input type="button" name="make_payment" class="next action-button" value="Confirm" />
-                                </fieldset>
-                                <fieldset>
-                                    <div class="form-card">
-                                        <h2 class="fs-title text-center">Success !</h2>
-                                        <br /><br />
-                                        <div class="row justify-content-center">
-                                            <div class="col-3">
-                                                <img src="{% static './assets/media/ok--v2.png' %}" class="fit-image" />
-                                            </div>
-                                        </div>
-                                        <br /><br />
-                                        <div class="row justify-content-center">
-                                            <div class="col-7 text-center">
-                                                <h5>You Have Successfully Signed Up</h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- JS Files -->
+<div class="form-group">
+<label class="col-sm-2 control-label"> Registration No : </label>
+<div class="col-sm-8">
+<input type="text" name="regno" id="regno"  class="form-control" required="required" >
+</div>
+</div>
 
-    <!-- Bootstrap -->
-    <script src="{% static './vendors/js/bootstrap_form.min.js' %}"></script>
-    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script> -->
 
-    <!-- Jquery File -->
-    <script src="{% static './vendors/js/jquery-3.6.0_form.min.js' %}"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+<div class="form-group">
+<label class="col-sm-2 control-label">User Name : </label>
+<div class="col-sm-8">
+<input type="text" name="user_name" id="user_name"  class="form-control" required="required" >
+</div>
+</div>
 
-    <!-- Custom JS -->
-    <script src="{% static './assets/js/register.js' %}"></script>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">Gender : </label>
+<div class="col-sm-8">
+<select name="gender" class="form-control" required="required">
+<option value="">Select Gender</option>
+<option value="male">Male</option>
+<option value="female">Female</option>
+<option value="others">Others</option>
+</select>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">Contact No : </label>
+<div class="col-sm-8">
+<input type="text" name="contact" id="contact"  class="form-control" required="required">
+</div>
+</div>
+
+
+<div class="form-group">
+<label class="col-sm-2 control-label">Email id: </label>
+<div class="col-sm-8">
+<input type="email" name="email" id="email"  class="form-control" onBlur="checkAvailability()" required="required">
+<span id="user-availability-status" style="font-size:12px;"></span>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-sm-2 control-label">Password: </label>
+<div class="col-sm-8">
+<input type="password" name="password" id="password"  class="form-control" required="required">
+</div>
+</div>
+
+
+<div class="form-group">
+<label class="col-sm-2 control-label">Confirm Password : </label>
+<div class="col-sm-8">
+<input type="password" name="cpassword" id="cpassword"  class="form-control" required="required">
+</div>
+</div>
+
+
+
+
+<div class="col-sm-6 col-sm-offset-4">
+<button class="btn btn-default" type="submit">Cancel</button>
+<input type="submit" name="submit" Value="Register" class="btn btn-primary">
+</div>
+</form>
+
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="{% static './vendors/js/jquery.min.js' %}"></script>
+	<script src="{% static './vendors/js/bootstrap-select.min.js' %}"></script>
+	<script src="{% static './vendors/js/bootstrap.min.js' %}"></script>
+	<script src="{% static './vendors/js/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static './vendors/js/dataTables.bootstrap.min.js' %}"></script>
+	<script src="{% static './vendors/js/Chart.min.js' %}"></script>
+	<script src="{% static './vendors/js/fileinput.js' %}"></script>
+	<script src="{% static './vendors/js/chartData.js' %}"></script>
+	<script src="{% static './vendors/js/main.js' %}"></script>
 </body>
 
 </html>
+
+{% include "basic2.html" %}
+{% endblock %}
