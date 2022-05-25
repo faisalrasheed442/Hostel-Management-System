@@ -115,6 +115,9 @@ class student_view():
         else:
             return redirect('Login')
 
+    # Forget Password
+    def forget_password(self,request):
+        return render(request,'forget_password.html')
 
     def get_data(self,id):
         user_data = customer.objects.get(user_id=id)
