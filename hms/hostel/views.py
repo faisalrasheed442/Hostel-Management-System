@@ -3,11 +3,15 @@ from django.contrib import messages
 from .models import customer,complain
 from django.core import mail
 # import stripe
+
 class student_view():
     def index(self,request):
         return render(request, 'index.html')
     # login function to authenticate user basically used seassons
+
+
     def login(self,request):
+        # return render(request,'login.html')
         if 'id' in request.session:
             return redirect('Dashboard')
         if request.method == 'POST':
@@ -24,7 +28,9 @@ class student_view():
         else:
             return render(request, 'login.html')
 
+
     def register(self,request):
+        # return render(request, 'register.html')
         if 'id' in request.session:
             return redirect('Dashboard')
         else:
@@ -32,6 +38,7 @@ class student_view():
 
 
     def dashboard(self,request):
+        # return render(request,'dashboard.html')
         if 'id' in request.session:
             data=self.get_data(request.session['id'])
             return render(request, 'dashboard.html',data)
@@ -40,6 +47,7 @@ class student_view():
 
 
     def profile(self,request):
+        # return render(request, 'profile.html')
         if request.method == 'POST':
             username=request.POST.get('name')
             contact=request.POST.get('contact')
@@ -64,13 +72,18 @@ class student_view():
 
 
     def room(self,request):
+        # return render(request, 'room.html')
         if 'id' in request.session:
             return render(request, 'room.html')
         else:
             return redirect('Login')
 
+    def book_room(self,request):
+        return render(request, 'book_room.html')
+
 
     def complains(self,request):
+        # return render(request, 'complains.html')
         if 'id' in request.session:
             return render(request, 'complains.html')
         else:
@@ -78,6 +91,8 @@ class student_view():
 
 
     def fee(self,request):
+        # return render(request, 'fee.html')
+
         if 'id' in request.session:
             return render(request, 'fee.html')
         else:
@@ -85,6 +100,7 @@ class student_view():
 
 
     def passwords(self,request):
+        # return render(request,'password.html')
         if request.method == 'POST':
             print("hire")
             oldpassword = request.POST.get('oldpassword')
@@ -101,7 +117,7 @@ class student_view():
             else:
                 messages.error(request,"some details are wrong")
                 return render(request, 'password.html')
-
+    
         else:
             if 'id' in request.session:
                 return render(request, 'password.html')
@@ -109,6 +125,7 @@ class student_view():
                 return redirect('Login')
 
     def logout(self,request):
+        # return render(request, 'logout.html')
         if 'id' in request.session:
             request.session.flush()
             return redirect('Login')
@@ -125,6 +142,7 @@ class student_view():
         return user_data
 
     def change_room(self,request):
+        # return render(request, 'change_room.html')
         if request.method == 'POST':
             name=request.POST.get('name')
             email=request.POST.get('email')
@@ -139,15 +157,17 @@ class student_view():
             body=f"subject: {subject} \nUser name: {name} \nUser email: {email} \n Details: {reason_for_change}"
             self.send_email("New complain registered for room change",body,"faisalrasheed442@gmail.com")
             messages.success(request, 'You complaint has been registered')
-
+        
             return redirect('change_room')
-
+        
         else:
             if 'id' in request.session:
                 data=self.get_data(request.session['id'])
                 return render(request, 'change_room.html',data)
             else:
                 return redirect('Login')
+
+
     def send_email(self,subject,text,to):
         connection = mail.get_connection()
         connection.open()

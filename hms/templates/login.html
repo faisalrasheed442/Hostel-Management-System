@@ -66,6 +66,7 @@ return true;
 							<div class="col-md-8 col-md-offset-2">
 
 								<form action="" class="mt" method="post">
+                                     {% csrf_token %}
 									<label for="" class="text-uppercase text-sm">Email</label>
 									<input type="text" placeholder="Email" name="email" class="form-control mb">
 									<label for="" class="text-uppercase text-sm">Password</label>
