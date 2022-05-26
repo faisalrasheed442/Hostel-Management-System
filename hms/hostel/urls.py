@@ -18,5 +18,6 @@ urlpatterns = [
     path('change_room/', student.change_room,  name='change_room'),
 path('forget_password/', student.forget_password,  name='forget_password'),
 path('book_room/', student.book_room,  name='book_room'),
+path('fee_detail/', student.fee_detail,  name='fee_detail'),
 
 ]

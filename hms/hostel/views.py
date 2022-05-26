@@ -99,6 +99,10 @@ class student_view():
             return redirect('Login')
 
 
+    def fee_detail(self,request):
+        return render(request,'fee_detail.html')
+
+
     def passwords(self,request):
         # return render(request,'password.html')
         if request.method == 'POST':
