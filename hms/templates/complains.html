@@ -2,6 +2,11 @@
 
 <head>
     {% block title %}Complains{% endblock %}
+<style>
+
+
+</style>
+
 </head>
 
 <!-- Code 4 Pages Start from Here  -->
@@ -11,91 +16,65 @@
 {% block content %}
 
 <!-- Your code goes here -->
-<div class="ts-main-content">
+<div  class="container">
+<ul  class="nav nav-pills">
+			<li class="active col-sm-4">
+        <a  href="#1b" data-toggle="tab">Open</a>
+			</li >
+			<li class="col-sm-4"><a href="#2b" data-toggle="tab" >Cloesed</a>
+			</li>
 
-    <div class="content-wrapper">
-        <div class="container-fluid">
+		</ul>
+    <div class="tab-content clearfix">
+			  <div class="tab-pane active" id="1b">
 
-            <div class="row">
-                <div class="col-md-12">
+                <table class="table">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Ticket #</th>
+                      <th scope="col"> Date</th>
+                      <th scope="col">Subject</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
+                  </tbody>
+                </table>
+				</div>
+				<div class="tab-pane" id="2b">
+            <table class="table">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Ticket #</th>
+                      <th scope="col"> Date</th>
+                      <th scope="col">Subject</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
 
-                                    Complain Box :
-                                </div>
+                  </tbody>
+                </table>
+				</div>
+
+			</div>
+  </div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
-                                <div class="panel-body">
-                                    <form method="post" action="" name="registration" class="form-horizontal">
-
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label"> Name :
-                                            </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="name" id="regno" class="form-control" placeholder="Full name"
-                                                       required="required" value="{{ profile.user_name }}">
-                                            </div>
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Email Id: </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="email" id="fname" class="form-control" placeholder="email@domain.com"
-                                                       value="{{ profile.email }}" required="required">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Contact No : </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="contact" id="mname" class="form-control" placeholder="0300-0000000"
-                                                       value="{{ profile.contact }}">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Room No : </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="room_no" id="rname" class="form-control" placeholder="Room 1 - 4"
-                                                       value={{ profile.room }}>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Subject : </label>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject"
-                                                       value="">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Complaint</label>
-                                            <div class="col-sm-8">
-                                                <textarea name="" id="" cols="30" rows="10" class="form-control" required placeholder="Your Message"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-6 col-sm-offset-4">
-
-                                            <input type="submit" name="update" Value="File Complaint"
-                                                   class="btn btn-primary">
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 {% include "basic2.html" %}
 {% endblock %}
