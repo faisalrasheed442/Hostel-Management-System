@@ -16,19 +16,20 @@
 {% block content %}
 
 <!-- Your code goes here -->
-    <button class="btn btn-primary float-right" onclick="window.location.href = '{% url 'change_room' %}';"> + New Ticket</button>
-    
+
+
 
 <div  class="container">
-
+    <button class="btn btn-primary  pull-right" onclick="window.location.href = '{% url 'change_room' %}';"> + New Ticket</button>
 <ul  class="nav nav-pills">
-			<li class="active col-sm-4">
-        <a  href="#1b" data-toggle="tab">Open</a>
+			<li class=" active col-sm-4">
+        <a  href="#1b" data-toggle="tab" >Open</a>
 			</li >
-			<li class="col-sm-4"><a href="#2b" data-toggle="tab" >Cloesed</a>
+			<li class="col-sm-4"><a href="#2b" data-toggle="tab" >Closed</a>
 			</li>
 
 		</ul>
+{#    table for open complains#}
     <div class="tab-content clearfix">
 			  <div class="tab-pane active" id="1b">
 
@@ -52,6 +53,8 @@
                   </tbody>
                 </table>
 				</div>
+
+{#        table for close complains#}
 				<div class="tab-pane" id="2b">
             <table class="table">
                   <thead class="thead-light">
