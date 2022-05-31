@@ -89,6 +89,12 @@ class student_view():
         else:
             return redirect('Login')
 
+    def ticket(self,request):
+        return render(request,'ticket.html')
+
+    def basic(self,request):
+        return render(request,'basic.html')
+
 
     def fee(self,request):
         # return render(request, 'fee.html')

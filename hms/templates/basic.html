@@ -12,6 +12,9 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="{% static './assets/css/dashboard_style.css' %} "/>
 
+<!--    Dropdown Menu-->
+    <link rel="stylesheet" type="text/css" href="{% static './assets/css/dropdown-menu.css' %}">
+
     <!-- Stylesheet for Responsiveness -->
     <link rel="stylesheet" href="{% static './assets/css/dashboard_queries.css' %}"/>
 
@@ -130,9 +133,22 @@
             </div>
 
             <!-- User Image -->
-            <div class="user brand clearfix">
-                <img src="../{{ profile.user_image }}">
+<!--            <div class="user brand clearfix">-->
+<!--                <img src="../{{ profile.user_image }}">-->
+<!--            </div>-->
+
+            <div class="user brand clearfix action">
+
+                    <img src="../{{ profile.user_image }}" onclick="menuToggle();" alt="Profile Avatar">
+
+                <div class="drop-menu">
+                    <ul>
+                        <li><img src="{% static './assets/media/profile.png' %}"><a href="{% url 'profile' %}">Profile</a></li>
+                        <li><img src="{% static '/assets/media/logout.png' %}"><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
             </div>
+            <!---->
         </div>
 
         <!-- End of Top Bar -->
@@ -165,8 +181,12 @@
     $(".close").on("click",function (){
       $(".alert").fadeOut();
     })
-
-
+</script>
+<script>
+		function menuToggle(){
+			const toggleMenu = document.querySelector('.drop-menu');
+			toggleMenu.classList.toggle('active');
+		}
 </script>
 </body>
 

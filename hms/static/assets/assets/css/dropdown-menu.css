@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
+
+
+/*
+.action {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+}*/
+
+/*
+.action .profile {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+*/
+
+.action img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.action .drop-menu {
+position: absolute;
+top: 80px;
+right:-10px;
+padding: 10px 20px;
+background-color: #cecece;
+width: 200px;
+box-sizing: 0 5px 25px rgba(0,0,0,.1);
+border-radius: 15px;
+transition: 0.5s;
+
+/* visibility*/
+visibility: hidden;
+opacity: 0;
+}
+
+
+/* Add a Space*/
+.action .drop-menu::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 28px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    transform: rotate(45deg);
+}
+
+/* Active class  */
+.action .drop-menu.active {
+    top: 80px;
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.action .menu ul li{
+    padding: 10px 0px;
+    list-style: none;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action .menu ul li img {
+    max-width: 20px;
+    margin-right: 10px;
+    opacity: 0.5s;
+    transition: 0.5s;
+    color:#fff
+}
+
+
+.action .menu ul li:hover img {
+    opacity: 1;
+}
+
+.action .menu ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: 0.5s;
+}
+
+.action .menu ul li:hover a {
+    color: #287bff;
+}
