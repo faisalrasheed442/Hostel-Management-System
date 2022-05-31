@@ -187,3 +187,7 @@ class student_view():
 
 
 
+
+class admin_view():
+    def index(self,request):
+        return render(request, 'index.html')
