@@ -39,34 +39,24 @@
 
                                 <div class="panel-body">
                                     <form method="post" action="{% url 'profile' %}" name="registration"
-                                          class="form-horizontal">
+                                          class="form-horizontal" enctype="multipart/form-data">
                                         {% csrf_token %}
+
 
                                         <!--                                                    Profile-->
                                         <center>
-                                            <div class="profile-pic-wrapper">
+                                            <div class="profile-pic-wrapper pull-right ">
                                                 <div class="pic-holder">
                                                     <!-- uploaded pic shown here -->
-                                                    <img id="profilePic" class="pic"
-                                                         src="../{{ profile.user_image }}">
+                                                    <img id="profilePic" class="pic img-thumbnail" width="200" height="200"
+                                                         src="../{{ profile.user_image }}"><br>
+                                                    <span >{{ form.user_image }}</span>
 
-                                                    <Input class="uploadProfileInput" type="file" name="profile_pic"
-                                                           id="newProfilePhoto" accept="image/*" style="opacity: 0;"/>
-                                                    <label for="newProfilePhoto" class="upload-file-block">
-                                                        <div class="text-center">
-                                                            <div class="mb-2">
-                                                                <i class="fa fa-camera fa-2x"></i>
-                                                            </div>
-                                                            <div class="text-uppercase">
-                                                                Update <br/> Profile Photo
-                                                            </div>
-                                                        </div>
-                                                    </label>
                                                 </div>
 
                                             </div>
                                         </center>
-                                        <br>
+
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label"> Username :

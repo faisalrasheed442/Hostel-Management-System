@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
-from .models import customer,complain
+from .models import customer,complain,rooms,customer_fee
 from django.core import mail
+from .forms import ImageForm
 # import stripe
 
 class student_view():
@@ -31,10 +32,30 @@ class student_view():
 
     def register(self,request):
         # return render(request, 'register.html')
-        if 'id' in request.session:
-            return redirect('Dashboard')
+        if request.method=="POST":
+            user_name=request.POST.get("user_name")
+            print(user_name)
+            email=request.POST.get("email")
+            contact=request.POST.get("contact")
+            gender=request.POST.get("gender")
+            room=request.POST.get("room")
+            password=request.POST.get("password")
+            food_status=request.POST.get("foodstatus")
+            check_email=customer.objects.filter(email=email)
+            if check_email:
+                messages.error(request, 'Email Already Registered')
+                return redirect('register')
+            else:
+                new_user=customer(user_name=user_name,email=email,password=password,contact=contact,gender=gender,room=room,)
+                return redirect('register')
         else:
-            return render(request, 'register.html')
+            if 'id' in request.session:
+                return redirect('Dashboard')
+            else:
+                data=rooms.objects.filter(current_capacity__lt=5)
+                data={'room':data}
+                print(data)
+                return render(request, 'register.html',data)
 
 
     def dashboard(self,request):
@@ -47,8 +68,9 @@ class student_view():
 
 
     def profile(self,request):
-        # return render(request, 'profile.html')
+        form=ImageForm()
         if request.method == 'POST':
+            form=request.FILES
             username=request.POST.get('name')
             contact=request.POST.get('contact')
             gender=request.POST.get('gender')
@@ -62,10 +84,12 @@ class student_view():
             data.Guardian_name=guardian_name
             data.contact=contact
             data.address=address
+            data.user_image=form["user_image"]
             data.save()
             return redirect('profile')
         if 'id' in request.session:
             data = self.get_data(request.session['id'])
+            data["form"] = form
             return render(request, 'profile.html',data)
         else:
             return redirect('Login')
@@ -90,18 +114,36 @@ class student_view():
             return redirect('Login')
 
 
-    def fee(self,request):
+    def chat(self,request):
         # return render(request, 'fee.html')
 
         if 'id' in request.session:
-            return render(request, 'fee.html')
+            return render(request, 'chat.html')
         else:
             return redirect('Login')
 
 
     def fee_detail(self,request):
-        return render(request,'fee_detail.html')
+        if 'id' in request.session:
+            data=customer_fee.objects.filter(customer_id=request.session['id'])
+            print(data)
+            data={"fee":data}
+            return render(request, 'fee_detail.html',data)
+        else:
+            return redirect('Login')
+        
 
+    def installment(self,request):
+        if request.method == 'POST':
+            print("no")
+            fee_id = request.POST.get("fee_id")
+            data=customer_fee.objects.get(fee_id=fee_id)
+            data={"data":data}
+            return render(request, 'installment.html',data)
+        else:
+            print("error")
+            data=request.POST.get("price")
+            return render(request, 'installment.html')
 
     def passwords(self,request):
         # return render(request,'password.html')
@@ -167,6 +209,8 @@ class student_view():
         else:
             if 'id' in request.session:
                 data=self.get_data(request.session['id'])
+                data["head"]="Change Room"
+                print(data)
                 return render(request, 'change_room.html',data)
             else:
                 return redirect('Login')

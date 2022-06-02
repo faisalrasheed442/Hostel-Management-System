@@ -1,16 +1,15 @@
 {% extends "basic.html" %}
 
 <head>
-    {% block title %}Fee Detail{% endblock %}
+{% block title %}Installment {% endblock %}
+
 </head>
-
-
-{% block page-title %}Fee Detail{% endblock %}
-
-{% block content %}
+ {% load static%}
 <!-- Code 4 Pages Start from Here  -->
-<!doctype html>
-{% load static %}
+
+{% block page-title %}Installment Plan{% endblock %}
+
+ {% block content %}
 
 <html lang="en" class="no-js">
 <head>
@@ -54,55 +53,55 @@
                                 <div class="panel-body">
 
                                     <!--                                    Installment Table-->
+                                        <form method="post" action="#">
+                                                            {%  csrf_token %}
                                     <table class="table table-hover .table-responsive">
                                         <thead>
                                         <tr>
-                                            <th scope="col">Installment</th>
-                                            <th scope="col">Last Date</th>
-                                            <th scope="col">Total Payment</th>
-                                            <th scope="col">Status</th>
-                                            <th scope="col">Click to Pay</th>
-                                            <th scope="col">Installment</th>
+                                            <th scope="col">Convert to Installment</th>
+
+
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for data in fee %}
-                                        <tr><form method="POST", action="{% url "installment" %}">
-                                                {% csrf_token %}
-                                            <th scope="row"><input type="hidden", value="{{ data.fee_id}}" name="fee_id"></input>{{ data.fee_id}}</th>
-                                            <td>{{ data.end_Date}}</td>
-                                            <td>{{ data.total_amount}}</td>
-                                            {% if data.paid %}
-                                            <td> Paid
+                                        <tr>
+                                            <th scope="row">Voucher No</th>
+                                            <td><input type="hidden", value="{{ data.fee_id }}" name="fee_id"></input>{{ data.fee_id }}</td>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Voucher Duration </th>
+                                            <td>{{ data.end_Date }}</td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Amount </th>
+                                            <td>{{ data.total_amount }}</td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">No of Installment </th>
+                                            <td colspan="3">
 
-                                                <td>
-                                            <a href="{% url 'fee' %}">
-                                                <button type="button" class="btn btn-primary" disabled>Pay Now</button>
-                                            </a>
-                                           </td>
-                                            {% else %}
-                                             <td>Not Paid</td>
-                                            <td>
-                                            <a href="{% url 'fee' %}">
-                                                <button type="button" class="btn btn-primary" >Pay Now</button>
-                                            </a>
-                                           </td>{% endif %}
-
-                                            <td>
-                                            {% if data.allow_installment %}
-                                            <a href="{% url 'installment' %}">
-                                                <button type="submit" class="btn btn-primary" >Installment</button>
-                                            </a></td>
-                                        {% else %}
-                                        <a href="{% url 'installment' %}">
-                                                <button type="submit" class="btn btn-primary" disabled>Installment</button>
-                                            </a></td>{% endif %}
-                                        </form>
-                                        </tr>{% endfor %}
+                                                  <input type="radio" id="installment2" name="installment" value="2" checked>
+                                                  <label for="installment2">2 Installment</label><br>
+                                                  <input type="radio" id="installment3" name="installment" value="3">
+                                                  <label for="installment3">3 Installment</label>
+                                            </td>
+                                        </tr>
+                                            <tr>
+                                            <th scope="col">Installment Details</th>
+                                                <td></td>
+                                        </tr><tr>
+                                            <td></td>
+                                            <td>sdsd/td>
+                                        </tr><tr>
+                                            <td></td>
+                                            <td><input type="submit" name="convert" class="btn btn-primary btn-block" value="Convert to Installments" width="50%" ></td>
+                                        </tr>
                                         </tbody>
                                     </table>
-
+                                </form>
                                 </div>
                             </div>
                         </div>
@@ -127,5 +126,9 @@
 
 
 </html>
+
+</form>
+
+
 {% include "basic2.html" %}
-{% endblock %}
+ {% endblock %}

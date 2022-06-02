@@ -43,15 +43,17 @@ class customer(models.Model):
     def __str__(self):
         return self.user_name
 class customer_fee(models.Model):
-    fee_id=models.ForeignKey(customer,on_delete=models.CASCADE)
-    # installment_fee=models/
+    customer_id=models.ForeignKey(customer,on_delete=models.CASCADE)
+    fee_id = models.AutoField(primary_key=True)
+    paid=models.BooleanField(default=False)
     start_date=models.DateTimeField()
     end_Date=models.DateField()
     total_amount=models.IntegerField()
     allow_installment=models.BooleanField(default=True)
 
     def __str__(self):
-        return self.fee_id.user_name
+        return self.customer_id.user_name
+
 
 
 
