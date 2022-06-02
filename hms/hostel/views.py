@@ -189,5 +189,33 @@ class student_view():
 
 
 class admin_view():
-    def index(self,request):
-        return render(request, 'index.html')
+
+    def admin_basic(self,request):
+        return render(request,'admin/admin-basic.html')
+
+    def admin_dashboard(self,request):
+        return render(request,'admin/admin-dashboard.html')
+
+    def admin_profile(self,request):
+        return render(request,'admin/admin-profile.html')
+
+    def admin_update_password(self,request):
+        return render(request,'admin/admin-update-password.html')
+
+    def student_registration(self,request):
+        return render(request,'admin/student-registration.html')
+
+    def manage_student(self,request):
+        return render(request,'admin/manage-student.html')
+
+    def add_room(self,request):
+        return render(request,'admin/add-room.html')
+
+    def manage_room(self,request):
+        return render(request,'admin/manage-room.html')
+
+    def admin_login(self,request):
+        return render(request,'admin/admin-login.html')
+
+    def admin_registration(self,request):
+        return render(request,'admin/admin-registration.html')
