@@ -109,7 +109,8 @@ class student_view():
     def room(self,request):
         # return render(request, 'room.html')
         if 'id' in request.session:
-            return render(request, 'room.html')
+            data = self.get_data(request.session['id'])
+            return render(request, 'room.html',data)
         else:
             return redirect('Login')
 
@@ -120,7 +121,8 @@ class student_view():
     def complains(self,request):
         # return render(request, 'complains.html')
         if 'id' in request.session:
-            return render(request, 'complains.html')
+            data = self.get_data(request.session['id'])
+            return render(request, 'complains.html',data)
         else:
             return redirect('Login')
 
@@ -135,7 +137,8 @@ class student_view():
         # return render(request, 'fee.html')
 
         if 'id' in request.session:
-            return render(request, 'chat.html')
+            data = self.get_data(request.session['id'])
+            return render(request, 'chat.html',data)
         else:
             return redirect('Login')
 
@@ -170,8 +173,9 @@ class student_view():
                                        end_Date=end_date,
                                        total_amount=amount, allow_installment=False)
                     new.save()
-            data=customer_fee.objects.filter(customer_id=request.session['id'])
-            data={"fee":data}
+            data = self.get_data(request.session['id'])
+            fee_data=customer_fee.objects.filter(customer_id=request.session['id'])
+            data['fee']=fee_data
             return render(request, 'fee_detail.html',data)
         else:
             return redirect('Login')
@@ -181,8 +185,9 @@ class student_view():
         if request.method == 'POST':
             print("no")
             fee_id = request.POST.get("fee_id")
-            data=customer_fee.objects.get(fee_id=fee_id)
-            data={"data":data}
+            fee_data=customer_fee.objects.get(fee_id=fee_id)
+            data = self.get_data(request.session['id'])
+            data['data']=fee_data
             return render(request, 'installment.html',data)
         else:
             return render(request, 'installment.html')
