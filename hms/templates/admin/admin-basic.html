@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="{% static './assets/css/dashboard_style.css' %} "/>
+
+<!--    Dropdown Menu-->
+    <link rel="stylesheet" type="text/css" href="{% static './assets/css/dropdown-menu.css' %}">
+
+    <!-- Stylesheet for Responsiveness -->
+    <link rel="stylesheet" href="{% static './assets/css/dashboard_queries.css' %}"/>
+
+
+    <!-- Page Title -->
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+
+<main class="main_container">
+    <nav class="navigation">
+        <ul>
+            <li>
+                <a href="{% url 'Dashboard' %}">
+                        <span class="icon">
+							<ion-icon name="bed-outline"></ion-icon>
+						</span>
+                    <span class="title">HMS</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'admin-dashboard' %}">
+                        <span class="icon">
+							<ion-icon name="home-outline"></ion-icon>
+						</span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'admin-profile' %}">
+                        <span class="icon">
+							<ion-icon name="person-outline"></ion-icon>
+						</span>
+                    <span class="title">My Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'add-room' %}">
+                        <span class="icon">
+							<ion-icon name="browsers-outline"></ion-icon>
+                            </ion-icon>
+						</span>
+                    <span class="title">Add Room</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manage-room' %}">
+                        <span class="icon">
+							<ion-icon name="browsers-outline"></ion-icon>
+                            </ion-icon>
+						</span>
+                    <span class="title">Manage Room</span>
+                </a>
+            </li>
+
+
+            <li>
+                <a href="{% url 'student-registration' %}">
+                        <span class="icon">
+							<ion-icon name="chatbox-outline"></ion-icon>
+						</span>
+                    <span class="title">Student Registration</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manage-student' %}">
+                        <span class="icon">
+							<ion-icon name="card-outline"></ion-icon>
+						</span>
+                    <span class="title">Manage Students</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'fee_detail' %}">
+                        <span class="icon">
+							<ion-icon name="card-outline"></ion-icon>
+						</span>
+                    <span class="title">Fee Detail</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'admin-update-password' %}">
+                        <span class="icon">
+							<ion-icon name="lock-closed-outline"></ion-icon>
+						</span>
+                    <span class="title">Update Password</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}">
+                        <span class="icon">
+							<ion-icon name="log-out-outline"></ion-icon>
+						</span>
+                    <span class="title">Sign Out</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    <!-- Mainbar -->
+    <main class="main">
+        <!-- Topbar -->
+        <div class="topbar">
+            <!-- Menu Hambarger -->
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+            <!-- Search bar -->
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Search here">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+
+            <!-- User Image -->
+<!--            <div class="user brand clearfix">-->
+<!--                <img src="../{{ profile.user_image }}">-->
+<!--            </div>-->
+
+            <div class="user brand clearfix action">
+
+                    <img src="../{{ profile.user_image }}" onclick="menuToggle();" alt="Profile Avatar">
+
+                <div class="drop-menu">
+                    <ul>
+                        <li><img src="{% static './assets/media/profile.png' %}"><a href="{% url 'profile' %}">Profile</a></li>
+                        <li><img src="{% static '/assets/media/logout.png' %}"><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!---->
+        </div>
+
+        <!-- End of Top Bar -->
+
+        <!-- Code 4 Pages Start from Here  -->
+        <!--   Page Title -->
+        <h1 class="page_title"> {% block page-title %}{% endblock %}</h1>
+
+        <!-- Page Main Content -->
+        {% block content %}{% endblock %}
+
+    </main>
+
+</main>
+
+<!-- JS Files -->
+
+<!-- Ionicons -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<!-- Script to add Hovered class in the List item -->
+<script type="text/javascript" src="{% static './assets/js/dashboard_script.js' %}"></script>
+<!-- JavaScript Files -->
+<!-- Jquery -->
+<script src="{% static './vendors/js/jquery-3.6.0_form.min.js' %}"></script>
+<!-- Bootstrap -->
+<script src="{% static './vendors/js/bootstrap_form.min.js' %}"></script>
+<script>
+    $(".close").on("click",function (){
+      $(".alert").fadeOut();
+    })
+</script>
+<script>
+		function menuToggle(){
+			const toggleMenu = document.querySelector('.drop-menu');
+			toggleMenu.classList.toggle('active');
+		}
+</script>
+</body>
+
+</html>

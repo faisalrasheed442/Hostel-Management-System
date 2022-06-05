@@ -61,14 +61,17 @@
                                             <th scope="col">Last Date</th>
                                             <th scope="col">Total Payment</th>
                                             <th scope="col">Status</th>
+
                                             <th scope="col">Click to Pay</th>
                                             <th scope="col">Installment</th>
+
+                                            <th scope="col">Action</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
                                         {% for data in fee %}
-                                        <tr><form method="POST", action="{% url "installment" %}">
-                                                {% csrf_token %}
+                                        <tr>
                                             <th scope="row"><input type="hidden", value="{{ data.fee_id}}" name="fee_id"></input>{{ data.fee_id}}</th>
                                             <td>{{ data.end_Date}}</td>
                                             <td>{{ data.total_amount}}</td>
@@ -84,21 +87,25 @@
                                             {% else %}
                                              <td>Not Paid</td>
                                             <td>
-                                            <a href="{% url 'fee' %}">
-                                                <button type="button" class="btn btn-primary" >Pay Now</button>
-                                            </a>
+                                            <form method="POST", action="{% url "payfee" %}">
+                                                {% csrf_token %}
+
+                                                 <input type="hidden", value="{{ data.fee_id}}" name="fee_id">
+                                                <button type="submit" class="btn btn-primary" >Pay Now</button>
+                                            </form>
                                            </td>{% endif %}
 
                                             <td>
                                             {% if data.allow_installment %}
-                                            <a href="{% url 'installment' %}">
+                                                <form method="POST", action="{% url "installment" %}">
+                                                {% csrf_token %}
+                                                <input type="hidden", value="{{ data.fee_id}}" name="fee_id">
                                                 <button type="submit" class="btn btn-primary" >Installment</button>
-                                            </a></td>
+                                                </form></td>
                                         {% else %}
-                                        <a href="{% url 'installment' %}">
                                                 <button type="submit" class="btn btn-primary" disabled>Installment</button>
-                                            </a></td>{% endif %}
-                                        </form>
+                                                </td>{% endif %}
+
                                         </tr>{% endfor %}
                                         </tbody>
                                     </table>

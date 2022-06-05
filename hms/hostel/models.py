@@ -33,8 +33,6 @@ class customer(models.Model):
     gender=models.CharField(max_length=30,default='Not Mentioned')
     Guardian_name=models.CharField(max_length=100)
     Guardian_contact=models.CharField(max_length=20)
-    payment_staus=models.BooleanField()
-    registration_date=models.DateField()
     user_image=models.ImageField(upload_to="static/profile_image",default="static/profile_image/avatar1.png")
     address=models.CharField(max_length=500)
     food_status=models.BooleanField(default=False)

@@ -58,7 +58,8 @@ ROOT_URLCONF = 'hms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        # 'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -128,14 +129,17 @@ MEDIA_URL=''
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+# to display message
 # setting messages color
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
-
-EMAIL_HOST='smtp.gmail.com'
+# to send email to user
+EMAIL_HOST='mail.techwithflash.net'
 EMAIL_PORT=587
-EMAIL_HOST_USER="faisalrasheed822@gmail.com"
-EMAIL_HOST_PASSWORD="CS&itfaisal"
+EMAIL_HOST_USER="admin@techwithflash.net"
+EMAIL_HOST_PASSWORD="Daraz78@"
 EMAIL_USE_TLS=True
+#payment gatway stripe setting
+STRIPE_SECRET_KEY='sk_test_51KxEWVGdFjCEtQwCHnNy02UAtmXO0e31Q1sMc3YlYbvlswLk9UoD1udzrdqak1NqJj3TAS5B5PARmaa9IHEG3gQG008InOb1zA'
+STIPE_PUBLISHABLE_KEY='pk_test_51KxEWVGdFjCEtQwCJO7cBduPcL51qqfYWqN3gs5BHWhKx7hoSNkkOEszFJp78zFO1ufDziXM5XVncUI5m5utK6Sf00SXncPGiJ'

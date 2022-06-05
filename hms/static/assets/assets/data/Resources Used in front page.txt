@@ -1,0 +1,94 @@
+External Resources/Tools Used to build a Website:
+
+1- Typography/Fonts
+-  Primary Font : Lato  					(fonts.google.com)
+-  font-family: 'Lato', 'Arial', sans-serif;
+Basic Typgrophy
+-  font-weight:300;
+-  font-size: 20px;
+
+
+2- Colors
+-  Primary Base Color:  #e67e22 orange-carrot				(https://flatuicolors.com/)
+-  Darker Version:	#cf6d17 45%					(0to255.com), https://www.colorhexa.com/
+-  grey-color:		#888 , #ddd (hover)
+-  linear-gradient: rgba(0,0,0,0.7),rgba(0,0,0,0.7)  & rgba(0,0,0,0.8),rgba(0,0,0,0.8)
+-  Background-color: 	#fff;   #f4f4f4;   #000;   subtle-grey-->#fcfcfc
+-  Text-Color: 		#555;
+-  border:		#ef7e22;   grey #e8e8e8;    #ccc (form border) 
+-  box-shadow:		#efefef
+
+3- CSS 
+CSS for Browser Compatibility
+- normalize.css      						 (https://necolas.github.io/normalize.css/)
+
+Font Rendering
+The browser emphasizes legibility over rendering speed and geometric precision. This enables kerning and optional ligatures.
+-  text-rendering: optimizeLegibility;
+
+Website Responsiveness
+CSS Grid Layout						
+grid.css							 (http://www.responsivegridsystem.com/)
+
+
+4- Icons							(ionicons.com)
+
+
+5-GLYPHS 
+ISO in CSS Content						cohttps://css-tricks.com/snippets/html/glyphs/
+left double quotation mark --> content: "\20IC";
+
+
+6- Social Appearance Colors
+https://www.designpieces.com/2012/12/social-media-colours-hex-and-rgb
+facebook : #3b5998
+
+
+
+7- Browser Compatibility
+caniuse.com
+
+- js delivr
+https://www.jsdelivr.com/
+
+https://zellwk.com/blog/support-for-older-browsers/
+- respond.js by scottjehl
+  https://www.jsdelivr.com/		respond.js by scottjehl -->  Make a Responsive Website That Supports Older Browsers
+
+-html5shiv
+https://www.jsdelivr.com/package/npm/html5shiv?path=dist
+
+-Selectivizr for css
+https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js
+
+- jquery
+https://code.jquery.com/
+
+- waypoint jquery plugin
+http://imakewebthings.com/waypoints/
+
+- animate.css framework
+https://animate.style/
+
+- Favicon Generator
+https://realfavicongenerator.net/
+
+
+Image Optimization:
+Optimizila for compressing images  -> https://imagecompressor.com/
+MS Paint for resizing images
+
+
+Minify/Compress CSS/JS
+http://www.minifycss.com/css-compressor/
+
+HTML Validation:
+https://validator.w3.org/
+
+
+Domain/Hosting:
+GoDaddy
+
+
+Other Useful Resources:
+http://www.webdesigncourse.co/

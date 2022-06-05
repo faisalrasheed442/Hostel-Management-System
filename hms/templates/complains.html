@@ -2,10 +2,10 @@
 
 <head>
     {% block title %}Complains{% endblock %}
-<style>
+    <style>
 
 
-</style>
+    </style>
 
 </head>
 
@@ -18,70 +18,92 @@
 <!-- Your code goes here -->
 
 
+<!-- Your code goes here -->
+<div class="ts-main-content">
 
-<div  class="container">
-    <button class="btn btn-primary  pull-right" onclick="window.location.href = '{% url 'change_room' %}';"> + New Ticket</button>
-<ul  class="nav nav-pills">
-			<li class=" active col-sm-4">
-        <a  href="#1b" data-toggle="tab" >Open</a>
-			</li >
-			<li class="col-sm-4"><a href="#2b" data-toggle="tab" >Closed</a>
-			</li>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
 
-		</ul>
-{#    table for open complains#}
-    <div class="tab-content clearfix">
-			  <div class="tab-pane active" id="1b">
-
-                <table class="table">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Ticket #</th>
-                      <th scope="col"> Date</th>
-                      <th scope="col">Subject</th>
-                      <th scope="col">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-
-                  </tbody>
-                </table>
-				</div>
-
-{#        table for close complains#}
-				<div class="tab-pane" id="2b">
-            <table class="table">
-                  <thead class="thead-light">
-                    <tr>
-                      <th scope="col">Ticket #</th>
-                      <th scope="col"> Date</th>
-                      <th scope="col">Subject</th>
-                      <th scope="col">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope="row"><p><a href="#" class="text-primary">2</a></p></th>
-                      <td>dummy</td>
-                      <td>dummy</td>
-                      <td class="text-success">Closed</td>
-                    </tr>
-
-                  </tbody>
-                </table>
-				</div>
-
-			</div>
-  </div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+                    Complain Details :
+                </div>
+                <br>
+                <br>
 
 
-{% include "basic2.html" %}
-{% endblock %}
+                <div class="container-fluid">
+                    <button class="btn btn-primary  pull-right"
+                            onclick="window.location.href = '{% url 'ticket' %}';"> + New Ticket
+                    </button>
+                    <ul class="nav nav-pills">
+                        <li class=" active col-sm-4">
+                            <a href="#1b" data-toggle="tab">Open</a>
+                        </li>
+                        <li class="col-sm-4"><a href="#2b" data-toggle="tab">Closed</a>
+                        </li>
+
+                    </ul>
+
+                    {# table for open complains#}
+                    <div class="tab-content clearfix">
+                        <div class="tab-pane active" id="1b">
+
+                            <table class="table">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Ticket #</th>
+                                    <th scope="col"> Date</th>
+                                    <th scope="col">Subject</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                            {# table for close complains#}
+                            <div class="tab-pane" id="2b">
+                                <table class="table">
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Ticket #</th>
+                                        <th scope="col"> Date</th>
+                                        <th scope="col">Subject</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <th scope="row"><p><a href="#" class="text-primary">2</a></p></th>
+                                        <td>dummy</td>
+                                        <td>dummy</td>
+                                        <td class="text-success">Closed</td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+    {% include "basic2.html" %}
+    {% endblock %}

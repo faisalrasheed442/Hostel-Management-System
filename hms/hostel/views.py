@@ -3,8 +3,9 @@ from django.contrib import messages
 from .models import customer,complain,rooms,customer_fee
 from django.core import mail
 from .forms import ImageForm
-# import stripe
-
+from datetime import timedelta, date
+import stripe
+from django.conf import settings
 class student_view():
     def index(self,request):
         return render(request, 'index.html')
@@ -31,7 +32,6 @@ class student_view():
 
 
     def register(self,request):
-        # return render(request, 'register.html')
         if request.method=="POST":
             user_name=request.POST.get("user_name")
             print(user_name)
@@ -46,7 +46,18 @@ class student_view():
                 messages.error(request, 'Email Already Registered')
                 return redirect('register')
             else:
-                new_user=customer(user_name=user_name,email=email,password=password,contact=contact,gender=gender,room=room,)
+                today = datetime.date.today()
+                EndDate = date.today() + timedelta(days=30)
+                room_details = rooms.objects.get(room_id=room)
+                new_user=customer(user_name=user_name,email=email,password=password,contact=contact,gender=gender,room=room_details,)
+                new_user.save()
+                user_data = customer.objects.get(email=email, password=password)
+                fee=customer_fee(customer_id=user_data,start_date=today,end_Date=EndDate,total_amount=room_details.room_price)
+                fee.save()
+                room_current_space=room_details.current_capacity
+                room_details.current_capacity=room_current_space+1
+                room_details.save()
+                messages.success(request,"You are successfully Registered Now")
                 return redirect('register')
         else:
             if 'id' in request.session:
@@ -113,6 +124,12 @@ class student_view():
         else:
             return redirect('Login')
 
+    def ticket(self,request):
+        return render(request,'ticket.html')
+
+    def basic(self,request):
+        return render(request,'basic.html')
+
 
     def chat(self,request):
         # return render(request, 'fee.html')
@@ -125,8 +142,35 @@ class student_view():
 
     def fee_detail(self,request):
         if 'id' in request.session:
+            if request.method == 'POST':
+                fee_id=request.POST.get("fee_id")
+                installment = int(request.POST.get("installment"))
+                user=customer.objects.get(user_id=request.session['id'])
+                fee=customer_fee.objects.get(fee_id=fee_id)
+                end_date=fee.end_Date
+                amount=fee.total_amount
+                if installment==2:
+                    amount=int(amount)/2
+                    fee.total_amount=amount
+                    fee.end_Date=end_date-timedelta(days=15)
+                    fee.allow_installment=False
+                    fee.save()
+                    new=customer_fee(customer_id=user,start_date=end_date-timedelta(days=15),end_Date=end_date,total_amount=amount,allow_installment=False)
+                    new.save()
+                elif installment==3:
+                    amount = int(amount) / 3
+                    fee.total_amount = amount
+                    fee.end_Date = end_date - timedelta(days=20)
+                    fee.allow_installment = False
+                    fee.save()
+                    new = customer_fee(customer_id=user, start_date=end_date - timedelta(days=20), end_Date=end_date- timedelta(days=10),
+                                       total_amount=amount, allow_installment=False)
+                    new.save()
+                    new = customer_fee(customer_id=user, start_date=end_date - timedelta(days=10),
+                                       end_Date=end_date,
+                                       total_amount=amount, allow_installment=False)
+                    new.save()
             data=customer_fee.objects.filter(customer_id=request.session['id'])
-            print(data)
             data={"fee":data}
             return render(request, 'fee_detail.html',data)
         else:
@@ -141,8 +185,6 @@ class student_view():
             data={"data":data}
             return render(request, 'installment.html',data)
         else:
-            print("error")
-            data=request.POST.get("price")
             return render(request, 'installment.html')
 
     def passwords(self,request):
@@ -169,7 +211,41 @@ class student_view():
                 return render(request, 'password.html')
             else:
                 return redirect('Login')
-
+    def pay_fee(self,request):
+        if request.method == 'POST':
+            id=request.POST.get("fee_id")
+            data=customer_fee.objects.get(fee_id=id)
+            price=data.total_amount
+            price=price*100
+            stripe.api_key=settings.STRIPE_SECRET_KEY
+            try:
+                checkout_session = stripe.checkout.Session.create(
+                    payment_method_types=['card'],
+                    line_items=[
+                        {
+                            'price_data':{
+                                'currency':'pkr',
+                                'unit_amount':price,
+                                'product_data':{
+                                    'name':"Hostel Fee",
+                                },
+                            },
+                            'quantity':1,
+                        },
+                    ],
+                    mode='payment',
+                    success_url= 'http://127.0.0.1:8000/fee/',
+                    cancel_url='http://127.0.0.1:8000/fee/',
+                )
+                data.paid=True
+                data.allow_installment=False
+                data.save()
+            except Exception as e:
+                return str(e)
+            return redirect(checkout_session.url, code=303)
+        else:
+            print("yo")
+            return redirect("fee")
     def logout(self,request):
         # return render(request, 'logout.html')
         if 'id' in request.session:
@@ -227,5 +303,33 @@ class student_view():
 
 
 class admin_view():
-    def index(self,request):
-        return render(request, 'index.html')
+
+    def admin_basic(self,request):
+        return render(request,'admin/admin-basic.html')
+
+    def admin_dashboard(self,request):
+        return render(request,'admin/admin-dashboard.html')
+
+    def admin_profile(self,request):
+        return render(request,'admin/admin-profile.html')
+
+    def admin_update_password(self,request):
+        return render(request,'admin/admin-update-password.html')
+
+    def student_registration(self,request):
+        return render(request,'admin/student-registration.html')
+
+    def manage_student(self,request):
+        return render(request,'admin/manage-student.html')
+
+    def add_room(self,request):
+        return render(request,'admin/add-room.html')
+
+    def manage_room(self,request):
+        return render(request,'admin/manage-room.html')
+
+    def admin_login(self,request):
+        return render(request,'admin/admin-login.html')
+
+    def admin_registration(self,request):
+        return render(request,'admin/admin-registration.html')
