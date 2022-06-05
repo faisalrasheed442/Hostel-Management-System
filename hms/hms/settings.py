@@ -135,10 +135,10 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 # to send email to user
-EMAIL_HOST='mail.techwithflash.net'
+EMAIL_HOST='smtp-relay.sendinblue.com'
 EMAIL_PORT=587
-EMAIL_HOST_USER="admin@techwithflash.net"
-EMAIL_HOST_PASSWORD="Daraz78@"
+EMAIL_HOST_USER="shirazsweer12@gmail.com"
+EMAIL_HOST_PASSWORD="84G2yY9JvqPKcRtX"
 EMAIL_USE_TLS=True
 #payment gatway stripe setting
 STRIPE_SECRET_KEY='sk_test_51KxEWVGdFjCEtQwCHnNy02UAtmXO0e31Q1sMc3YlYbvlswLk9UoD1udzrdqak1NqJj3TAS5B5PARmaa9IHEG3gQG008InOb1zA'
