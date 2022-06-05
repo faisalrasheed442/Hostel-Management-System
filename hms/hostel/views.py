@@ -46,7 +46,8 @@ class student_view():
                 messages.error(request, 'Email Already Registered')
                 return redirect('register')
             else:
-                today = datetime.date.today()
+                today = date.today()
+                print(today)
                 EndDate = date.today() + timedelta(days=30)
                 room_details = rooms.objects.get(room_id=room)
                 new_user=customer(user_name=user_name,email=email,password=password,contact=contact,gender=gender,room=room_details,)
@@ -95,8 +96,11 @@ class student_view():
             data.Guardian_name=guardian_name
             data.contact=contact
             data.address=address
-            data.user_image=form["user_image"]
-            data.save()
+            try:
+                data.user_image = form["user_image"]
+                data.save()
+            except:
+                data.save()
             return redirect('profile')
         if 'id' in request.session:
             data = self.get_data(request.session['id'])
@@ -114,19 +118,63 @@ class student_view():
         else:
             return redirect('Login')
 
-    def book_room(self,request):
-        return render(request, 'book_room.html')
+    def change_room(self, request):
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            contact = request.POST.get('contact')
+            room_no = request.POST.get('room_no')
+            subject = request.POST.get('subject')
+            reason_for_change = request.POST.get('reason_for_change')
+            student_id = request.session['id']
+            register = complain(student_id=student_id, subject=subject, detail=reason_for_change)
+            register.save()
+            self.send_email("Your complain is registered",
+                            "Your complain is registered our representative will contact you soon ", email)
+            body = f"subject: {subject} \nUser name: {name} \nUser email: {email} \n Details: {reason_for_change}"
+            self.send_email("New complain registered for room change", body, "faisalrasheed442@gmail.com")
+            messages.success(request, 'You complaint has been registered')
+
+            return redirect('change_room')
+
+        else:
+            if 'id' in request.session:
+                data = self.get_data(request.session['id'])
+                data["head"] = "Change Room"
+                print(data)
+                return render(request, 'change_room.html', data)
+            else:
+                return redirect('Login')
+
 
 
     def complains(self,request):
         # return render(request, 'complains.html')
         if 'id' in request.session:
             data = self.get_data(request.session['id'])
+            tickets=complain.objects.filter(customer_id=request.session['id'])
+            data['tickets']=tickets
+            print(tickets)
             return render(request, 'complains.html',data)
         else:
             return redirect('Login')
 
     def ticket(self,request):
+        if request.method == 'POST':
+            subject = request.POST.get('subject')
+            reason_for_change = request.POST.get('reason_for_change')
+            customer_id = request.session['id']
+            user=customer.objects.get(user_id=customer_id)
+            new_complain=complain(customer_id=user,subject=subject,detail=reason_for_change)
+            new_complain.save()
+            return redirect('complains')
+
+        else:
+            if 'id' in request.session:
+                data = self.get_data(request.session['id'])
+                return render(request, 'ticket.html',data)
+            else:
+                return redirect('Login')
         return render(request,'ticket.html')
 
     def basic(self,request):
@@ -268,33 +316,7 @@ class student_view():
         user_data = {'profile': user_data}
         return user_data
 
-    def change_room(self,request):
-        # return render(request, 'change_room.html')
-        if request.method == 'POST':
-            name=request.POST.get('name')
-            email=request.POST.get('email')
-            contact=request.POST.get('contact')
-            room_no=request.POST.get('room_no')
-            subject=request.POST.get('subject')
-            reason_for_change=request.POST.get('reason_for_change')
-            student_id = request.session['id']
-            register = complain(student_id=student_id, subject=subject, detail=reason_for_change)
-            register.save()
-            self.send_email("Your complain is registered","Your complain is registered our representative will contact you soon ",email)
-            body=f"subject: {subject} \nUser name: {name} \nUser email: {email} \n Details: {reason_for_change}"
-            self.send_email("New complain registered for room change",body,"faisalrasheed442@gmail.com")
-            messages.success(request, 'You complaint has been registered')
-        
-            return redirect('change_room')
-        
-        else:
-            if 'id' in request.session:
-                data=self.get_data(request.session['id'])
-                data["head"]="Change Room"
-                print(data)
-                return render(request, 'change_room.html',data)
-            else:
-                return redirect('Login')
+
 
 
     def send_email(self,subject,text,to):

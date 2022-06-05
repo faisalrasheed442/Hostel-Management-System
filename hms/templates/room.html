@@ -35,47 +35,45 @@
                                             </tr>
 <!--                                            <td><a href="javascript:void(0);" onClick="popUpWindow('#');" title="View Full Details">Print Data</a></td>-->
 
-                                        <tr>
-                                            <td colspan="6"><b>Reg no. :</b></td>
-                                        </tr>
+
 
 
 
                                         <tr>
                                             <td><b>Room no :</b></td>
-                                            <td>
+                                            <td> {{ profile.room.room_id }}
 
                                             </td>
                                             <td><b>Seater :</b></td>
-
+                                            <td><b>{{ profile.room.room_capacity }}</b></td>
                                         </tr>
 
                                         <tr>
                                             <td><b>Food Status:</b></td>
+                                            {% if profile.food_status  %}
                                             <td>
-
-
-
+                                            Yes
                                             </td>
+                                            {% else %}
+                                            <td>No</td>{% endif %}
                                             <td><b>Fees Per Month :</b></td>
-                                            <td>
-
+                                            <td>{{ profile.room.room_price }}
 
                                         </tr>
                                         <tr>
                                              </td>
                                             <td><b>Stay From :</b></td>
-                                            <td>
+                                            <td>{{ profile.stay_from }}
 
                                             </td>
                                             <td><b>Duration:</b></td>
                                             <td>
-                                                Months</td>
+                                                1 Months</td>
                                         </tr>
 
                                         <tr>
                                             <td colspan="6"><b>Total Fee :
-                                                </b></td>
+                                                </b> {{ profile.room.room_price }}</td>
                                         </tr>
 
                                     </tbody>

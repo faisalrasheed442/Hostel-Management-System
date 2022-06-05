@@ -31,7 +31,7 @@
                                 <div class="panel-body">
                                     <form method="post" action="" name="registration" class="form-horizontal">
 
-
+                                        {% csrf_token  %}
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label"> Name :
                                             </label>
@@ -77,7 +77,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Complaint</label>
                                             <div class="col-sm-8">
-                                                <textarea name="" id="" cols="30" rows="10" class="form-control" required placeholder="Your Message"></textarea>
+                                                <textarea name="reason_for_change" id="" cols="30" rows="10" class="form-control" required placeholder="Your Message"></textarea>
                                             </div>
                                         </div>
 
