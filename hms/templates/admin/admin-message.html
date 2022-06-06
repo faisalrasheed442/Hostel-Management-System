@@ -1,0 +1,98 @@
+{% extends "admin/admin-basic.html" %}
+
+<head>
+    {% block title %}Message{% endblock %}
+</head>
+
+<!-- Code 4 Pages Start from Here  -->
+
+{% block page-title %}Message{% endblock %}
+
+{% block content %}
+
+<!-- Your code goes here -->
+<div class="ts-main-content">
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+
+                                    Contact Form :
+                                </div>
+
+
+                                <div class="panel-body">
+                                    <form method="post" action="" name="registration" class="form-horizontal">
+                                    {% csrf_token %}
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">From: </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="email" id="fname" class="form-control"
+                                                       value="admin@hms.com" readonly>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">To: </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="email" id="fname" class="form-control"
+                                                       value="{{ profile.email }}" required="required">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Subject : </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject"
+                                                       value="">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Message</label>
+                                            <div class="col-sm-8">
+                                                <textarea name="reason_for_change" id="" cols="30" rows="10" class="form-control" required placeholder="Your Message"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6 col-sm-offset-4">
+
+                                            <input type="submit" name="update" Value="Submit"
+                                                   class="btn btn-primary">
+                                            {% for msg in messages %}
+                                            <span><div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                                            <strong>Message : </strong> {{ msg }}
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div></span>
+                                            {% endfor %}
+                                        </div>
+                                    </form>
+<!--                                    {% if messages %}-->
+<!--                                 {% for message in messages  %}-->
+
+<!--                                      {% endfor %} {% endif %}-->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include "basic2.html" %}
+{% endblock %}

@@ -360,3 +360,6 @@ class admin_view():
 
     def admin_registration(self,request):
         return render(request,'admin/admin-registration.html')
+
+    def admin_message(self,request):
+        return render(request,'admin/admin-message.html')

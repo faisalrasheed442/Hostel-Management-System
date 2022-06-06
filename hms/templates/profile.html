@@ -42,26 +42,26 @@
                                           class="form-horizontal" enctype="multipart/form-data">
                                         {% csrf_token %}
 
-
                                         <!--                                                    Profile-->
-                                        <center>
-                                            <div class="profile-pic-wrapper pull-right ">
-                                                <div class="pic-holder">
-                                                    <!-- uploaded pic shown here -->
-                                                    <img id="profilePic" class="pic img-thumbnail" width="200" height="200"
-                                                         src="../{{ profile.user_image }}"><br>
-                                                    <span >{{ form.user_image }}</span>
-
-                                                </div>
+                                        <div class="profile-pic-wrapper pull-right ">
+                                            <div class="pic-holder">
+                                                <!-- uploaded pic shown here -->
+                                                <img id="profilePic" class="pic img-thumbnail" width="200" height="200"
+                                                     src="../{{ profile.user_image }}"><br>
+                                                <span>{{ form.user_image }}</span>
 
                                             </div>
-                                        </center>
+
+                                        </div>
+                                        <div class="form-group">
+
+                                        </div>
 
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label"> Username :
                                             </label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-7">
                                                 <input type="text" name="name" id="regno" class="form-control"
                                                        required="required" value="{{ profile.user_name }}">
                                             </div>
@@ -70,7 +70,7 @@
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Email id: </label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-7">
                                                 <input type="text" name="email" id="fname" class="form-control"
                                                        value="{{ profile.email }}" required="required" readonly>
                                             </div>
@@ -78,7 +78,7 @@
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Contact No : </label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-7">
                                                 <input type="text" name="contact" id="mname" class="form-control"
                                                        value="{{ profile.contact }}" required>
                                             </div>
@@ -86,7 +86,7 @@
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Room No : </label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-7">
                                                 <input type="text" name="room_no" id="lname" class="form-control"
                                                        value="{{ profile.room.room_id }}" required="required" readonly>
                                             </div>
@@ -94,7 +94,7 @@
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" required>Gender : </label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-7">
 
                                                 {% if profile.gender %}
                                                 <select name="gender" class="form-control" required="required">
@@ -109,7 +109,7 @@
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" required>Guardian Name : </label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-7">
                                                 <input type="text" name="guardian_name" id="contact"
                                                        class="form-control" value="{{ profile.Guardian_name }}"
                                                        required="required">
@@ -118,7 +118,7 @@
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Guardian Contact: </label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-7">
                                                 <input type="text" name="guardian_contact" id="contact"
                                                        class="form-control" value="{{ profile.Guardian_contact }}"
                                                        required>
@@ -128,7 +128,7 @@
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Address: </label>
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-7">
                                                 <input type="text" name="address" id="email" class="form-control"
                                                        value="{{ profile.address }}" required>
                                                 <span id="user-availability-status" style="font-size:12px;"></span>
@@ -155,7 +155,7 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{% static './assets/js/profile_img.js' %}"></script>
+<script src="{% static './assets/js/profile_img.js' %}"></script>
 
 {% include "basic2.html" %}
 {% endblock %}
