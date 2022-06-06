@@ -28,7 +28,8 @@
         box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
       }
       .chat-app .chat {
-        border-left: 1px solid #eaeaea;
+        border: 1px solid #0000002e;
+border-radius: 5px;
       }
 
       .people-list {
@@ -259,13 +260,18 @@
           overflow-x: auto;
         }
       }
+      .f-center{
+          display: flex;
+          justify-content: center;
+          width: 100%;
+      }
     </style>
 </head>
 <body>
 
     <div class="container-fluid">
-      <div class="row clearfix my-2">
-        <div class="col-lg-12">
+      <div class="row f-center my-2">
+        <div class="col-lg-9 mx-auto">
           <div class="card chat-app">
             <div class="chat">
               <div class="chat-header clearfix">
@@ -286,26 +292,7 @@
                       <small>Last seen: 2 hours ago</small>
                     </div>
                   </div>
-                  <div class="col-lg-6 hidden-sm text-right">
-                    <a
-                      href="javascript:void(0);"
-                      class="btn btn-outline-secondary"
-                      ><i class="fa fa-camera"></i
-                    ></a>
-                    <a
-                      href="javascript:void(0);"
-                      class="btn btn-outline-primary"
-                      ><i class="fa fa-image"></i
-                    ></a>
-                    <a href="javascript:void(0);" class="btn btn-outline-info"
-                      ><i class="fa fa-cogs"></i
-                    ></a>
-                    <a
-                      href="javascript:void(0);"
-                      class="btn btn-outline-warning"
-                      ><i class="fa fa-question"></i
-                    ></a>
-                  </div>
+
                 </div>
               </div>
               <div class="chat-history">
@@ -340,18 +327,14 @@
                 </ul>
               </div>
               <div class="chat-message clearfix">
-                <div class="input-group mb-0">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"
-                      ><i class="fa fa-send"></i
-                    ></span>
-                  </div>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter text here..."
-                  />
-                </div>
+              <div class="col-lg-12">
+    <form class="input-group">
+      <input type="text" class="form-control" placeholder="Start typing here...">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Send</button>
+      </span>
+    </form><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
               </div>
             </div>
           </div>
