@@ -17,4 +17,5 @@ urlpatterns = [
     path('admin-login', admin.admin_login, name='admin-login'),
     path('admin-registration', admin.admin_registration, name='admin-registration'),
     path('admin-message', admin.admin_message, name='admin-message'),
+    path('admin-complain', admin.admin_complain, name='admin-complain'),
 ]

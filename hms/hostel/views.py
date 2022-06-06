@@ -363,3 +363,6 @@ class admin_view():
 
     def admin_message(self,request):
         return render(request,'admin/admin-message.html')
+
+    def admin_complain(self,request):
+        return render(request,'admin/admin-complain.html')
