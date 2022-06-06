@@ -38,7 +38,7 @@ class complain(models.Model):
     subject=models.CharField(max_length=100)
     detail=models.TextField(max_length=500)
     complain_status=models.BooleanField(default=False)
-    date=models.DateField(default=datetime.today)
+    date=models.DateTimeField(default=datetime.now)
     def __str__(self):
         return self.subject
 

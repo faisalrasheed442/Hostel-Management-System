@@ -283,13 +283,12 @@ border-radius: 5px;
                       data-target="#view_info"
                     >
                       <img
-                        src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                        src="../{{ profile.user_image}}"
                         alt="avatar"
                       />
                     </a>
                     <div class="chat-about">
-                      <h6 class="m-b-0">Aiden Chavez</h6>
-                      <small>Last seen: 2 hours ago</small>
+                      <h6 class="m-b-0">{{ profile.user_name }}z</h6>
                     </div>
                   </div>
 
@@ -297,39 +296,42 @@ border-radius: 5px;
               </div>
               <div class="chat-history">
                 <ul class="m-b-0">
+{#                    default customer message#}
+                    <li class="clearfix">
+                    <div class="message-data">
+                      <span class="message-data-time">{{ complain.date }}</span>
+                    </div>
+                    <div class="message my-message">{{ complain.detail }}</div>
+                  </li>
+{#to show user message or customer#}
+                    {% for msg in messages %}
+                    {% if msg.reply %}
                   <li class="clearfix">
+                    <div class="message-data">
+                      <span class="message-data-time">{{ msg.date }}</span>
+                    </div>
+                    <div class="message my-message">{{ msg.message }}</div>
+                  </li>
+{#                    to show admin reply on chat#}
+                    {% else %}
+                   <li class="clearfix">
                     <div class="message-data text-right">
-                      <span class="message-data-time">10:10 AM, Today</span>
+                      <span class="message-data-time">{{ msg.date }}</span>
                       <img
                         src="https://bootdey.com/img/Content/avatar/avatar7.png"
                         alt="avatar"
                       />
                     </div>
                     <div class="message other-message float-right">
-                      Hi Aiden, how are you? How is the project coming along?
+                      {{ msg.message }}
                     </div>
-                  </li>
-                  <li class="clearfix">
-                    <div class="message-data">
-                      <span class="message-data-time">10:12 AM, Today</span>
-                    </div>
-                    <div class="message my-message">Are we meeting today?</div>
-                  </li>
-                  <li class="clearfix">
-                    <div class="message-data">
-                      <span class="message-data-time">10:15 AM, Today</span>
-                    </div>
-                    <div class="message my-message">
-                      Project has been already finished and I have results to
-                      show you.
-                    </div>
-                  </li>
+                  </li>{% endif %}{% endfor %}
                 </ul>
               </div>
               <div class="chat-message clearfix">
               <div class="col-lg-12">
-    <form class="input-group">
-      <input type="text" class="form-control" placeholder="Start typing here...">
+    <form class="input-group" method="post" action="{% url 'chat' %}">{% csrf_token %}<input type="hidden" name="ticket_id" value="{{ complain.complian_id }}">
+      <input type="text" class="form-control" name="msg" placeholder="Start typing here...">
       <span class="input-group-btn">
         <button class="btn btn-primary" type="submit">Send</button>
       </span>

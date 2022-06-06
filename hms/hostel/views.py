@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
-from .models import customer,complain,rooms,customer_fee
+from .models import customer,complain,rooms,customer_fee,message
 from django.core import mail
 from .forms import ImageForm
 from datetime import timedelta, date
@@ -185,7 +185,18 @@ class student_view():
         # return render(request, 'fee.html')
 
         if 'id' in request.session:
-            data = self.get_data(request.session['id'])
+            if request.method == "POST":
+                data = self.get_data(request.session['id'])
+                complain_id=request.POST.get('ticket_id')
+                complain_details=complain.objects.get(complian_id=complain_id)
+                data["complain"]=complain_details
+                data["messages"]=message.objects.filter(complain_id=complain_details)
+                try:
+                    msg=request.POST.get("msg")
+                    new_msg=message(complain_id=complain_details,message=msg,reply="True")
+                    new_msg.save()
+                except:
+                    pass
             return render(request, 'chat.html',data)
         else:
             return redirect('Login')
