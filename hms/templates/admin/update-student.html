@@ -1,0 +1,116 @@
+{% extends "admin/admin-basic.html" %}
+
+{% load static %}
+<head>
+    {% block title %}Update{% endblock %}
+</head>
+
+{% block page-title %}Update{% endblock %}
+<!-- Code 4 Pages Start from Here  -->
+{% block content %}
+<!-- Your code goes here -->
+<div class="ts-main-content">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="row">
+
+                        <div class="col-md-10">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                </div>
+                                <div class="panel-body">
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible " role="alert">
+                                        <strong>Message : </strong> {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    {% endfor %} {% endif %}
+                                    <form action="/password/" method="post" class="form-horizontal">
+                                        {% csrf_token %}
+                                        <p style="color: red">
+
+                                        </p>
+
+                                        <div class="hr-dashed"></div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label"> Username :
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="name" id="regno" class="form-control"
+                                                       required="required" value="{{ profile.user_name }}">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Email id: </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="email" id="fname" class="form-control"
+                                                       value="{{ profile.email }}" required="required" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Contact No : </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="contact" id="mname" class="form-control"
+                                                       value="{{ profile.contact }}" required>
+                                            </div>
+                                        </div>
+
+                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">Seater : </label>
+                                            <div class="col-sm-8">
+                                                <input type="number" name="seater" id="seater" class="form-control"
+                                                       value="" required>
+                                            </div>
+                                        </div>
+
+                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">Room No : </label>
+                                            <div class="col-sm-8">
+                                                <input type="number" name="room-number" id="mname" class="form-control"
+                                                       value="" required>
+                                            </div>
+                                        </div>
+
+
+                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">Posting Date : </label>
+                                            <div class="col-sm-8">
+                                                <input type="date" name="posting-date" id="posting-date" class="form-control"
+                                                       value="" required>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6 col-sm-offset-4">
+                                            <button class="btn btn-default" type="submit">Delete</button>
+                                            <input type="submit" name="update" Value="update" class="btn btn-primary">
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+{% include "basic2.html" %}
+{% endblock %}

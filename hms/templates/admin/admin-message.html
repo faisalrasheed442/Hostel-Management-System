@@ -29,7 +29,7 @@
 
 
                                 <div class="panel-body">
-                                    <form method="post" action="" name="registration" class="form-horizontal">
+                                    <a method="post" action="" name="registration" class="form-horizontal">
                                     {% csrf_token %}
 
                                         <div class="form-group">
@@ -69,6 +69,11 @@
 
                                             <input type="submit" name="update" Value="Submit"
                                                    class="btn btn-primary">
+
+                                            <a href="{% url 'chat-now'%}">
+                                               <button class="btn btn-default" type="submit">Chat Now</button>
+                                            </a>
+
                                             {% for msg in messages %}
                                             <span><div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
                                             <strong>Message : </strong> {{ msg }}

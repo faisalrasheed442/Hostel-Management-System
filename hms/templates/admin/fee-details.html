@@ -1,0 +1,144 @@
+{% extends "admin/admin-basic.html" %}
+
+<head>
+    {% block title %}Fee{% endblock %}
+    <style>
+
+
+    </style>
+
+</head>
+
+<!-- Code 4 Pages Start from Here  -->
+
+{% block page-title %}Fee{% endblock %}
+
+{% block content %}
+
+<!-- Your code goes here -->
+
+
+<!-- Your code goes here -->
+
+<div class="ts-main-content" style="margin: 0 10px">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+
+                    Fee Details :
+                </div>
+                <br>
+                <br>
+
+
+                <div class="container-fluid">
+
+                    <button class="btn btn-primary  pull-right"
+                            onclick="window.location.href = '{% url 'ticket' %}';"> + Add New Installment
+                    </button>
+                    <ul class="nav nav-pills">
+                        <li class=" active col-sm-4">
+                            <a href="#1b" data-toggle="tab">Pending</a>
+                        </li>
+                        <li class="col-sm-4"><a href="#2b" data-toggle="tab">Paid</a>
+                        </li>
+
+                    </ul>
+
+                    {# table for pending fee#}
+                    <div class="tab-content clearfix">
+                        <div class="tab-pane active" id="1b">
+
+                            <table class="table">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Fee #</th>
+                                    <th scope="col"> Date</th>
+                                     <th scope="col">Status</th>
+                                    <th scope="col"> Action</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+<!--                                <tr>-->
+<!--                                                                        <th scope="row">-->
+<!--                                                                            <form method="post" action="#">{% csrf_token %}-->
+<!--                                                                                <input type="hidden" name="ticket_id" value="">-->
+<!--                                                                                <button type="submit" class="btn btn-primary">-->
+<!--                                                                                </button>-->
+<!--                                                                            </form>-->
+<!--                                                                        </th>-->
+                              <tr>
+                                    <td>1</td>
+                                    <td>June 12, 2022</td>
+                                    <td class="text-primary">Not Paid</td>
+                                    <td>
+                                        <form method="POST" action="{% url " payfee
+                                        " %}">
+                                        {% csrf_token %}
+
+                                        <input type="hidden" , value="" name="">
+                                        <button type="submit" class="btn btn-primary">Pay Now</button>
+                                        </form>
+                                    </td>
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        {# table for Paid Fee#}
+                        <div class="tab-pane" id="2b">
+                            <table class="table">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Fee #</th>
+                                    <th scope="col"> Date</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr>
+                                    <th scope="row">
+                                        <form method="post" action="#">{% csrf_token %}
+                                            <input type="hidden" name="" value="">
+                                            <button type="submit" class="btn btn-primary">
+                                            </button>
+                                        </form>
+                                    </th>
+
+                                    <td>2</td>
+                                    <td>May 12, 2022</td>
+                                    <td class="text-success">Paid</td>
+                                </tr>
+
+
+                                </tbody>
+
+                            </table>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+{% include "basic2.html" %}
+{% endblock %}

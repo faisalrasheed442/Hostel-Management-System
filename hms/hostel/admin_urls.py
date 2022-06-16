@@ -18,4 +18,8 @@ urlpatterns = [
     path('admin-registration', admin.admin_registration, name='admin-registration'),
     path('admin-message', admin.admin_message, name='admin-message'),
     path('admin-complain', admin.admin_complain, name='admin-complain'),
+    path('update-room', admin.update_room, name='update-room'),
+    path('update-student', admin.update_student, name='update-student'),
+    path('chat-now', admin.chat_now, name='chat-now'),
+    path('fee-detail', admin.fee_detail, name='fee-detail'),
 ]

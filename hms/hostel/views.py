@@ -377,3 +377,15 @@ class admin_view():
 
     def admin_complain(self,request):
         return render(request,'admin/admin-complain.html')
+
+    def update_room(self,request):
+        return render(request,'admin/update-room.html')
+
+    def update_student(self,request):
+        return render(request,'admin/update-student.html')
+
+    def chat_now(self,request):
+        return render(request,'admin/chat-now.html')
+
+    def fee_detail(self,request):
+        return render(request,'admin/fee-details.html')
