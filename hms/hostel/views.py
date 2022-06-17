@@ -5,6 +5,8 @@ from django.core import mail
 from .forms import ImageForm
 from datetime import timedelta, date
 import stripe
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.hashers import check_password
 from django.conf import settings
 class student_view():
     def index(self,request):
@@ -344,48 +346,175 @@ class admin_view():
 
     def admin_basic(self,request):
         return render(request,'admin/admin-basic.html')
+    def admin_login(self,request):
+        if request.method == 'POST':
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            user = authenticate(request, username=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect("admin-dashboard")
+            else:
+                messages.error(request, 'Invalid email and password')
+                return redirect('admin-login')
+        if request.user.is_authenticated:
+            return render(request,'admin/admin-dashboard.html')
+        else:
 
+            return render(request,'admin/admin-login.html')
     def admin_dashboard(self,request):
-        return render(request,'admin/admin-dashboard.html')
+        if request.user.is_authenticated:
+            return render(request,'admin/admin-dashboard.html')
+        else:
+            return redirect('admin-login')
 
     def admin_profile(self,request):
-        return render(request,'admin/admin-profile.html')
+        if request.user.is_authenticated:
+            if request.method == 'POST':
+                first_name=request.POST.get('first_name')
+                last_name=request.POST.get('last_name')
+                username=request.POST.get('user_name')
+                request.user.username=username
+                request.user.first_name=first_name
+                request.user.last_name=last_name
+                request.user.save()
+                messages.success(request,"Profile Updated")
+                return redirect('admin-profile')
+            else:
+                return render(request,'admin/admin-profile.html',{"data":request.user})
+        else:
+            return redirect('admin-login')
+
 
     def admin_update_password(self,request):
-        return render(request,'admin/admin-update-password.html')
+        if request.user.is_authenticated:
+            if request.method == 'POST':
+                old_password=request.POST.get('oldpassword')
+                match=check_password(old_password,request.user.password)
+                new_password=request.POST.get("newpassword")
+                confirm_password=request.POST.get("cpassword")
+                print(request.user.password)
+                if match and new_password==confirm_password:
+                    request.user.password=new_password
+                    request.user.save()
+                    messages.success(request,"Password Updated")
+                else:
+                    messages.error(request,"Some details are wrong")
+                return redirect("admin-update-password")
+            else:
+                print(request.user.password)
+                return render(request,'admin/admin-update-password.html')
+        else:
+            return redirect('admin-login')
 
     def student_registration(self,request):
-        return render(request,'admin/student-registration.html')
+        if request.user.is_authenticated:
+            if request.method=="POST":
+                user_name=request.POST.get("user_name")
+                email=request.POST.get("email")
+                contact=request.POST.get("contact")
+                gender=request.POST.get("gender")
+                room=request.POST.get("room")
+                password=request.POST.get("password")
+                feestatus=request.POST.get("feestatus")
+                installment=True
+                if feestatus=="True":
+                    installment=False
+                check_email=customer.objects.filter(email=email)
+                if check_email:
+                    messages.error(request, 'Email Already Registered')
+                    return redirect('student-registration')
+                else:
+                    today = date.today()
+                    EndDate = date.today() + timedelta(days=30)
+                    room_details = rooms.objects.get(room_id=room)
+                    new_user=customer(user_name=user_name,email=email,password=password,contact=contact,gender=gender,room=room_details,)
+                    new_user.save()
+                    user_data = customer.objects.get(email=email, password=password)
+                    fee=customer_fee(customer_id=user_data,start_date=today,end_Date=EndDate,total_amount=room_details.room_price,paid=feestatus,allow_installment=installment)
+                    fee.save()
+                    room_current_space=room_details.current_capacity
+                    room_details.current_capacity=room_current_space+1
+                    room_details.save()
+                    messages.success(request,"You are successfully Registered Now")
+                    return redirect('student-registration')
+            else:
+                data = rooms.objects.filter(current_capacity__lt=5)
+                data = {'room': data}
+                return render(request,'admin/student-registration.html',data)
+        else:
+            return redirect('admin-login')
+
 
     def manage_student(self,request):
-        return render(request,'admin/manage-student.html')
+        if request.user.is_authenticated:
+            user=customer.objects.all()
+            return render(request,'admin/manage-student.html',{"users":user})
+        else:
+            return redirect('admin-login')
+
+    def update_student(self,request):
+        if request.user.is_authenticated:
+            print(1)
+            if request.method=="POST":
+                print(2)
+                user_id=request.POST.get("user_id")
+                user=customer.objects.get(user_id=user_id)
+            return render(request,'admin/update-student.html',{"user":user})
+        else:
+            return redirect('admin-login')
+
 
     def add_room(self,request):
+        if request.user.is_authenticated:
+            return render(request,'admin/admin-dashboard.html')
+        else:
+            return redirect('admin-login')
         return render(request,'admin/add-room.html')
 
     def manage_room(self,request):
+        if request.user.is_authenticated:
+            return render(request,'admin/admin-dashboard.html')
+        else:
+            return redirect('admin-login')
         return render(request,'admin/manage-room.html')
 
-    def admin_login(self,request):
-        return render(request,'admin/admin-login.html')
-
-    def admin_registration(self,request):
-        return render(request,'admin/admin-registration.html')
 
     def admin_message(self,request):
+        if request.user.is_authenticated:
+            return render(request,'admin/admin-dashboard.html')
+        else:
+            return redirect('admin-login')
         return render(request,'admin/admin-message.html')
 
     def admin_complain(self,request):
+        if request.user.is_authenticated:
+            return render(request,'admin/admin-dashboard.html')
+        else:
+            return redirect('admin-login')
         return render(request,'admin/admin-complain.html')
 
     def update_room(self,request):
+        if request.user.is_authenticated:
+            return render(request,'admin/admin-dashboard.html')
+        else:
+            return redirect('admin-login')
         return render(request,'admin/update-room.html')
 
-    def update_student(self,request):
-        return render(request,'admin/update-student.html')
 
     def chat_now(self,request):
+        if request.user.is_authenticated:
+            return render(request,'admin/admin-dashboard.html')
+        else:
+            return redirect('admin-login')
         return render(request,'admin/chat-now.html')
 
     def fee_detail(self,request):
+        if request.user.is_authenticated:
+            return render(request,'admin/admin-dashboard.html')
+        else:
+            return redirect('admin-login')
         return render(request,'admin/fee-details.html')
+    def admin_logout(self,request):
+       logout(request)
+       return redirect('admin-login')

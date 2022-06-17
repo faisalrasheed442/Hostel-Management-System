@@ -121,7 +121,7 @@
                 </a>
             </li>
             <li>
-                <a href="{% url 'logout' %}">
+                <a href="{% url 'admin-logout' %}">
                         <span class="icon">
 							<ion-icon name="log-out-outline"></ion-icon>
 						</span>
@@ -148,14 +148,11 @@
                 </label>
             </div>
 
-            <!-- User Image -->
-<!--            <div class="user brand clearfix">-->
-<!--                <img src="../{{ profile.user_image }}">-->
-<!--            </div>-->
+
 
             <div class="user brand clearfix action">
 
-                    <img src="../{{ profile.user_image }}" onclick="menuToggle();" alt="Profile Avatar">
+                    <img src="../static/profile_image/avatar1.png" onclick="menuToggle();" alt="Profile Avatar">
 
                 <div class="drop-menu">
                     <ul>

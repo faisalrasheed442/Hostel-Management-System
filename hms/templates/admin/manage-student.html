@@ -2,11 +2,11 @@
 
 {% load static %}
 <head>
-    {% block title %}Room Detail{% endblock %}
+    {% block title %}Student Detail{% endblock %}
 </head>
 <!-- Code 4 Pages Start from Here  -->
 
-{% block page-title %}Room Detail{% endblock %}
+{% block page-title %}Student Detail{% endblock %}
 
 {% block content %}<!-- Code 4 Pages Start from Here  -->
 
@@ -20,7 +20,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">All Room Details</div>
+                        <div class="panel-heading">All Student Details</div>
                         <div class="panel-body">
                             <table id="zctb" class="display table table-striped table-bordered table-hover"
                                    cellspacing="0" width="100%">
@@ -28,30 +28,28 @@
                                 <tr>
                                     <th>Sno.</th>
                                     <th>Student Name</th>
-                                    <th>Reg no</th>
-                                    <th>Contact no</th>
-                                    <th>room no</th>
-                                    <th>Seater</th>
+                                    <th>Email</th>
+                                    <th>Room no</th>
                                     <th>Staying From</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                {% for user in users %}
+                                    <form method="post" action="{% url 'update-student' %}">
+                                        {% csrf_token %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>Zaheer</td>
-                                    <td>BCSF18MM032</td>
-                                    <td>03107573520</td>
-                                    <td>3</td>
-                                    <td>4</td>
-                                    <td>May</td>
+                                    <td><input type="hidden" value="{{ user.user_id }}" name="user_id">{{ user.user_id }}</td>
+                                    <td>{{ user.user_name }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.room.room_id }}</td>
+                                    <td>{{ user.stay_from }}</td>
                                     <td>
-                                        <a href="{% url 'update-student' %}">
-                                         <button type="button" class="btn btn-primary">Update</button>
-                                    </a>&nbsp;&nbsp;
+
+                                         <button type="submit" class="btn btn-primary">Update</button>
+
                                     </td>
-                                </tr>
+                                </tr></form>{% endfor %}
 
 
                                 </tbody>

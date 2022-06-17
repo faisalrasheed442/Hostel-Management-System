@@ -32,7 +32,7 @@
                                         </button>
                                     </div>
                                     {% endfor %} {% endif %}
-                                    <form action="/password/" method="post" class="form-horizontal">
+                                    <form action="{% url 'update-student' %}" method="post" class="form-horizontal">
                                         {% csrf_token %}
                                         <p style="color: red">
 
