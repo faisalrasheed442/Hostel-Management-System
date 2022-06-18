@@ -269,7 +269,11 @@ border-radius: 5px;
     </style>
 </head>
 <body>
-
+<form method="post" action="{% url 'resolved' %}">{% csrf_token %}
+<input type="hidden" name="ticket_id" value="{{ complain.complian_id }}">
+        <button type="submit" class="btn btn-primary  pull-right" style="margin-right: 100px; margin-bottom:20px"
+                            > Mark Resolved
+                    </button></form>
     <div class="container-fluid">
       <div class="row f-center my-2">
         <div class="col-lg-9 mx-auto">
@@ -278,18 +282,19 @@ border-radius: 5px;
               <div class="chat-header clearfix">
                 <div class="row">
                   <div class="col-lg-6">
+
                     <a
                       href="javascript:void(0);"
                       data-toggle="modal"
                       data-target="#view_info"
                     >
                       <img
-                        src="../{{ profile.user_image}}"
+                        src="../{{ complain.customer_id.user_image}}"
                         alt="avatar"
                       />
                     </a>
                     <div class="chat-about">
-                      <h6 class="m-b-0">{{ profile.user_name }}z</h6>
+                      <h6 class="m-b-0">{{ complain.customer_id}}z</h6>
                     </div>
                   </div>
 
@@ -331,7 +336,7 @@ border-radius: 5px;
               </div>
               <div class="chat-message clearfix">
               <div class="col-lg-12">
-    <form class="input-group" method="post" action="{% url 'chat' %}">{% csrf_token %}<input type="hidden" name="ticket_id" value="{{ complain.complian_id }}">
+    <form class="input-group" method="post" action="{% url 'chat-now' %}">{% csrf_token %}<input type="hidden" name="ticket_id" value="{{ complain.complian_id }}">
       <input type="text" class="form-control" name="msg" placeholder="Start typing here...">
       <span class="input-group-btn">
         <button class="btn btn-primary" type="submit">Send</button>

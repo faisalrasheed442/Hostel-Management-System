@@ -36,7 +36,7 @@
                                 </thead>
                                 <tbody>
                                 {% for user in users %}
-                                    <form method="post" action="{% url 'update-student' %}">
+                                    <form method="post" action="{% url 'update-student' %}" >
                                         {% csrf_token %}
                                 <tr>
                                     <td><input type="hidden" value="{{ user.user_id }}" name="user_id">{{ user.user_id }}</td>
@@ -46,7 +46,7 @@
                                     <td>{{ user.stay_from }}</td>
                                     <td>
 
-                                         <button type="submit" class="btn btn-primary">Update</button>
+                                         <button type="submit" class="btn btn-primary" name="send_update">Update</button>
 
                                     </td>
                                 </tr></form>{% endfor %}

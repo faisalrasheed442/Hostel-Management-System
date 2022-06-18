@@ -35,9 +35,7 @@
 
                 <div class="container-fluid">
 
-                    <button class="btn btn-primary  pull-right"
-                            onclick="window.location.href = '{% url 'ticket' %}';"> + New Ticket
-                    </button>
+
                     <ul class="nav nav-pills">
                         <li class=" active col-sm-4">
                             <a href="#1b" data-toggle="tab">Open</a>
@@ -64,16 +62,16 @@
                                 {% for ticket in tickets %}
                                 {% if not ticket.complain_status %}
                                 <tr>
-                                    <th scope="row">
-                                        <form method="post" action="#">{% csrf_token %}
+                                    <td scope="row">
+                                        <form method="post" action="{% url 'chat-now' %}">{% csrf_token %}
                                             <input type="hidden" name="ticket_id" value="{{ ticket.complian_id }}">
                                             <button type="submit" class="btn btn-primary">{{ ticket.complian_id }}
                                             </button>
                                         </form>
-                                    </th>
-                                    <tr>
-                                    <td>"{{ ticket.date }}</td>
-                                    <td>"{{ ticket.subject }}</td>
+                                    </td>
+
+                                    <td>{{ ticket.date }}</td>
+                                    <td>{{ ticket.subject }}</td>
                                     <td class="text-primary">Open</td>
                                 </tr>
                                 {% endif %}{% endfor %}
@@ -96,16 +94,16 @@
                                 {% for ticket in tickets %}
                                 {% if ticket.complain_status %}
                                 <tr>
-                                    <th scope="row">
-                                        <form method="post" action="#">{% csrf_token %}
+                                    <td>
+                                        <form method="post" action="{% url 'chat-now' %}">{% csrf_token %}
                                             <input type="hidden" name="ticket_id" value="{{ ticket.complian_id }}">
                                             <button type="submit" class="btn btn-primary">{{ ticket.complian_id }}
                                             </button>
                                         </form>
-                                    </th>
-                                    <tr>
-                                    <td>"{{ ticket.date }}</td>
-                                    <td>"{{ ticket.subject }}</td>
+                                    </td>
+
+                                    <td>{{ ticket.date }}</td>
+                                    <td>{{ ticket.subject }}</td>
                                     <td class="text-success">Closed</td>
                                 </tr>
                                 {% endif %}{% endfor %}
@@ -120,16 +118,7 @@
 
 
                     </div>
-<!--                    Mark Resolved-->
-                     <form action="" class="pull-center" style="margin-bottom:10px;">
-                        <div class="col-sm-6 col-sm-offset-4 ">
-                            <input type="submit" name="mark-resolved" Value="Mark Resolved"
-                                   class="btn btn-primary pull-center">
-                        </div>
-                    </form>
-                    <br>
-                    <br>
-                    <br>
+
 
                 </div>
             </div>

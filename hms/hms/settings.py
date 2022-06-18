@@ -135,10 +135,10 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 # to send email to user
-EMAIL_HOST='smtp-relay.sendinblue.com'
+EMAIL_HOST='smtp.netcorecloud.net'
 EMAIL_PORT=587
 EMAIL_HOST_USER="shirazsweer12@gmail.com"
-EMAIL_HOST_PASSWORD="84G2yY9JvqPKcRtX"
+EMAIL_HOST_PASSWORD="shirazsweer12_ba554c366ea44731e2aa2e54dff2d034"
 EMAIL_USE_TLS=True
 #payment gatway stripe setting
 STRIPE_SECRET_KEY='sk_test_51KxEWVGdFjCEtQwCHnNy02UAtmXO0e31Q1sMc3YlYbvlswLk9UoD1udzrdqak1NqJj3TAS5B5PARmaa9IHEG3gQG008InOb1zA'

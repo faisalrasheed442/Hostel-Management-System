@@ -35,9 +35,7 @@
 
                 <div class="container-fluid">
 
-                    <button class="btn btn-primary  pull-right"
-                            onclick="window.location.href = '{% url 'ticket' %}';"> + Add New Installment
-                    </button>
+
                     <ul class="nav nav-pills">
                         <li class=" active col-sm-4">
                             <a href="#1b" data-toggle="tab">Pending</a>
@@ -53,8 +51,11 @@
 
                             <table class="table">
                                 <thead class="thead-light">
+
                                 <tr>
                                     <th scope="col">Fee #</th>
+                                    <th scope="col">Customer Name</th>
+                                    <th scope="col">Customer Email</th>
                                     <th scope="col"> Date</th>
                                      <th scope="col">Status</th>
                                     <th scope="col"> Action</th>
@@ -62,30 +63,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-
-<!--                                <tr>-->
-<!--                                                                        <th scope="row">-->
-<!--                                                                            <form method="post" action="#">{% csrf_token %}-->
-<!--                                                                                <input type="hidden" name="ticket_id" value="">-->
-<!--                                                                                <button type="submit" class="btn btn-primary">-->
-<!--                                                                                </button>-->
-<!--                                                                            </form>-->
-<!--                                                                        </th>-->
+                                {% for fee in fees %}
+                                {% if not fee.paid %}
                               <tr>
-                                    <td>1</td>
-                                    <td>June 12, 2022</td>
+                                    <td>{{ fee.fee_id }}</td>
+                                    <td>{{ fee.customer_id }}</td>
+
+                                    <td>{{ fee.customer_id.email }}</td>
+                                  <td>{{ fee.end_Date }}</td>
                                     <td class="text-primary">Not Paid</td>
                                     <td>
-                                        <form method="POST" action="{% url " payfee
-                                        " %}">
+                                        <form method="POST" action="{% url "payfee" %}">
                                         {% csrf_token %}
 
-                                        <input type="hidden" , value="" name="">
+                                        <input type="hidden" , value="{{ fee.fee_id }}" name="id">
                                         <button type="submit" class="btn btn-primary">Pay Now</button>
                                         </form>
                                     </td>
 
-                                </tr>
+                                </tr>{% endif %}{% endfor %}
 
                                 </tbody>
                             </table>
@@ -97,25 +93,35 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th scope="col">Fee #</th>
+                                    <th scope="col">Customer Name</th>
+                                    <th scope="col">Customer Email</th>
                                     <th scope="col"> Date</th>
-                                    <th scope="col">Status</th>
+                                     <th scope="col">Status</th>
+                                    <th scope="col"> Action</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
 
-                                <tr>
-                                    <th scope="row">
-                                        <form method="post" action="#">{% csrf_token %}
-                                            <input type="hidden" name="" value="">
-                                            <button type="submit" class="btn btn-primary">
-                                            </button>
-                                        </form>
-                                    </th>
+                                 {% for fee in fees %}
+                                {% if  fee.paid %}
+                              <tr>
+                                    <td>{{ fee.fee_id }}</td>
+                                    <td>{{ fee.customer_id }}</td>
 
-                                    <td>2</td>
-                                    <td>May 12, 2022</td>
-                                    <td class="text-success">Paid</td>
-                                </tr>
+                                    <td>{{ fee.customer_id.email }}</td>
+                                  <td>{{ fee.end_Date }}</td>
+                                    <td class="text-success"> Paid</td>
+                                    <td>
+                                        <form method="POST" action="">
+                                        {% csrf_token %}
+
+                                        <input type="hidden" , value="{{ fee.fee_id }}" name="id">
+                                        <button type="submit" class="btn btn-primary" disabled>Pay Now</button>
+                                        </form>
+                                    </td>
+
+                                </tr>{% endif %}{% endfor %}
 
 
                                 </tbody>

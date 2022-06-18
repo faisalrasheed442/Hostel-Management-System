@@ -21,6 +21,8 @@ urlpatterns = [
     path('update-room', admin.update_room, name='update-room'),
 
     path('chat-now', admin.chat_now, name='chat-now'),
+    path('resolved', admin.chat_resolved, name='resolved'),
     path('fee-detail', admin.fee_detail, name='fee-detail'),
+    path('payfee', admin.payfee, name='payfee'),
     path('admin-logout', admin.admin_logout, name='admin-logout'),
 ]

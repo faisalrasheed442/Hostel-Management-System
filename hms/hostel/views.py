@@ -129,7 +129,8 @@ class student_view():
             subject = request.POST.get('subject')
             reason_for_change = request.POST.get('reason_for_change')
             student_id = request.session['id']
-            register = complain(student_id=student_id, subject=subject, detail=reason_for_change)
+            user=customer.objects.get(user_id=student_id)
+            register = complain(customer_id=user, subject=subject, detail=reason_for_change)
             register.save()
             self.send_email("Your complain is registered",
                             "Your complain is registered our representative will contact you soon ", email)
@@ -156,7 +157,6 @@ class student_view():
             data = self.get_data(request.session['id'])
             tickets=complain.objects.filter(customer_id=request.session['id'])
             data['tickets']=tickets
-            print(tickets)
             return render(request, 'complains.html',data)
         else:
             return redirect('Login')
@@ -329,9 +329,6 @@ class student_view():
         user_data = {'profile': user_data}
         return user_data
 
-
-
-
     def send_email(self,subject,text,to):
         connection = mail.get_connection()
         connection.open()
@@ -343,7 +340,6 @@ class student_view():
 
 
 class admin_view():
-
     def admin_basic(self,request):
         return render(request,'admin/admin-basic.html')
     def admin_login(self,request):
@@ -455,66 +451,167 @@ class admin_view():
 
     def update_student(self,request):
         if request.user.is_authenticated:
-            print(1)
             if request.method=="POST":
-                print(2)
-                user_id=request.POST.get("user_id")
-                user=customer.objects.get(user_id=user_id)
-            return render(request,'admin/update-student.html',{"user":user})
+                if 'send_update' in request.POST:
+                    user_id = request.POST.get("user_id")
+                    request.session["current_update"]=user_id
+                elif 'update' in request.POST:
+                    user_id=request.session["current_update"]
+                    data=customer.objects.get(user_id=user_id)
+                    name=request.POST.get('name')
+                    email=request.POST.get('email')
+                    contact=request.POST.get('contact')
+                    room_id=request.POST.get('room')
+                    gender=request.POST.get("gender")
+                    data.user_name=name
+                    data.email=email
+                    data.gender=gender
+                    data.contact=contact
+                    data.save()
+                    messages.success(request, "User is updated successfully")
+                    if int(room_id)==data.room.room_id:
+                        pass
+                    else:
+                        room=rooms.objects.get(room_id=data.room.room_id)
+                        room.current_capacity-=1
+                        room.save()
+                        room=rooms.objects.get(room_id=room_id)
+                        data.room=room
+                        data.save()
+                        room.current_capacity+=1
+                        room.save()
+
+                user = customer.objects.get(user_id=user_id)
+                room = rooms.objects.filter(current_capacity__lt=5)
+                return render(request, 'admin/update-student.html', {"profile": user, 'room': room})
         else:
             return redirect('admin-login')
 
 
     def add_room(self,request):
         if request.user.is_authenticated:
-            return render(request,'admin/admin-dashboard.html')
+            if request.method == 'POST':
+                room_capacity=request.POST.get("capacity")
+                name=request.POST.get("name")
+                price=request.POST.get("fee")
+                room=rooms(room_name=name,room_capacity=room_capacity,room_price=price)
+                room.save()
+                messages.success(request,"New Room added")
+            return render(request,'admin/add-room.html')
         else:
             return redirect('admin-login')
-        return render(request,'admin/add-room.html')
+
 
     def manage_room(self,request):
         if request.user.is_authenticated:
-            return render(request,'admin/admin-dashboard.html')
+            room=rooms.objects.all()
+            return render(request,'admin/manage-room.html',{"rooms":room})
         else:
             return redirect('admin-login')
-        return render(request,'admin/manage-room.html')
+
+    def update_room(self,request):
+        if request.user.is_authenticated:
+            if request.method=="POST":
+                room_id=request.POST.get("room_id")
+                room_data = rooms.objects.get(room_id=room_id)
+                if 'delete' in request.POST:
+                    room_data.delete()
+                    return redirect("manage-room")
+                elif 'update' in request.POST:
+                    capacity=request.POST.get("seater")
+                    name=request.POST.get("name")
+                    price=request.POST.get("price")
+                    current_capacity=request.POST.get("current_capacity")
+                    room_data.room_capacity=capacity
+                    room_data.room_name=name
+                    room_data.room_price=price
+                    room_data.current_capacity=current_capacity
+                    room_data.save()
+                    messages.success(request, "Room details are Updated")
+
+                return render(request,'admin/update-room.html',{"room":room_data})
+        else:
+            return redirect('admin-login')
+
 
 
     def admin_message(self,request):
         if request.user.is_authenticated:
-            return render(request,'admin/admin-dashboard.html')
+            if request.method == "POST":
+                to=request.POST.get("email")
+                subject=request.POST.get("subject")
+                print(to)
+                body=request.POST.get("body")
+                self.send_email(subject,
+                                body, to)
+                messages.success(request,"Email is send")
+            return render(request,'admin/admin-message.html')
         else:
             return redirect('admin-login')
-        return render(request,'admin/admin-message.html')
+
+    def send_email(self,subject,text,to):
+        connection = mail.get_connection()
+        connection.open()
+        email1 = mail.EmailMessage(subject,text,"shirazsweer12@pepisandbox.com",[to],connection=connection,)
+        email1.send()
+        connection.close()
+
 
     def admin_complain(self,request):
         if request.user.is_authenticated:
-            return render(request,'admin/admin-dashboard.html')
+            ticket=complain.objects.all()
+            return render(request,'admin/admin-complain.html',{"tickets":ticket})
         else:
             return redirect('admin-login')
-        return render(request,'admin/admin-complain.html')
-
-    def update_room(self,request):
-        if request.user.is_authenticated:
-            return render(request,'admin/admin-dashboard.html')
-        else:
-            return redirect('admin-login')
-        return render(request,'admin/update-room.html')
 
 
     def chat_now(self,request):
         if request.user.is_authenticated:
-            return render(request,'admin/admin-dashboard.html')
+            if request.method == "POST":
+                data={}
+                complain_id=request.POST.get('ticket_id')
+                complain_details=complain.objects.get(complian_id=complain_id)
+                # customer_id=complain.customer_id
+                # print(customer_id)
+                data["complain"]=complain_details
+                data["messages"]=message.objects.filter(complain_id=complain_details)
+                try:
+                    msg=request.POST.get("msg")
+                    new_msg=message(complain_id=complain_details,message=msg,reply="False")
+                    new_msg.save()
+                except:
+                    pass
+            return render(request,'admin/chat-now.html',data)
         else:
             return redirect('admin-login')
-        return render(request,'admin/chat-now.html')
+
+    def chat_resolved(self,request):
+        if request.method == "POST":
+            id=request.POST.get("ticket_id")
+            data_of_complain=complain.objects.get(complian_id=id)
+            data_of_complain.complain_status=True
+            data_of_complain.save()
+            return redirect('admin-complain')
+
 
     def fee_detail(self,request):
         if request.user.is_authenticated:
-            return render(request,'admin/admin-dashboard.html')
+            data=customer_fee.objects.all()
+
+            return render(request,'admin/fee-details.html',{"fees":data})
         else:
             return redirect('admin-login')
-        return render(request,'admin/fee-details.html')
+
+    def payfee(self,request):
+        if request.method == "POST":
+            fee_id=request.POST.get('id')
+            fee=customer_fee.objects.get(fee_id=fee_id)
+            fee.paid=True
+            fee.allow_installment=False
+            fee.save()
+            return redirect('fee-detail')
+
     def admin_logout(self,request):
        logout(request)
        return redirect('admin-login')
+

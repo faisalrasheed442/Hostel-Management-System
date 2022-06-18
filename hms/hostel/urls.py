@@ -19,10 +19,8 @@ urlpatterns = [
     path('forget_password/', student.forget_password,  name='forget_password'),
     path('chat/', student.chat,  name='chat'),
     path('installment/', student.installment,  name='installment'),
-
     path('fee_detail/', student.fee_detail,  name='fee_detail'),
     path('check_out/', student.pay_fee,  name='payfee'),
-    
     path('ticket/', student.ticket,  name='ticket'),
     path('basic/', student.basic,  name='basic'),
 ]

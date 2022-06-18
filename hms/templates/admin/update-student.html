@@ -67,27 +67,40 @@
                                         </div>
 
                                          <div class="form-group">
-                                            <label class="col-sm-2 control-label">Seater : </label>
+                                            <label class="col-sm-2 control-label">Gender : </label>
                                             <div class="col-sm-8">
-                                                <input type="number" name="seater" id="seater" class="form-control"
-                                                       value="" required>
+                                                <select name="gender" class="form-control" required="required">
+                                                    {% if profile.gender|lower == 'male' %}
+                                                    <option value="male" selected>Male</option>
+                                                    <option value="female">Female</option>
+                                                    {% else %}
+                                                    <option value="male" >Male</option>
+                                                    <option value="female" selected>Female</option>
+                                                    {% endif %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                         <div class="form-group">
+                                            <label class="col-sm-2 control-label">Room No: </label>
+                                            <div class="col-sm-8">
+                                                <select name="room" class="form-control" required="required">
+                                                    {% for i in room %}
+                                                        {% if i.room_id  ==  profile.room.room_id  %}
+
+                                                            <option value="{{i.room_id }}" selected>{{i.room_id }} </option>
+                                                        {% else %}
+                                                            <option value="{{i.room_id }}">{{i.room_id }} </option>
+                                                    {% endif %}{% endfor %}
+                                                </select>
                                             </div>
                                         </div>
 
-                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Room No : </label>
-                                            <div class="col-sm-8">
-                                                <input type="number" name="room-number" id="mname" class="form-control"
-                                                       value="" required>
-                                            </div>
-                                        </div>
-
 
                                          <div class="form-group">
-                                            <label class="col-sm-2 control-label">Posting Date : </label>
+                                            <label class="col-sm-2 control-label">Register Date : </label>
                                             <div class="col-sm-8">
-                                                <input type="date" name="posting-date" id="posting-date" class="form-control"
-                                                       value="" required>
+                                                <input type="month" name="posting-date" id="posting-date" class="form-control"
+                                                       value="{{ profile.stay_from }}" disabled>
                                             </div>
                                         </div>
 

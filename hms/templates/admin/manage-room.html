@@ -28,44 +28,36 @@
                                    cellspacing="0" width="100%">
                                 <thead>
                                 <tr>
-                                    <th>Sno.</th>
+                                    <th>Room No</th>
+                                    <th>Room Name</th>
 
                                     <th>Seater</th>
-                                    <th>Room No.</th>
+                                    <th>Current Capacity</th>
                                     <th>Fees (PM)</th>
 
-                                    <th>Posting Date</th>
+
+
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                {% for room in rooms %}
                                 <tr>
-                                    <td>1</td>
-                                    <td>5</td>
-                                    <td>4</td>
-                                    <td>6000</td>
-                                    <td>Augest 12</td>
+                                    <td>{{ room.room_id }}</td>
+                                    <td>{{ room.room_name }}</td>
+                                    <td>{{ room.room_capacity }}</td>
+                                    <td>{{ room.current_capacity }}</td>
+                                    <td>{{ room.room_price }}</td>
+
                                     <td>
-                                        <a href="{% url 'update-room' %}">
-                                         <button type="button" class="btn btn-primary">Update</button>
-                                    </a>&nbsp;&nbsp;
+                                        <form action="{% url 'update-room' %}" method="post">
+                                            {% csrf_token %}
+                                        <input type="hidden" name="room_id" value="{{ room.room_id }}">
+                                         <button type="submit" class="btn btn-primary">Update</button>
+                                    </form>
                                     </td>
 
-                                </tr>
-<!--								Dummy Data-->
-								 <tr>
-                                    <td>1</td>
-                                    <td>5</td>
-                                    <td>4</td>
-                                    <td>6000</td>
-                                    <td>Augest 12</td>
-                                    <td>
-                                        <a href="{% url 'update-room' %}">
-                                         <button type="button" class="btn btn-primary">Update</button>
-                                    </a>&nbsp;&nbsp;
-                                    </td>
-                                </tr>
+                                </tr>{% endfor %}
 
 
                                 </tbody>
