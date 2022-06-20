@@ -6,40 +6,42 @@
 </head>
 
 <!-- Code 4 Pages Start from Here  -->
-
+<!--Body Title -->
 {% block page-title %}Room Detail{% endblock %}
 
 {% block content %}
 
-
-<body>
-
+<!--These classes are used for spacing -->
 <div class="ts-main-content">
-
     <div class="content-wrapper">
+
+        <!-- Grid System -->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
 
                     <div class="panel panel-default">
+                        <!-- Top Heading-->
                         <div class="panel-heading">All Room Details</div>
+                        <!-- Top Body-->
                         <div class="panel-body">
+                            <!-- Table -->
                             <table id="zctb" class="display table table-striped table-bordered table-hover"
                                    cellspacing="0" width="100%">
+
+                                <!-- Table Head -->
                                 <thead>
                                 <tr>
                                     <th>Room No</th>
                                     <th>Room Name</th>
-
                                     <th>Seater</th>
                                     <th>Current Capacity</th>
                                     <th>Fees (PM)</th>
-
-
-
                                     <th>Action</th>
                                 </tr>
                                 </thead>
+
+                                <!-- Table Body -->
                                 <tbody>
                                 {% for room in rooms %}
                                 <tr>
@@ -49,18 +51,19 @@
                                     <td>{{ room.current_capacity }}</td>
                                     <td>{{ room.room_price }}</td>
 
+                                    <!--  Update Button -->
                                     <td>
                                         <form action="{% url 'update-room' %}" method="post">
                                             {% csrf_token %}
-                                        <input type="hidden" name="room_id" value="{{ room.room_id }}">
-                                         <button type="submit" class="btn btn-primary">Update</button>
-                                    </form>
+                                            <input type="hidden" name="room_id" value="{{ room.room_id }}">
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                        </form>
                                     </td>
 
-                                </tr>{% endfor %}
-
-
+                                </tr>
+                                {% endfor %}
                                 </tbody>
+
                             </table>
 
 
@@ -76,9 +79,6 @@
     </div>
 </div>
 
-</body>
-
-</html>
 
 {% include "basic2.html" %}
 {% endblock %}

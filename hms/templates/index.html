@@ -6,22 +6,23 @@
     <!-- Info about HTML Document -->
     <meta charset="UTF-8">
     <meta name="description" content="">
-    <meta name="keywords" content="HTML, CSS, UMW Hostel" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="HTML, CSS, UMW Hostel"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <!-- Ionicons -->
-    <link rel="stylesheet" type="text/css" href="{% static './vendors/css/ionicons.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static './vendors/css/ionicons.min.css' %}"/>
 
     <!-- CSS Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="{% static './vendors/css/normalize.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static './vendors/css/grid.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static './vendors/css/animate.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static './vendors/css/normalize.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './vendors/css/grid.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './vendors/css/animate.css' %}"/>
     <!-- Custom CSS Styles  -->
-    <link rel="stylesheet" type="text/css" href="{% static './assets/css/front_style.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static './assets/css/front_queries.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static './assets/css/front_style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static './assets/css/front_queries.css' %}"/>
 
     <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap"
+          rel="stylesheet"/>
 
     <!-- Title of Web Page -->
     <title>UMW</title>
@@ -31,296 +32,329 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="row">
-                <a href="http://127.0.0.1:8000/" target="_self"><img src="{% static './assets/media/transparent_official_logo.png' %}" alt="UMW Logo" class="logo" /></a>
-                <a href="http://127.0.0.1:8000/" target="_self"> <img src="{% static './assets/media/logo.jpg' %}" alt="UMW Logo" class="logo-black" /></a>
-                <ul class="main-nav js--main-nav">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#works">How it works</a></li>
-                    <li><a href="#cities">Our Rooms</a></li>
-                    <li><a href="http://127.0.0.1:8000/login/">Login</a></li>
-                    <li><a href="http://127.0.0.1:8000/register/">Register</a></li>
-                </ul>
-                <a class="mobile-nav-icon js--nav-icon"><i class="ion-navicon-round"></i></a>
-            </div>
-        </nav>
 
-        <div class="hero-text-box">
-            <h1>
-                Welcome to UMW Hostel<br> A good place for Students
-            </h1>
-            <a class="btn btn-full js--scroll-to-plans" href="http://127.0.0.1:8000/register/">Register</a>
-            <a class="btn btn-ghost js--scroll-to-start" href="http://127.0.0.1:8000/login/">Login</a>
-        </div>
-    </header>
+<!--Header Section-->
+<header>
 
-    <section class="section-features js--section-features" id="about">
+    <!-- Navigation-->
+    <nav>
         <div class="row">
-            <h2>About &mdash; UMW Hostels</h2>
-            <p class="long-copy">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit iusto molestias aliquid quisquam! Rem?. So let us take care of that, we're really good at it, we promise!
+            <a href="http://127.0.0.1:8000/" target="_self"><img
+                    src="{% static './assets/media/transparent_official_logo.png' %}" alt="UMW Logo" class="logo"/></a>
+            <a href="http://127.0.0.1:8000/" target="_self"> <img src="{% static './assets/media/logo.jpg' %}"
+                                                                  alt="UMW Logo" class="logo-black"/></a>
+            <ul class="main-nav js--main-nav">
+                <li><a href="#about">About</a></li>
+                <li><a href="#works">How it works</a></li>
+                <li><a href="#rooms">Our Rooms</a></li>
+                <li><a href="{% url 'Login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            </ul>
+            <a class="mobile-nav-icon js--nav-icon"><i class="ion-navicon-round"></i></a>
+        </div>
+    </nav>
+
+    <!--  Hero Text Box-->
+    <div class="hero-text-box">
+        <h1>
+            Welcome to UMW Hostel<br> A good place for Students
+        </h1>
+        <a class="btn btn-full js--scroll-to-plans" href="{% url 'register' %}">Register</a>
+        <a class="btn btn-ghost js--scroll-to-start" href="{% url 'Login' %}">Login</a>
+    </div>
+</header>
+<!-- Header end-->
+
+
+<!--Feature Section-->
+<section class="section-features js--section-features" id="about">
+    <!-- About UMW-->
+    <div class="row">
+        <h2>About &mdash; UMW Hostels</h2>
+        <p class="long-copy">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit iusto molestias aliquid quisquam! Rem?. So let us
+            take care of that, we're really good at it, we promise!
+        </p>
+    </div>
+
+    <!--    Grid System -->
+    <div class="row js--wp-1">
+
+        <!--        Column 1-->
+        <div class="col span-1-of-4 box">
+            <i class="ion-ios-infinite-outline icon-big"></i>
+            <h3>Up to 365 days/year</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam nostrum debitis, voluptate rerum,
+                sapiente debitis deleniti doloribus recusandae reiciendis.
             </p>
         </div>
 
-        <div class="row js--wp-1">
-            <div class="col span-1-of-4 box">
-                <i class="ion-ios-infinite-outline icon-big"></i>
-                <h3>Up to 365 days/year</h3>
+        <!-- Column 2-->
+        <div class="col span-1-of-4 box">
+            <i class="ion-ios-stopwatch-outline icon-big"></i>
+            <h3>Register in 20 min</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam nostrum debitis, voluptate rerum,
+                sapiente debitis deleniti doloribus recusandae reiciendis.
+            </p>
+        </div>
+        <!-- Column 3-->
+        <div class="col span-1-of-4 box">
+            <i class="ion-ios-nutrition-outline icon-big"></i>
+            <h3>100% organic Mess</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam nostrum debitis, voluptate rerum,
+                sapiente debitis deleniti doloribus recusandae reiciendis.
+            </p>
+        </div>
+        <!-- Column 4-->
+        <div class="col span-1-of-4 box">
+            <i class="ion-ios-cart-outline icon-big"></i>
+            <h3>Register Online</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam nostrum debitis, voluptate rerum,
+                sapiente debitis deleniti doloribus recusandae reiciendis.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<!--Section Steps-->
+<section class="section-steps" id="works">
+    <div class="row">
+        <h2>How it works &mdash; Simple as 1, 2, 3</h2>
+    </div>
+    <div class="row">
+        <div class="col span-1-of-2 steps-box">
+            <img src="{% static './assets/media/app-iPhone.png' %}" alt="UMW app on iPhone"
+                 class="app-screen js--wp-2"/>
+        </div>
+        <div class="col span-1-of-2 steps-box">
+            <div class="works-step clearfix">
+                <div>1</div>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam nostrum debitis, voluptate rerum, sapiente debitis deleniti doloribus recusandae reiciendis.
+                    Choose the subscription plan that best fits your needs and sign up today.
                 </p>
             </div>
-            <div class="col span-1-of-4 box">
-                <i class="ion-ios-stopwatch-outline icon-big"></i>
-                <h3>Register in 20 min</h3>
+            <div class="works-step clearfix">
+                <div>2</div>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam nostrum debitis, voluptate rerum, sapiente debitis deleniti doloribus recusandae reiciendis.
+                    Order your best plan using our mobile app or website. Or you can even call us!
                 </p>
             </div>
-            <div class="col span-1-of-4 box">
-                <i class="ion-ios-nutrition-outline icon-big"></i>
-                <h3>100% organic Mess</h3>
+            <div class="works-step clearfix">
+                <div>3</div>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam nostrum debitis, voluptate rerum, sapiente debitis deleniti doloribus recusandae reiciendis.
+                    Enjoy and pay fee after less than 20 minutes. See you the next time!
                 </p>
             </div>
-            <div class="col span-1-of-4 box">
-                <i class="ion-ios-cart-outline icon-big"></i>
-                <h3>Register Online</h3>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam nostrum debitis, voluptate rerum, sapiente debitis deleniti doloribus recusandae reiciendis.
-                </p>
-            </div>
-        </div>
-    </section>
 
-    <section class="section-steps" id="works">
-        <div class="row">
-            <h2>How it works &mdash; Simple as 1, 2, 3</h2>
+            <a href="#" class="btn-app"><img src="{% static './assets/media/download-app.svg'%}"
+                                             alt="App Store Button"/></a>
+            <a href="#" class="btn-app"><img src="{% static './assets/media/download-app-android.png'%}"
+                                             alt="Play Store Button"/></a>
         </div>
-        <div class="row">
-            <div class="col span-1-of-2 steps-box">
-                <img src="{% static './assets/media/app-iPhone.png' %}" alt="UMW app on iPhone" class="app-screen js--wp-2" />
-            </div>
-            <div class="col span-1-of-2 steps-box">
-                <div class="works-step clearfix">
-                    <div>1</div>
-                    <p>
-                        Choose the subscription plan that best fits your needs and sign up today.
-                    </p>
+    </div>
+</section>
+
+
+<!--Section Rooms-->
+<section class="section-rooms" id="rooms">
+    <div class="row">
+        <h2>Our Rooms</h2>
+    </div>
+
+    <div class="row js--wp-3">
+        <div class="col span-1-of-4 box">
+            <img src="{% static './assets/media/room1.jpg' %}" alt="Room1"/>
+            <h3>Room 1</h3>
+        </div>
+        <div class="col span-1-of-4 box">
+            <img src="{% static './assets/media/room2.jpg' %}" alt="Room2"/>
+            <h3>Room 2</h3>
+        </div>
+        <div class="col span-1-of-4 box">
+            <img src="{% static './assets/media/room3.jpg' %}" alt="Room3"/>
+            <h3>Room 3</h3>
+        </div>
+        <div class="col span-1-of-4 box">
+            <img src="{% static './assets/media/room4.jpg' %}" alt="Room4"/>
+            <h3>Room 4</h3>
+        </div>
+    </div>
+</section>
+
+<section class="secton-testimonials">
+    <div class="row">
+        <h2>Our customers can't live without us</h2>
+    </div>
+    <div class="row">
+        <div class="col span-1-of-3">
+            <blockquote>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit iusto molestias aliquid quisquam! Rem?.
+                <cite><img src="{% static './assets/media/customer-1.jpg' %}" alt="Customer 1 Image"/>Alberto
+                    Duncan</cite>
+            </blockquote>
+        </div>
+        <div class="col span-1-of-3">
+            <blockquote>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit iusto molestias aliquid quisquam! Rem?.
+                <cite><img src="{% static './assets/media/customer-2.jpg' %}" alt="Customer 2 Image"/>Joana Silva</cite>
+            </blockquote>
+        </div>
+        <div class="col span-1-of-3">
+            <blockquote>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit iusto molestias aliquid quisquam! Rem?.
+                <cite><img src="{% static './assets/media/customer-3.jpg' %}" alt="Customer 3 Image"/>Milton
+                    Chapman</cite>
+            </blockquote>
+        </div>
+    </div>
+</section>
+
+<section class="section-plans js--section-plans" id="plans">
+    <div class="row">
+        <h2>Start living and eating healthy today</h2>
+    </div>
+    <div class="row">
+        <div class="col span-1-of-3">
+            <div class="plan-box js--wp-4">
+                <div>
+                    <h3>Premium</h3>
+                    <p class="plan-price">Rs. 9000 <span>/ month</span></p>
+                    <p class="plan-price-meal">That's only 300.0 Rs per day</p>
                 </div>
-                <div class="works-step clearfix">
-                    <div>2</div>
-                    <p>
-                        Order your best plan using our mobile app or website. Or you can even call us!
-                    </p>
+                <div>
+                    <ul>
+                        <li>
+                            <i class="ion-ios-checkmark-empty icon-small"></i>1 meal every day
+                        </li>
+                        <li>
+                            <i class="ion-ios-checkmark-empty icon-small"></i>Order 24/7
+                        </li>
+                        <li>
+                            <i class="ion-ios-checkmark-empty icon-small"></i>Access to newest creations
+                        </li>
+                        <li>
+                            <i class="ion-ios-checkmark-empty icon-small"></i>Free delivery
+                        </li>
+                    </ul>
                 </div>
-                <div class="works-step clearfix">
-                    <div>3</div>
-                    <p>
-                        Enjoy and pay fee after less than 20 minutes. See you the next time!
-                    </p>
-                </div>
-
-                <a href="#" class="btn-app"><img src="{% static './assets/media/download-app.svg'%}" alt="App Store Button" /></a>
-                <a href="#" class="btn-app"><img src="{% static './assets/media/download-app-android.png'%}" alt="Play Store Button" /></a>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-cities" id="cities">
-        <div class="row">
-            <h2>Our Rooms</h2>
-        </div>
-
-        <div class="row js--wp-3">
-            <div class="col span-1-of-4 box">
-                <img src="{% static './assets/media/room1.jpg' %}" alt="Room1" />
-                <h3>Room 1</h3>
-            </div>
-            <div class="col span-1-of-4 box">
-                <img src="{% static './assets/media/room2.jpg' %}" alt="Room2" />
-                <h3>Room 2</h3>
-            </div>
-            <div class="col span-1-of-4 box">
-                <img src="{% static './assets/media/room3.jpg' %}" alt="Room3" />
-                <h3>Room 3</h3>
-            </div>
-            <div class="col span-1-of-4 box">
-                <img src="{% static './assets/media/room4.jpg' %}" alt="Room4" />
-                <h3>Room 4</h3>
-            </div>
-        </div>
-    </section>
-
-    <section class="secton-testimonials">
-        <div class="row">
-            <h2>Our customers can't live without us</h2>
-        </div>
-        <div class="row">
-            <div class="col span-1-of-3">
-                <blockquote>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit iusto molestias aliquid quisquam! Rem?.
-                    <cite><img src="{% static './assets/media/customer-1.jpg' %}" alt="Customer 1 Image" />Alberto Duncan</cite>
-                </blockquote>
-            </div>
-            <div class="col span-1-of-3">
-                <blockquote>
-                   Lorem ipsum dolor sit amet consectetur adipisicing elit iusto molestias aliquid quisquam! Rem?.
-                    <cite><img src="{% static './assets/media/customer-2.jpg' %}" alt="Customer 2 Image" />Joana Silva</cite>
-                </blockquote>
-            </div>
-            <div class="col span-1-of-3">
-                <blockquote>
-                   Lorem ipsum dolor sit amet consectetur adipisicing elit iusto molestias aliquid quisquam! Rem?.
-                    <cite><img src="{% static './assets/media/customer-3.jpg' %}" alt="Customer 3 Image" />Milton Chapman</cite>
-                </blockquote>
-            </div>
-        </div>
-    </section>
-
-    <section class="section-plans js--section-plans" id="plans">
-        <div class="row">
-            <h2>Start living and eating healthy today</h2>
-        </div>
-        <div class="row">
-            <div class="col span-1-of-3">
-                <div class="plan-box js--wp-4">
-                    <div>
-                        <h3>Premium</h3>
-                        <p class="plan-price">Rs. 9000 <span>/ month</span></p>
-                        <p class="plan-price-meal">That's only 300.0 Rs per day</p>
-                    </div>
-                    <div>
-                        <ul>
-                            <li>
-                                <i class="ion-ios-checkmark-empty icon-small"></i>1 meal every day
-                            </li>
-                            <li>
-                                <i class="ion-ios-checkmark-empty icon-small"></i>Order 24/7
-                            </li>
-                            <li>
-                                <i class="ion-ios-checkmark-empty icon-small"></i>Access to newest creations
-                            </li>
-                            <li>
-                                <i class="ion-ios-checkmark-empty icon-small"></i>Free delivery
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <a href="http://127.0.0.1:8000/register/" class="btn btn-full">Register now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col span-1-of-3">
-                <div class="plan-box">
-                    <div>
-                        <h3>Pro</h3>
-                        <p class="plan-price">Rs.6000 <span>/ month</span></p>
-                        <p class="plan-price-meal">That's only 200.0 Rs per day</p>
-                    </div>
-                    <div>
-                        <ul>
-                            <li>
-                                <i class="ion-ios-checkmark-empty icon-small"></i>1 meal 10 days/month
-                            </li>
-                            <li>
-                                <i class="ion-ios-checkmark-empty icon-small"></i>Order 24/7
-                            </li>
-                            <li>
-                                <i class="ion-ios-checkmark-empty icon-small"></i>Access to newest creations
-                            </li>
-                            <li>
-                                <i class="ion-ios-checkmark-empty icon-small"></i>Free delivery
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <a href="http://127.0.0.1:8000/register/" class="btn btn-ghost">Register now</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col span-1-of-3">
-                <div class="plan-box">
-                    <div>
-                        <h3>Starter</h3>
-                        <p class="plan-price">Rs.4000 <span>/ month</span></p>
-                        <p class="plan-price-meal">&nbsp;</p>
-                    </div>
-                    <div>
-                        <ul>
-                            <li>
-                                <i class="ion-ios-checkmark-empty icon-small"></i>1 meal
-                            </li>
-                            <li>
-                                <i class="ion-ios-checkmark-empty icon-small"></i>Order from 8am to 12pm
-                            </li>
-                            <li>
-                                <i class="ion-ios-close-empty icon-small"></i>Access to newest creations
-                            </li>
-                            <li>
-                                <i class="ion-ios-checkmark-empty icon-small"></i>Free delivery
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <a href="http://127.0.0.1:8000/register/" class="btn btn-ghost">Register now</a>
-                    </div>
+                <div>
+                    <a href="{% url 'register' %}" class="btn btn-full">Register now</a>
                 </div>
             </div>
         </div>
-    </section>
-
-
-    <footer>
-        <div class="row">
-            <div class="col span-1-of-2">
-                <ul class="footer-nav">
-                    <li><a href="#about">About us</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="http://127.0.0.1:8000/register/">Register</a></li>
-                    <li><a href="http://127.0.0.1:8000/login/">Login</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="col span-1-of-2">
-                <ul class="social-appearance">
-                    <li>
-                        <a href="#"><i class="ion-social-facebook"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="ion-social-twitter"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="ion-social-instagram"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="ion-social-linkedin"></i></a>
-                    </li>
-                </ul>
+        <div class="col span-1-of-3">
+            <div class="plan-box">
+                <div>
+                    <h3>Pro</h3>
+                    <p class="plan-price">Rs.6000 <span>/ month</span></p>
+                    <p class="plan-price-meal">That's only 200.0 Rs per day</p>
+                </div>
+                <div>
+                    <ul>
+                        <li>
+                            <i class="ion-ios-checkmark-empty icon-small"></i>1 meal 10 days/month
+                        </li>
+                        <li>
+                            <i class="ion-ios-checkmark-empty icon-small"></i>Order 24/7
+                        </li>
+                        <li>
+                            <i class="ion-ios-checkmark-empty icon-small"></i>Access to newest creations
+                        </li>
+                        <li>
+                            <i class="ion-ios-checkmark-empty icon-small"></i>Free delivery
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="{% url 'register' %}" class="btn btn-ghost">Register now</a>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <p>Copyright &copy; 2021 by UMW. All right reserved.</p>
+        <div class="col span-1-of-3">
+            <div class="plan-box">
+                <div>
+                    <h3>Starter</h3>
+                    <p class="plan-price">Rs.4000 <span>/ month</span></p>
+                    <p class="plan-price-meal">&nbsp;</p>
+                </div>
+                <div>
+                    <ul>
+                        <li>
+                            <i class="ion-ios-checkmark-empty icon-small"></i>1 meal
+                        </li>
+                        <li>
+                            <i class="ion-ios-checkmark-empty icon-small"></i>Order from 8am to 12pm
+                        </li>
+                        <li>
+                            <i class="ion-ios-close-empty icon-small"></i>Access to newest creations
+                        </li>
+                        <li>
+                            <i class="ion-ios-checkmark-empty icon-small"></i>Free delivery
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="{% url 'register' %}" class="btn btn-ghost">Register now</a>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!--JS Scripts  -->
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!--JS Files to make a responsive website that works on older browsers versions
-	Respond.js for Responsive Website -->
-    <script src="{% static './vendors/js/respond.min.js' %}"></script>
-    <!-- HTML5SHIV for HTML !-->
-    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-    <!-- Selectivizr for CSS  -->
-    <script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
-    <!-- Waypoint Jquery Plugin -->
-    <script src="{% static './vendors/js/jquery.waypoints.min.js' %}"></script>
-    <!-- Local JS Script -->
-    <script src="{% static './assets/js/front_script.js' %}"></script>
+
+<!--Footer Section-->
+<footer>
+    <div class="row">
+        <div class="col span-1-of-2">
+            <ul class="footer-nav">
+                <li><a href="#about">About us</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'Login' %}">Login</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="col span-1-of-2">
+            <ul class="social-appearance">
+                <li>
+                    <a href="#"><i class="ion-social-facebook"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="ion-social-twitter"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="ion-social-instagram"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="ion-social-linkedin"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <p>Copyright &copy; 2021 by UMW. All right reserved.</p>
+    </div>
+</footer>
+
+<!--JS Scripts  -->
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<!--JS Files to make a responsive website that works on older browsers versions
+Respond.js for Responsive Website -->
+<script src="{% static './vendors/js/respond.min.js' %}"></script>
+<!-- HTML5SHIV for HTML !-->
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+<!-- Selectivizr for CSS  -->
+<script src="https://cdn.jsdelivr.net/npm/selectivizr@1.0.3/selectivizr.min.js"></script>
+<!-- Waypoint Jquery Plugin -->
+<script src="{% static './vendors/js/jquery.waypoints.min.js' %}"></script>
+<!-- Local JS Script -->
+<script src="{% static './assets/js/front_script.js' %}"></script>
 </body>
 
 </html>

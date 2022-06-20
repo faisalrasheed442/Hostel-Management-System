@@ -8,22 +8,30 @@
 
 {% block page-title %}Student Detail{% endblock %}
 
-{% block content %}<!-- Code 4 Pages Start from Here  -->
+{% block content %}
 
-<body>
+<!-- Code 4 Pages Start from Here  -->
 
 
+<!--These classes are used for spacing -->
 <div class="ts-main-content">
-
     <div class="content-wrapper">
+
+        <!-- Grid System -->
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+
                     <div class="panel panel-default">
+                        <!-- Top Heading-->
                         <div class="panel-heading">All Student Details</div>
+                        <!-- Top Body-->
                         <div class="panel-body">
+
+                            <!--  Table -->
                             <table id="zctb" class="display table table-striped table-bordered table-hover"
                                    cellspacing="0" width="100%">
+                                <!--  Table Head -->
                                 <thead>
                                 <tr>
                                     <th>Sno.</th>
@@ -34,43 +42,41 @@
                                     <th>Action</th>
                                 </tr>
                                 </thead>
+
+                                <!--  Table Body -->
                                 <tbody>
                                 {% for user in users %}
-                                    <form method="post" action="{% url 'update-student' %}" >
-                                        {% csrf_token %}
-                                <tr>
-                                    <td><input type="hidden" value="{{ user.user_id }}" name="user_id">{{ user.user_id }}</td>
-                                    <td>{{ user.user_name }}</td>
-                                    <td>{{ user.email }}</td>
-                                    <td>{{ user.room.room_id }}</td>
-                                    <td>{{ user.stay_from }}</td>
-                                    <td>
-
-                                         <button type="submit" class="btn btn-primary" name="send_update">Update</button>
-
-                                    </td>
-                                </tr></form>{% endfor %}
-
+                                <!--  Form -->
+                                <form method="post" action="{% url 'update-student' %}">
+                                    {% csrf_token %}
+                                    <tr>
+                                        <td><input type="hidden" value="{{ user.user_id }}" name="user_id">
+                                            {{ user.user_id }}
+                                        </td>
+                                        <td>{{ user.user_name }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.room.room_id }}</td>
+                                        <td>{{ user.stay_from }}</td>
+                                        <!--  Update Button -->
+                                        <td>
+                                            <button type="submit" class="btn btn-primary" name="send_update">Update
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </form>
+                                {% endfor %}
 
                                 </tbody>
                             </table>
 
-
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
 
-</body>
-
-</html>
 
 {% include "basic2.html" %}
 {% endblock %}

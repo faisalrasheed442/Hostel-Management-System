@@ -1,7 +1,10 @@
 {% extends "basic.html" %}
 
+<!--To manage static files (eg images, JavaScript, CSS)-->
 {% load static %}
+
 <head>
+    <!--    Page Title-->
     {% block title %}My Profile{% endblock %}
 
     <link rel="stylesheet" type="text/css"
@@ -14,51 +17,54 @@
 
 <!-- Code 4 Pages Start from Here  -->
 
+<!--Body Title-->
 {% block page-title %}Profile{% endblock %}
 
 {% block content %}
 
 
 <!-- Your code goes here -->
+
+<!--Parent classes used for spacing-->
 <div class="ts-main-content">
-
     <div class="content-wrapper">
-        <div class="container-fluid">
 
+        <!-- Grid System -->
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
 
                     <div class="row">
                         <div class="col-md-12">
+
+                            <!-- Top Heading-->
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-
                                     Update Profile :
                                 </div>
 
-
+                                <!-- Form Top Body-->
                                 <div class="panel-body">
+                                    <!--  Form    -->
                                     <form method="post" action="{% url 'profile' %}" name="registration"
                                           class="form-horizontal" enctype="multipart/form-data">
                                         {% csrf_token %}
 
-                                        <!--                                                    Profile-->
+                                        <!--   Profile Image -->
                                         <center>
-                                        <div class="profile-pic-wrapper">
-                                            <div class="pic-holder">
-                                                <!-- uploaded pic shown here -->
-                                                <img id="profilePic" class="pic img-thumbnail" width="200" height="200"
-                                                     src="../{{ profile.user_image }}"><br>
-                                                <span>{{ form.user_image }}</span>
-
+                                            <div class="profile-pic-wrapper">
+                                                <div class="pic-holder">
+                                                    <!-- uploaded pic shown here -->
+                                                    <img id="profilePic" class="pic img-thumbnail" width="200"
+                                                         height="200"
+                                                         src="../{{ profile.user_image }}"><br>
+                                                    <span>{{ form.user_image }}</span>
+                                                </div>
                                             </div>
-
-
-                                        </div>
-                                            </center>
+                                        </center>
                                         <br><br>
 
-
+                                        <!-- Username-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label"> Username :
                                             </label>
@@ -68,7 +74,7 @@
                                             </div>
                                         </div>
 
-
+                                        <!-- Email Id -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Email id: </label>
                                             <div class="col-sm-7">
@@ -77,6 +83,7 @@
                                             </div>
                                         </div>
 
+                                        <!--  Contact Number-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Contact No : </label>
                                             <div class="col-sm-7">
@@ -85,6 +92,7 @@
                                             </div>
                                         </div>
 
+                                        <!-- Room No: -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Room No : </label>
                                             <div class="col-sm-7">
@@ -93,10 +101,10 @@
                                             </div>
                                         </div>
 
+                                        <!--  Gender -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" required>Gender : </label>
                                             <div class="col-sm-7">
-
                                                 {% if profile.gender %}
                                                 <select name="gender" class="form-control" required="required">
                                                     <option value='male' selected>Male</option>
@@ -104,10 +112,10 @@
                                                     <option value="other">Other</option>
                                                 </select>
                                                 {% endif %}
-
                                             </div>
                                         </div>
 
+                                        <!--Guardian Name-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label" required>Guardian Name : </label>
                                             <div class="col-sm-7">
@@ -117,6 +125,7 @@
                                             </div>
                                         </div>
 
+                                        <!--Guardian Contact-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Guardian Contact: </label>
                                             <div class="col-sm-7">
@@ -127,6 +136,7 @@
                                             </div>
                                         </div>
 
+                                        <!--Address-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Address: </label>
                                             <div class="col-sm-7">
@@ -136,12 +146,12 @@
                                             </div>
                                         </div>
 
-
+                                        <!-- Update Profile Button-->
                                         <div class="col-sm-6 col-sm-offset-4">
-
                                             <input type="submit" name="update" Value="Update Profile"
                                                    class="btn btn-primary">
                                         </div>
+
                                     </form>
 
                                 </div>
@@ -158,5 +168,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static './assets/js/profile_img.js' %}"></script>
 
+<!--Include template in header for reload resources-->
 {% include "basic2.html" %}
+
+<!--Code block end here-->
 {% endblock %}

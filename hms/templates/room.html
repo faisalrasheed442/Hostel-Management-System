@@ -1,98 +1,114 @@
 {% extends "basic.html" %}
 
-<head>
-{% block title %}My Room{% endblock %}
+{% load static%}
 
+<head>
+    {% block title %}My Room{% endblock %}
 </head>
- {% load static%}
+
 <!-- Code 4 Pages Start from Here  -->
 
 {% block page-title %}Room{% endblock %}
 
- {% block content %}
-   <!-- Your code goes here -->
+{% block content %}
+<!-- Your code goes here -->
 
-    <div class="ts-main-content">
+<div class="ts-main-content">
+    <div class="content-wrapper">
 
-        <div class="content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-<!--                        <h2 class="page-title" style="margin-top:2%">Rooms Details</h2>-->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">All Room Details</div>
-                            <div class="panel-body">
-                                <table id="zctb" class="table table-bordered " cellspacing="0" width="100%">
+        <!--  Grid System -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <!--                        <h2 class="page-title" style="margin-top:2%">Rooms Details</h2>-->
 
+                    <div class="panel panel-default">
+                        <div class="panel-heading">All Room Details</div>
 
-                                    <tbody>
-
-
-                                        <tr>
-                                            <td colspan="4">
-                                                <h4>Room Realted Info</h4>
-                                            </td>
-                                            </tr>
-<!--                                            <td><a href="javascript:void(0);" onClick="popUpWindow('#');" title="View Full Details">Print Data</a></td>-->
+                        <!-- Table -->
+                        <div class="panel-body">
+                            <table id="zctb" class="table table-bordered " cellspacing="0" width="100%">
 
 
+                                <tbody>
+                                <!-- Row 1 : Heading-->
+                                <tr>
+                                    <td colspan="4">
+                                        <h4>Room Realted Info</h4>
+                                    </td>
+                                </tr>
+                                <!--  Room No -->
+                                <tr>
+                                    <td><b>Room no :</b></td>
+                                    <td> {{ profile.room.room_id }}
+                                    </td>
+                                    <!--  Seater Capacity -->
+                                    <td><b>Seater :</b></td>
+                                    <td><b>{{ profile.room.room_capacity }}</b></td>
+                                </tr>
+                                <!--  Food Status -->
+                                <tr>
+                                    <td><b>Food Status:</b></td>
+                                    {% if profile.food_status %}
+                                    <td>
+                                        Yes
+                                    </td>
+                                    {% else %}
+                                    <td>No</td>
+                                    {% endif %}
 
+                                    <!--  Fees Per Month -->
+                                    <td><b>Fees Per Month :</b></td>
+                                    <td>{{ profile.room.room_price }}
 
+                                </tr>
 
-                                        <tr>
-                                            <td><b>Room no :</b></td>
-                                            <td> {{ profile.room.room_id }}
+                                <!--  Stay From -->
+                                <tr>
+                                    </td>
+                                    <td><b>Stay From :</b></td>
+                                    <td>{{ profile.stay_from }}
+                                    </td>
+                                    <!-- Duration -->
+                                    <td><b>Duration:</b></td>
+                                    <td>
+                                        1 Months
+                                    </td>
+                                </tr>
 
-                                            </td>
-                                            <td><b>Seater :</b></td>
-                                            <td><b>{{ profile.room.room_capacity }}</b></td>
-                                        </tr>
+                                <!--  Total Fee -->
+                                <tr>
+                                    <td colspan="6"><b>Total Fee :
+                                    </b> {{ profile.room.room_price }}
+                                    </td>
+                                </tr>
 
-                                        <tr>
-                                            <td><b>Food Status:</b></td>
-                                            {% if profile.food_status  %}
-                                            <td>
-                                            Yes
-                                            </td>
-                                            {% else %}
-                                            <td>No</td>{% endif %}
-                                            <td><b>Fees Per Month :</b></td>
-                                            <td>{{ profile.room.room_price }}
+                                </tbody>
+                                <!--  End of Table Body-->
 
-                                        </tr>
-                                        <tr>
-                                             </td>
-                                            <td><b>Stay From :</b></td>
-                                            <td>{{ profile.stay_from }}
+                            </table>
+                            <!--  End of Table    -->
 
-                                            </td>
-                                            <td><b>Duration:</b></td>
-                                            <td>
-                                                1 Months</td>
-                                        </tr>
+                            <!--  For Change Room Request  -->
+                            <form action="{% url 'change_room' %}">
+                                <div class="col-sm-6 col-sm-offset-4">
+                                    {% csrf_token %}
+                                    <input type="submit" name="update" Value="Change Room"
+                                           class="btn btn-primary">
+                                </div>
+                            </form>
 
-                                        <tr>
-                                            <td colspan="6"><b>Total Fee :
-                                                </b> {{ profile.room.room_price }}</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-
-                                <form action="{% url 'change_room' %}">
-                                 <div class="col-sm-6 col-sm-offset-4">
-                                            {% csrf_token %}
-                                            <input type="submit" name="update" Value="Change Room"
-                                                   class="btn btn-primary">
-                                        </div>
-                                    </form>
-
-                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<!--Include template in header for reload resources-->
 {% include "basic2.html" %}
- {% endblock %}
+
+<!--Code block end here-->
+{% endblock %}

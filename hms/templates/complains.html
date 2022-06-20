@@ -1,60 +1,60 @@
 {% extends "basic.html" %}
 
+<!--To manage static files (e.g. images, JavaScript, CSS)-->
+{% load static %}
+
 <head>
+    <!--    Page Title -->
     {% block title %}Complains{% endblock %}
-    <style>
-
-
-    </style>
-
+    <link rel="stylesheet" href="{% static './assets/css/complaint.css' %}">
 </head>
 
 <!-- Code 4 Pages Start from Here  -->
 
+<!--Body Title -->
 {% block page-title %}Complains{% endblock %}
 
 {% block content %}
 
 <!-- Your code goes here -->
 
-
 <div class="ts-main-content" style="margin: 0 10px">
 
-
+    <!--  Grid System -->
     <div class="row">
-
-
         <div class="col-md-12">
+
             <div class="panel panel-primary">
-
+                <!--  Top Heading-->
                 <div class="panel-heading">
-
                     Complain Details :
                 </div>
+                <br><br>
 
-                <br>
-                <br>
-
-
+                <!-- Container -->
                 <div class="container-fluid">
+                    <!-- New Tickeet Button -->
                     <button class="btn btn-primary  pull-right"
                             onclick="window.location.href = '{% url 'ticket' %}';"> + New Ticket
                     </button>
+
+                    <!--  Open & Closed Navigation -->
                     <ul class="nav nav-pills">
                         <li class=" active col-sm-4">
                             <a href="#1b" data-toggle="tab">Open</a>
                         </li>
-                        <li class="col-sm-4"><a href="#2b" data-toggle="tab">Closed</a>
-                        </li>
-
+                        <li class="col-sm-4"><a href="#2b" data-toggle="tab">Closed</a></li>
                     </ul>
 
                     {# table for open complains#}
                     <div class="tab-content clearfix">
                         <div class="tab-pane active" id="1b">
 
+                            <!-- Table -->
                             <table class="table">
+                                <!--  Table Head-->
                                 <thead class="thead-light">
+                                <!--  Heading Row-->
                                 <tr>
                                     <th scope="col">Ticket #</th>
                                     <th scope="col"> Date</th>
@@ -62,33 +62,45 @@
                                     <th scope="col">Status</th>
                                 </tr>
                                 </thead>
-                                <tbody>
 
+                                <!--  Table Body-->
+                                <tbody>
                                 {% for ticket in tickets %}
                                 {% if not ticket.complain_status %}
+
+                                <!--  Table Row-->
                                 <tr>
                                     <td scope="row">
-                                        <form method="post" action="{% url "chat" %}">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="ticket_id" value="{{ ticket.complian_id }}">
-                                        <button type="submit" class="btn btn-primary">{{ ticket.complian_id }}</button>
+                                        <!-- Chat Now Navigation-->
+                                        <form method="post" action="{% url 'chat' %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="ticket_id" value="{{ ticket.complian_id }}">
+                                            <button type="submit" class="btn btn-primary">{{ ticket.complian_id }}
+                                            </button>
                                         </form>
                                     </td>
-
+                                    <!--  Table Data-->
                                     <td>{{ ticket.date }}</td>
                                     <td>{{ ticket.subject }}</td>
                                     <td class="text-primary">Open</td>
 
                                 </tr>
                                 {% endif %}{% endfor %}
+
                                 </tbody>
+                                <!--  End of tbody-->
                             </table>
+                            <!--  End of Table-->
 
                         </div>
+
                         {# table for close complains#}
                         <div class="tab-pane" id="2b">
+                            <!-- Table -->
                             <table class="table">
+                                <!--  Table Head-->
                                 <thead class="thead-light">
+                                <!--  Heading Row-->
                                 <tr>
                                     <th scope="col">Ticket #</th>
                                     <th scope="col"> Date</th>
@@ -96,11 +108,16 @@
                                     <th scope="col">Status</th>
                                 </tr>
                                 </thead>
+
+                                <!--  Table Body-->
                                 <tbody>
                                 {% for ticket in tickets %}
                                 {% if ticket.complain_status %}
+
+                                <!--  Table Row & Table Data-->
                                 <tr>
                                     <td>
+                                        <!-- Chat Now Navigation-->
                                         <form method="post" action="{% url " chat
                                         " %}">{% csrf_token %}
                                         <input type="hidden" name="ticket_id" value="{{ ticket.complian_id }}">
@@ -108,6 +125,7 @@
                                         </form>
                                     </td>
 
+                                    <!--  Table Row Data-->
                                     <td>{{ ticket.date }}</td>
                                     <td>{{ ticket.subject }}</td>
                                     <td class="text-success">Closed</td>
@@ -116,19 +134,12 @@
 
 
                                 </tbody>
+                                <!--  End of Table body-->
                             </table>
+                            <!--  End of Table-->
                         </div>
 
                     </div>
-<!--                    <form action="" class="pull-center" style="margin-bottom:10px;">-->
-<!--                        <div class="col-sm-6 col-sm-offset-4 ">-->
-<!--                            <input type="submit" name="mark-resolved" Value="Mark Resolved"-->
-<!--                                   class="btn btn-primary pull-center">-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                    <br>-->
-<!--                    <br>-->
-<!--                    <br>-->
 
                 </div>
             </div>
@@ -141,5 +152,8 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
+<!--Include template in header for reload resources-->
 {% include "basic2.html" %}
+
+<!--Code block end here-->
 {% endblock %}

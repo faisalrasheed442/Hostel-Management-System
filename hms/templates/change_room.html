@@ -6,32 +6,40 @@
 
 <!-- Code 4 Pages Start from Here  -->
 
-{% block page-title %}{{head }}{% endblock %}
+{% block page-title %}Room{% endblock %}
 
 {% block content %}
 
 <!-- Your code goes here -->
+
+<!--These classes are used for spaces-->
 <div class="ts-main-content">
-
     <div class="content-wrapper">
-        <div class="container-fluid">
 
+        <!--  Grid System -->
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
 
-                                    Details :
+                            <!--     Container with Border-->
+                            <div class="panel panel-primary">
+
+                                <!--   Heading-->
+                                <div class="panel-heading">
+                                    Change Room Request :
                                 </div>
 
 
                                 <div class="panel-body">
-                                    <form method="post" action="" name="registration" class="form-horizontal">
-                                    {% csrf_token %}
 
+                                    <!--  Form Box-->
+                                    <form method="post" action="" name="registration" class="form-horizontal">
+                                        {% csrf_token %}
+
+                                        <!--  Registered Username -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label"> Name :
                                             </label>
@@ -41,7 +49,7 @@
                                             </div>
                                         </div>
 
-
+                                        <!--  Registered Email -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Email Id: </label>
                                             <div class="col-sm-8">
@@ -50,6 +58,7 @@
                                             </div>
                                         </div>
 
+                                        <!--  Contact Number -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Contact No : </label>
                                             <div class="col-sm-8">
@@ -58,6 +67,7 @@
                                             </div>
                                         </div>
 
+                                        <!--  Room Number -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Room No : </label>
                                             <div class="col-sm-8">
@@ -66,39 +76,47 @@
                                             </div>
                                         </div>
 
-                                         <div class="form-group">
+                                        <!--  Subject for an application -->
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">Subject : </label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject"
+                                                <input type="text" name="subject" id="subject" class="form-control"
+                                                       placeholder="Subject"
                                                        value="">
                                             </div>
                                         </div>
 
+                                        <!--  Reason for Change Room -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Reason For Change</label>
                                             <div class="col-sm-8">
-                                                <textarea name="reason_for_change" id="" cols="30" rows="10" class="form-control" required placeholder="Your Message"></textarea>
+                                                <textarea name="reason_for_change" id="" cols="30" rows="10"
+                                                          class="form-control" required
+                                                          placeholder="Your Message"></textarea>
                                             </div>
                                         </div>
 
+
                                         <div class="col-sm-6 col-sm-offset-4">
 
+                                            <!--  Submit Button -->
                                             <input type="submit" name="update" Value="Submit"
                                                    class="btn btn-primary">
+
+                                            <!--  To show error Message -->
                                             {% for msg in messages %}
-                                            <span><div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                                            <span>
+                                                <div class="alert alert-{{ msg.tags }} alert-dismissible fade show"
+                                                     role="alert">
                                             <strong>Message : </strong> {{ msg }}
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                               <span aria-hidden="true">&times;</span>
                                             </button>
-                                          </div></span>
+                                          </div>
+                                            </span>
                                             {% endfor %}
                                         </div>
                                     </form>
-<!--                                    {% if messages %}-->
-<!--                                 {% for message in messages  %}-->
-
-<!--                                      {% endfor %} {% endif %}-->
 
                                 </div>
                             </div>
@@ -110,5 +128,8 @@
     </div>
 </div>
 
+<!--Include template in header for reload resources-->
 {% include "basic2.html" %}
+
+<!--Code block end here-->
 {% endblock %}

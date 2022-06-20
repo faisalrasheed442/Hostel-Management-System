@@ -2,11 +2,6 @@
 
 <head>
     {% block title %}Complains{% endblock %}
-    <style>
-
-
-    </style>
-
 </head>
 
 <!-- Code 4 Pages Start from Here  -->
@@ -17,25 +12,23 @@
 
 <!-- Your code goes here -->
 
-
-<!-- Your code goes here -->
-
 <div class="ts-main-content" style="margin: 0 10px">
 
+    <!--  Grid System -->
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
 
+            <div class="panel panel-primary">
+                <!--  Top Heading-->
+                <div class="panel-heading">
                     Complain Details :
                 </div>
-                <br>
-                <br>
+                <br><br>
 
-
+                <!-- Container -->
                 <div class="container-fluid">
 
-
+                    <!--  Open & Closed Navigation -->
                     <ul class="nav nav-pills">
                         <li class=" active col-sm-4">
                             <a href="#1b" data-toggle="tab">Open</a>
@@ -48,19 +41,24 @@
                     {# table for open complains#}
                     <div class="tab-content clearfix">
                         <div class="tab-pane active" id="1b">
-
+                            <!-- Table -->
                             <table class="table">
+                                <!-- Table head -->
                                 <thead class="thead-light">
                                 <tr>
+                                    <!--  Heading Row-->
                                     <th scope="col">Ticket #</th>
                                     <th scope="col"> Date</th>
                                     <th scope="col">Subject</th>
                                     <th scope="col">Status</th>
                                 </tr>
                                 </thead>
+
+                                <!-- Table Body -->
                                 <tbody>
                                 {% for ticket in tickets %}
                                 {% if not ticket.complain_status %}
+                                <!--  Table Row-->
                                 <tr>
                                     <td scope="row">
                                         <form method="post" action="{% url 'chat-now' %}">{% csrf_token %}
@@ -69,27 +67,33 @@
                                             </button>
                                         </form>
                                     </td>
-
+                                    <!--  Table data-->
                                     <td>{{ ticket.date }}</td>
                                     <td>{{ ticket.subject }}</td>
                                     <td class="text-primary">Open</td>
                                 </tr>
                                 {% endif %}{% endfor %}
                                 </tbody>
+
                             </table>
 
                         </div>
                         {# table for close complains#}
                         <div class="tab-pane" id="2b">
+                            <!--  Table -->
                             <table class="table">
+                                <!--  Table head-->
                                 <thead class="thead-light">
                                 <tr>
+                                    <!--  Table heading row-->
                                     <th scope="col">Ticket #</th>
                                     <th scope="col"> Date</th>
                                     <th scope="col">Subject</th>
                                     <th scope="col">Status</th>
                                 </tr>
                                 </thead>
+
+                                <!--  Table Body-->
                                 <tbody>
                                 {% for ticket in tickets %}
                                 {% if ticket.complain_status %}
@@ -101,13 +105,12 @@
                                             </button>
                                         </form>
                                     </td>
-
+                                    <!--  Table data row-->
                                     <td>{{ ticket.date }}</td>
                                     <td>{{ ticket.subject }}</td>
                                     <td class="text-success">Closed</td>
                                 </tr>
                                 {% endif %}{% endfor %}
-
 
                                 </tbody>
 
@@ -115,11 +118,7 @@
 
 
                         </div>
-
-
                     </div>
-
-
                 </div>
             </div>
         </div>

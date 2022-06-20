@@ -1,112 +1,94 @@
+<!--Recall template 3  & so that login code will be written in main content -->
 {% extends "basic3.html" %}
 
-<head>
-    {% block title %}User Login{% endblock %}
-</head>
-
-{% block page-title %}Login{% endblock %}
-
-{% block content %}
-<!-- Code 4 Pages Start from Here  -->
-<!doctype html>
+<!--To manage static files (eg images, JavaScript, CSS)-->
 {% load static %}
 
-<html lang="en" class="no-js">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-	<meta name="description" content="">
-	<meta name="author" content="">
+    <!--   The Title of Webpage-->
+    {% block title %}User Login{% endblock %}
 
-<!--	CSS Files-->
-	<link rel="stylesheet" href="{% static './vendors/css/font-awesome.min.css' %}">
-	<link rel="stylesheet" href="{% static './vendors/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" href="{% static './vendors/css/dataTables.bootstrap.min.css' %}">
-	<link rel="stylesheet" href="{% static './vendors/css/bootstrap-social.css' %}">
-	<link rel="stylesheet" href="{% static './vendors/css/bootstrap-select.css' %}' %}">
-	<link rel="stylesheet" href="{% static './vendors/css/fileinput.min.css' %}">
-	<link rel="stylesheet" href="{% static './vendors/css/awesome-bootstrap-checkbox.css' %}">
-	<link rel="stylesheet" href="{% static './assets/css/register_login_front.css' %}">
-
-<!--	JavaScript Code-->
-<script type="text/javascript" src="{% static './vendors/js/jquery-1.11.3-jquery.min.js' %}"></script>
-<script type="text/javascript" src="{% static './vendors/js/validation.min.js' %}"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript">
-function valid()
-{
-if(document.registration.password.value!= document.registration.cpassword.value)
-{
-alert("Password and Re-Type Password Field do not match  !!");
-document.registration.cpassword.focus();
-return false;
-}
-return true;
-}
-</script>
+    <link rel="stylesheet" href="{% static './assets/css/register_login_front.css' %}">
 </head>
-<body>
+
+<!--Page title to be display in body of Webpage-->
+{% block page-title %}Login{% endblock %}
+
+<!--Block Content in Django is the concept of working with Template Inheritance -->
+{% block content %}
 
 
+<!-- Code 4 Login Page Start from Here  -->
 
-	<div class="ts-main-content">
+<!--Parent classes used for spacing (padding, margin etc)-->
+<div class="ts-main-content">
+    <div class="content-wrapper">
 
-		<div class="content-wrapper">
-			<div class="container-fluid">
+        <!-- .container-fluid bootstrap class provides a full-width container -->
+        <div class="container-fluid">
 
-				<div class="row">
-					<div class="col-md-12">
+            <!-- These classes used to display heading on top of form, if available-->
+            <div class="row">
+                <div class="col-md-12">
 
+                    <!--  Form in a row & Column grid system-->
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">  <!-- offset is used for push more spacing-->
 
+                            <!--  Form box padding etc-->
+                            <div class="well row pt-2x pb-3x bg-light">
 
-						<div class="row">
-					<div class="col-md-6 col-md-offset-3">
-						<div class="well row pt-2x pb-3x bk-light">
-							<div class="col-md-8 col-md-offset-2">
-								{% if messages %}
-								{% for message in messages  %}
-								<div class="alert alert-{{ message.tags }} alert-dismissible"  role="alert">
-									<strong>Message : </strong> {{ message }}
-									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-                                                      </div>
-                                                  {% endfor %} {% endif %}
-								<form action="" class="mt" method="post">
-                                     {% csrf_token %}
-									<label for="" class="text-uppercase text-sm">Email</label>
-									<input type="text" placeholder="Email" name="email" class="form-control mb">
-									<label for="" class="text-uppercase text-sm">Password</label>
-									<input type="password" placeholder="Password" name="password" class="form-control mb">
+                                <!-- Message to be display in case of invalid credentials-->
+                                <div class="col-md-8 col-md-offset-2">
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                                        <strong>Message : </strong> {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    {% endfor %} {% endif %}
 
 
-									<input type="submit" name="login" class="btn btn-primary btn-block" value="login" >
-								</form>
-							</div>
-						</div>
-						<div class="text-center text-dark">
-							<a href="{% url 'forget_password' %}" >Forgot password?</a>
-						</div>
-					</div>
-				</div>
-						</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                    <!--  Form to collect data & match data with student database-->
+                                    <form action="" class="mt" method="post">
+                                        {% csrf_token %}
+                                        <label for="" class="text-uppercase text-sm">Email</label>
+                                        <input type="text" placeholder="Email" name="email" class="form-control mb">
+                                        <label for="" class="text-uppercase text-sm">Password</label>
+                                        <input type="password" placeholder="Password" name="password"
+                                               class="form-control mb">
 
-<script>
-    $(".close").on("click",function (){
-      $(".alert").fadeOut();
-    })
+                                        <!--  Login Button-->
+                                        <input type="submit" name="login" class="btn btn-primary btn-block"
+                                               value="login">
+                                    </form>
 
-</script>
-</body>
+                                </div>
 
-</html>
+                            </div>
+
+                            <!--  Forget Password-->
+                            <div class="text-center text-dark">
+                                <a href="{% url 'forget_password' %}">Forgot password?</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Include template in header for reload resources-->
 {% include "basic2.html" %}
+
+<!--Code block end here-->
 {% endblock %}
+
+
+<!--Note: This page is linked with login_register.css and other_style.css file -->

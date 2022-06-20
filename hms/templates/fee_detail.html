@@ -1,5 +1,7 @@
 {% extends "basic.html" %}
 
+{% load static %}
+
 <head>
     {% block title %}Fee Detail{% endblock %}
 </head>
@@ -9,52 +11,27 @@
 
 {% block content %}
 <!-- Code 4 Pages Start from Here  -->
-<!doctype html>
-{% load static %}
-
-<html lang="en" class="no-js">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!--	CSS Files-->
-    <link rel="stylesheet" href="{% static './vendors/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/dataTables.bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/bootstrap-social.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/bootstrap-select.css' %}' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/fileinput.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/awesome-bootstrap-checkbox.css' %}">
-    <link rel="stylesheet" href="{% static './assets/css/register_login_front.css' %}">
-
-    <!--	JavaScript Code-->
-    <script type="text/javascript" src="{% static './vendors/js/jquery-1.11.3-jquery.min.js' %}"></script>
-    <script type="text/javascript" src="{% static './vendors/js/validation.min.js' %}"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-
-</head>
-<body>
 
 <div class="ts-main-content">
-
     <div class="content-wrapper">
+        <!--  Grid System-->
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-md-12">
 
-
+                    <!--  Grid System-->
                     <div class="row">
                         <div class="col-md-12">
+
                             <div class="panel panel-primary">
+                                <!--  Heading-->
                                 <div class="panel-heading">Installment Detail</div>
+                                <!--  Body-->
                                 <div class="panel-body">
 
-                                    <!--                                    Installment Table-->
+                                    <!--    Installment Table-->
                                     <table class="table table-hover .table-responsive">
+                                        <!-- Table Head-->
                                         <thead>
                                         <tr>
                                             <th scope="col">Installment</th>
@@ -64,47 +41,57 @@
 
                                             <th scope="col">Click to Pay</th>
                                             <th scope="col">Installment</th>
-
                                         </tr>
                                         </thead>
+
+                                        <!-- Table Body-->
                                         <tbody>
                                         {% for data in fee %}
                                         <tr>
-                                            <th scope="row"><input type="hidden", value="{{ data.fee_id}}" name="fee_id"></input>{{ data.fee_id}}</th>
+                                            <th scope="row"><input type="hidden" , value="{{ data.fee_id}}"
+                                                                   name="fee_id">
+                                            <td>{{ data.fee_id}}</td>
+                                            </th>
                                             <td>{{ data.end_Date}}</td>
                                             <td>{{ data.total_amount}}</td>
                                             {% if data.paid %}
                                             <td> Paid
                                             </td>
-
-                                                <td>
-                                            <a href="{% url 'fee' %}">
-                                                <button type="button" class="btn btn-primary" disabled>Pay Now</button>
-                                            </a>
-                                           </td>
+                                            <!--Action Button-->
+                                            <td>
+                                                <a href="{% url 'fee' %}">
+                                                    <button type="button" class="btn btn-primary" disabled>Pay Now
+                                                    </button>
+                                                </a>
+                                            </td>
                                             {% else %}
-                                             <td>Not Paid</td>
+                                            <td>Not Paid</td>
                                             <td>
-                                            <form method="POST", action="{% url "payfee" %}">
-                                                {% csrf_token %}
+                                                <!--Pay Now Buttons-->
+                                                <form method="POST" , action="{% url 'payfee' %}">
+                                                    {% csrf_token %}
 
-                                                 <input type="hidden", value="{{ data.fee_id}}" name="fee_id">
-                                                <button type="submit" class="btn btn-primary" >Pay Now</button>
-                                            </form>
-                                           </td>{% endif %}
+                                                    <input type="hidden" , value="{{ data.fee_id}}" name="fee_id">
+                                                    <button type="submit" class="btn btn-primary">Pay Now</button>
+                                                </form>
+                                            </td>
+                                            {% endif %}
 
+                                            <!--Installment Button-->
                                             <td>
-                                            {% if data.allow_installment %}
-                                                <form method="POST", action="{% url "installment" %}">
-                                                {% csrf_token %}
-                                                <input type="hidden", value="{{ data.fee_id}}" name="fee_id">
-                                                <button type="submit" class="btn btn-primary" >Installment</button>
-                                                </form></td>
-                                        {% else %}
-                                                <button type="submit" class="btn btn-primary" disabled>Installment</button>
-                                                </td>{% endif %}
+                                                {% if data.allow_installment %}
+                                                <form method="POST" , action="{% url 'installment' %}">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" , value="{{ data.fee_id}}" name="fee_id">
+                                                    <button type="submit" class="btn btn-primary">Installment</button>
+                                                </form>
+                                            </td>
+                                            {% else %}
+                                            <button type="submit" class="btn btn-primary" disabled>Installment</button>
+                                            </td>{% endif %}
 
-                                        </tr>{% endfor %}
+                                        </tr>
+                                        {% endfor %}
                                         </tbody>
                                     </table>
 
@@ -119,18 +106,8 @@
 </div>
 
 
-<script src="{% static './vendors/js/jquery.min.js' %}"></script>
-<script src="{% static './vendors/js/bootstrap-select.min.js' %}"></script>
-<script src="{% static './vendors/js/bootstrap.min.js' %}"></script>
-<script src="{% static './vendors/js/jquery.dataTables.min.js' %}"></script>
-<script src="{% static './vendors/js/dataTables.bootstrap.min.js' %}"></script>
-<script src="{% static './vendors/js/Chart.min.js' %}"></script>
-<script src="{% static './vendors/js/fileinput.js' %}"></script>
-<script src="{% static './vendors/js/chartData.js' %}"></script>
-<script src="{% static './vendors/js/main.js' %}"></script>
-</body>
-
-
-</html>
+<!--Include template in header for reload resources-->
 {% include "basic2.html" %}
+
+<!--Code block end here-->
 {% endblock %}

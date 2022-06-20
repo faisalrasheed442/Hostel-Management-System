@@ -22,20 +22,20 @@
 
 <div class="ts-main-content" style="margin: 0 10px">
 
+    <!--    Grid System -->
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
 
+            <div class="panel panel-primary">
+                <!--    Top Heading -->
+                <div class="panel-heading">
                     Fee Details :
                 </div>
-                <br>
-                <br>
+                <br><br>
 
-
+                <!-- Container -->
                 <div class="container-fluid">
-
-
+                    <!-- Pending & Paid Navigation-->
                     <ul class="nav nav-pills">
                         <li class=" active col-sm-4">
                             <a href="#1b" data-toggle="tab">Pending</a>
@@ -48,32 +48,37 @@
                     {# table for pending fee#}
                     <div class="tab-content clearfix">
                         <div class="tab-pane active" id="1b">
-
+                            <!--Table-->
                             <table class="table">
-                                <thead class="thead-light">
 
+                                <!-- Table Head-->
+                                <thead class="thead-light">
                                 <tr>
+                                    <!-- Table Head row-->
                                     <th scope="col">Fee #</th>
                                     <th scope="col">Customer Name</th>
                                     <th scope="col">Customer Email</th>
                                     <th scope="col"> Date</th>
-                                     <th scope="col">Status</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col"> Action</th>
-
                                 </tr>
                                 </thead>
+
+                                <!-- Table body-->
                                 <tbody>
                                 {% for fee in fees %}
                                 {% if not fee.paid %}
-                              <tr>
+                                <!--  Table row & data-->
+                                <tr>
                                     <td>{{ fee.fee_id }}</td>
                                     <td>{{ fee.customer_id }}</td>
 
                                     <td>{{ fee.customer_id.email }}</td>
-                                  <td>{{ fee.end_Date }}</td>
+                                    <td>{{ fee.end_Date }}</td>
                                     <td class="text-primary">Not Paid</td>
                                     <td>
-                                        <form method="POST" action="{% url "payfee" %}">
+                                        <form method="POST" action="{% url " payfee
+                                        " %}">
                                         {% csrf_token %}
 
                                         <input type="hidden" , value="{{ fee.fee_id }}" name="id">
@@ -81,60 +86,61 @@
                                         </form>
                                     </td>
 
-                                </tr>{% endif %}{% endfor %}
+                                </tr>
+                                {% endif %}{% endfor %}
 
                                 </tbody>
                             </table>
 
                         </div>
+
+
                         {# table for Paid Fee#}
                         <div class="tab-pane" id="2b">
+                            <!-- Table-->
                             <table class="table">
+                                <!-- Table Head-->
                                 <thead class="thead-light">
                                 <tr>
+                                    <!-- Table Head row-->
                                     <th scope="col">Fee #</th>
                                     <th scope="col">Customer Name</th>
                                     <th scope="col">Customer Email</th>
                                     <th scope="col"> Date</th>
-                                     <th scope="col">Status</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col"> Action</th>
-
                                 </tr>
                                 </thead>
+
+                                <!-- Table Body-->
                                 <tbody>
 
-                                 {% for fee in fees %}
-                                {% if  fee.paid %}
-                              <tr>
+                                {% for fee in fees %}
+                                {% if fee.paid %}
+                                <!-- Table Row & Data-->
+                                <tr>
                                     <td>{{ fee.fee_id }}</td>
                                     <td>{{ fee.customer_id }}</td>
 
                                     <td>{{ fee.customer_id.email }}</td>
-                                  <td>{{ fee.end_Date }}</td>
+                                    <td>{{ fee.end_Date }}</td>
                                     <td class="text-success"> Paid</td>
                                     <td>
                                         <form method="POST" action="">
-                                        {% csrf_token %}
+                                            {% csrf_token %}
 
-                                        <input type="hidden" , value="{{ fee.fee_id }}" name="id">
-                                        <button type="submit" class="btn btn-primary" disabled>Pay Now</button>
+                                            <input type="hidden" , value="{{ fee.fee_id }}" name="id">
+                                            <button type="submit" class="btn btn-primary" disabled>Pay Now</button>
                                         </form>
                                     </td>
 
-                                </tr>{% endif %}{% endfor %}
-
-
+                                </tr>
+                                {% endif %}{% endfor %}
                                 </tbody>
 
                             </table>
-
-
                         </div>
-
-
                     </div>
-
-
                 </div>
             </div>
         </div>

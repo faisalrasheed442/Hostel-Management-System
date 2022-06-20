@@ -1,7 +1,10 @@
 {% extends "basic3.html" %}
 
+{% load static %}
+
 <head>
     {% block title %}User Registration{% endblock %}
+    <link rel="stylesheet" href="{% static './assets/css/register_login_front.css' %}">
 </head>
 
 {% block page-title %}Register{% endblock %}
@@ -9,75 +12,40 @@
 {% block content %}
 <!-- Code 4 Pages Start from Here  -->
 
-
-<!doctype html>
-{% load static %}
-<html lang="en" class="no-js">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!--	CSS Files-->
-    <link rel="stylesheet" href="{% static './vendors/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/dataTables.bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/bootstrap-social.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/bootstrap-select.css' %}' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/fileinput.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/awesome-bootstrap-checkbox.css' %}">
-    <link rel="stylesheet" href="{% static './assets/css/register_login_front.css' %}">
-
-    <!--	JavaScript Code-->
-    <script type="text/javascript" src="{% static './vendors/js/jquery-1.11.3-jquery.min.js' %}"></script>
-    <script type="text/javascript" src="{% static './vendors/js/validation.min.js' %}"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-    <script type="text/javascript">
-function valid()
-{
-if(document.registration.password.value!= document.registration.cpassword.value)
-{
-alert("Password and Re-Type Password Field do not match  !!");
-document.registration.cpassword.focus();
-return false;
-}
-return true;
-}
-
-    </script>
-</head>
-<body>
-
 <div class="ts-main-content">
 
     <div class="content-wrapper">
-        <div class="container-fluid">
 
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
 
                     <div class="row">
                         <div class="col-md-12">
+
+                            <!--  Full container with Border-->
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Fill all Info</div>
+
+                                <!-- Message to be display in case of invalid credentials-->
                                 <div class="panel-body">
-                                {% if messages %}
-                                             {% for message in messages  %}
-                                                  <div class="alert alert-{{ message.tags }} alert-dismissible " role="alert">
-                                                        <strong>Message : </strong> {{ message }}
-                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                          <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                      </div>
-                                                  {% endfor %} {% endif %}
-                                    <form method="post" action="{% url 'register' %}" name="registration" class="form-horizontal"
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible " role="alert">
+                                        <strong>Message : </strong> {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    {% endfor %} {% endif %}
+
+                                    <!-- Register Form-->
+                                    <form method="post" action="{% url 'register' %}" name="registration"
+                                          class="form-horizontal"
                                           onSubmit="return valid();">
-                                    {% csrf_token %}
+                                        {% csrf_token %}
 
-
-
+                                        <!-- Username -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">User Name : </label>
                                             <div class="col-sm-8">
@@ -86,7 +54,8 @@ return true;
                                             </div>
                                         </div>
 
-										 <div class="form-group">
+                                        <!-- Email Id -->
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">Email id: </label>
                                             <div class="col-sm-8">
                                                 <input type="email" name="email" id="email" class="form-control"
@@ -95,8 +64,7 @@ return true;
                                             </div>
                                         </div>
 
-
-
+                                        <!-- Contact No: -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Contact No : </label>
                                             <div class="col-sm-8">
@@ -105,10 +73,8 @@ return true;
                                             </div>
                                         </div>
 
-
-
-
-										<div class="form-group">
+                                        <!-- Select Gender -->
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">Gender : </label>
                                             <div class="col-sm-8">
                                                 <select name="gender" class="form-control" required="required">
@@ -119,6 +85,8 @@ return true;
                                                 </select>
                                             </div>
                                         </div>
+
+                                        <!-- Room-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Room : </label>
                                             <div class="col-sm-8">
@@ -131,6 +99,23 @@ return true;
                                             </div>
                                         </div>
 
+
+                                        <!-- Food Status -->
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Food Status : </label>
+                                            <div class="col-sm-8">
+                                                <select name="foodstatus" class="form-control" required="required">
+                                                    <option value="" disabled="disabled">Select Food Status</option>
+                                                    <option value="0" selected>Without Food</option>
+                                                    <option value="1">With Food(Rs 2000.00
+                                                        Per Month Extra)
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- Passwords-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Password: </label>
                                             <div class="col-sm-8">
@@ -139,7 +124,7 @@ return true;
                                             </div>
                                         </div>
 
-
+                                        <!-- Confirm Password-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Confirm Password : </label>
                                             <div class="col-sm-8">
@@ -147,24 +132,15 @@ return true;
                                                        class="form-control" required="required">
                                             </div>
                                         </div>
-                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Food Status</label>
-                                            <div class="col-sm-8">
-                                                <input type="radio" value="0" name="foodstatus" checked="checked">
-                                                Without Food
-                                                <input type="radio" value="1" name="foodstatus"> With Food(Rs 2000.00
-                                                Per Month Extra)
-                                            </div>
-                                        </div>
 
-
+                                        <!-- Cancel & Register buttons-->
                                         <div class="col-sm-6 col-sm-offset-4">
                                             <button class="btn btn-default" type="submit">Cancel</button>
                                             <input type="submit" name="submit" Value="Register" class="btn btn-primary">
                                         </div>
 
+                                    </form>
 
-                                                </form>
                                 </div>
                             </div>
                         </div>
@@ -174,21 +150,37 @@ return true;
         </div>
     </div>
 </div>
-</div>
-</div>
-</div>
-<script src="{% static './vendors/js/jquery.min.js' %}"></script>
-<script src="{% static './vendors/js/bootstrap-select.min.js' %}"></script>
-<script src="{% static './vendors/js/bootstrap.min.js' %}"></script>
-<script src="{% static './vendors/js/jquery.dataTables.min.js' %}"></script>
-<script src="{% static './vendors/js/dataTables.bootstrap.min.js' %}"></script>
-<script src="{% static './vendors/js/Chart.min.js' %}"></script>
-<script src="{% static './vendors/js/fileinput.js' %}"></script>
-<script src="{% static './vendors/js/chartData.js' %}"></script>
-<script src="{% static './vendors/js/main.js' %}"></script>
-</body>
 
-</html>
+<!--	JavaScript Code-->
+<script type="text/javascript" src="{% static './vendors/js/jquery-1.11.3-jquery.min.js' %}"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 
+<!--Function for Password Validation-->
+<script type="text/javascript">
+function valid()
+{
+if(document.registration.password.value!= document.registration.cpassword.value)
+{
+alert("Password and Re-Type Password Field do not match  !!");
+document.registration.cpassword.focus();
+return false;
+}
+return true;
+}
+
+</script>
+
+<!--To fade out alert message on click-->
+<script>
+    $(".close").on("click",function (){
+      $(".alert").fadeOut();
+    })
+
+</script>
+
+
+<!--Include template in header for reload resources-->
 {% include "basic2.html" %}
+
+<!--Code block end here-->
 {% endblock %}

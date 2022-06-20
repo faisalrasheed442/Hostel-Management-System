@@ -11,10 +11,8 @@
 
 {% block content %}
 
-<body>
 
 <div class="ts-main-content">
-
     <div class="content-wrapper">
         <div class="container-fluid">
 
@@ -23,49 +21,65 @@
 
                     <div class="row">
                         <div class="col-md-12">
+
                             <div class="panel panel-default">
+                                <!-- Top Heading-->
                                 <div class="panel-heading">Add a Room</div>
+                                <!-- Form Top Body-->
                                 <div class="panel-body">
+
+                                    <!-- Show Error Message, in case of invalid credentials -->
                                     {% if messages %}
-								{% for message in messages  %}
-								<div class="alert alert-{{ message.tags }} alert-dismissible"  role="alert">
-									<strong>Message : </strong> {{ message }}
-									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-                                                      </div>
-                                                  {% endfor %} {% endif %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+                                        <strong>Message : </strong> {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    {% endfor %} {% endif %}
                                     <p style="color: red"></p>
 
-                                    <form method="post" class="form-horizontal" action ={% url 'add-room' %}>
-                                    {% csrf_token %}
-                                        <div class="hr-dashed"></div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Room Capacity </label>
-                                            <div class="col-sm-8">
-                                                <input type="number" class="form-control" name="capacity" id="rmno" value="5"
-                                                       required="required">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Room Name</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" name="name" id="rmno" value=""
-                                                       required="required">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Fee(Per Student)</label>
-                                            <div class="col-sm-8">
-                                                <input type="number" class="form-control" name="fee" id="fee" value="6000"
-                                                       required="required">
-                                            </div>
-                                        </div>
 
-                                        <div class="col-sm-8 col-sm-offset-2">
-                                            <input class="btn btn-primary" type="submit" name="submit"
-                                                   value="Create Room ">
+                                    <!--Form-->
+                                    <form method="post" class="form-horizontal" action={% url
+                                    'add-room' %}>
+                                    {% csrf_token %}
+                                    <div class="hr-dashed"></div>
+
+                                    <!-- Room Capacity -->
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Room Capacity </label>
+                                        <div class="col-sm-8">
+                                            <input type="number" class="form-control" name="capacity" id="rmno"
+                                                   value="5"
+                                                   required="required">
                                         </div>
+                                    </div>
+
+                                    <!-- Room Name -->
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Room Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="name" id="rmno" value=""
+                                                   required="required">
+                                        </div>
+                                    </div>
+
+                                    <!-- Fee(Per Student) -->
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Fee(Per Student)</label>
+                                        <div class="col-sm-8">
+                                            <input type="number" class="form-control" name="fee" id="fee" value="6000"
+                                                   required="required">
+                                        </div>
+                                    </div>
+
+                                    <!-- Submit Button -->
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        <input class="btn btn-primary" type="submit" name="submit"
+                                               value="Create Room ">
+                                    </div>
                                 </div>
 
                                 </form>
@@ -85,12 +99,7 @@
 
 
 </div>
-</div>
-</div>
 
-</body>
-
-</html>
 
 {% include "basic2.html" %}
 {% endblock %}

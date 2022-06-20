@@ -1,7 +1,9 @@
+<!--template 3 for Login/Register Section -->
 <!DOCTYPE html>
 <html lang="en">
 
 {% load static %}
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,10 +12,10 @@
     <meta name="author" content="">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="{% static './assets/css/dashboard_style.css' %} " />
+    <link rel="stylesheet" type="text/css" href="{% static './assets/css/dashboard_style.css' %} "/>
 
     <!-- Stylesheet for Responsiveness -->
-    <link rel="stylesheet" href="{% static './assets/css/dashboard_queries.css' %}" />
+    <link rel="stylesheet" href="{% static './assets/css/dashboard_queries.css' %}"/>
 
 
     <!-- Page Title -->
@@ -22,116 +24,111 @@
 
 <body>
 
-    <main class="main_container">
-        <nav class="navigation">
-            <ul>
-                <li>
-                    <a href="{% url 'Dashboard' %}">
+<!--Main Container-->
+<main class="main_container">
+
+    <!--  Navigator - Sidebar -->
+    <nav class="navigation">
+        <ul>
+            <!-- HMS Logo URL -->
+            <li>
+                <a href="{% url 'Dashboard' %}">
                         <span class="icon">
 							<ion-icon name="bed-outline"></ion-icon>
 						</span>
-                        <span class="title">HMS</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'Home' %}">
+                    <span class="title">HMS</span>
+                </a>
+            </li>
+            <!-- HMS Homepage URL -->
+            <li>
+                <a href="{% url 'Home' %}">
                         <span class="icon">
 							<ion-icon name="home-outline"></ion-icon>
 						</span>
-                        <span class="title">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'Login' %}">
+                    <span class="title">Home</span>
+                </a>
+            </li>
+            <!-- User Login URL -->
+            <li>
+                <a href="{% url 'Login' %}">
                         <span class="icon">
 							<ion-icon name="person-outline"></ion-icon>
 						</span>
-                        <span class="title">User Login</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'register' %}">
+                    <span class="title">User Login</span>
+                </a>
+            </li>
+            <!-- User Register URL -->
+            <li>
+                <a href="{% url 'register' %}">
                         <span class="icon">
 							<ion-icon name="browsers-outline"></ion-icon>
-							</ion-icon>
+                            </ion-icon>
 						</span>
-                        <span class="title">User Registration</span>
-                    </a>
-                </li>
-                 <li>
-                    <a href="{% url 'forget_password' %}">
+                    <span class="title">User Registration</span>
+                </a>
+            </li>
+            <!-- Forget Password URL -->
+            <li>
+                <a href="{% url 'forget_password' %}">
                         <span class="icon">
 							<ion-icon name="person-outline"></ion-icon>
 						</span>
-                        <span class="title">Forget Password</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'admin-login' %}">
+                    <span class="title">Forget Password</span>
+                </a>
+            </li>
+            <!-- Admin Login URL -->
+            <li>
+                <a href="{% url 'admin-login' %}">
                         <span class="icon">
 							<ion-icon name="person-outline"></ion-icon>
 						</span>
-                        <span class="title">Admin Login</span>
-                    </a>
-                </li>
-        </nav>
+                    <span class="title">Admin Login</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!-- End of navigator-->
 
 
-        <!-- Mainbar -->
-        <main class="main">
-            <!-- Topbar -->
-            <div class="topbar">
-                <!-- Menu Hambarger -->
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
-                </div>
-<!--                &lt;!&ndash; Search bar &ndash;&gt;-->
-<!--                <div class="search">-->
-<!--                    <label>-->
-<!--						<input type="text" placeholder="Search here">-->
-<!--						<ion-icon name="search-outline"></ion-icon>-->
-<!--					</label>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; User Image &ndash;&gt;-->
-<!--                <div class="user">-->
-<!--                    <img src="../{{ profile.user_image }}">-->
-<!--                </div>-->
+    <!-- Main-bar -->
+    <main class="main">
+
+        <!-- Top-bar -->
+        <div class="topbar">
+            <!-- Menu Hamburger -->
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
             </div>
-            <!-- End of Top Bar -->
+        </div>
+        <!-- End of Top Bar -->
 
-            <!-- Code 4 Pages Start from Here  -->
-          <!--   Page Title -->
-             <h1 class="page_title"> {% block page-title %}{% endblock %}</h1>
+        <!-- Code 4 Pages Start from Here  -->
+        <!--   Page Title -->
+        <h1 class="page_title"> {% block page-title %}{% endblock %}</h1>
 
-            <!-- Page Main Content -->
-                {% block content %}{% endblock %}
-
-        </main>
+        <!-- Page Main Content -->
+        {% block content %}{% endblock %}
 
     </main>
 
-    <!-- JS Files -->
+</main>
 
-    <!-- Ionicons -->
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<!-- JS Files -->
+
+<!-- Ionicons -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 
+<!-- Script to add Hovered class in the List item -->
+<script type="text/javascript" src="{% static './assets/js/dashboard_script.js' %}"></script>
 
+<!-- Jquery -->
+<script src="{% static './vendors/js/jquery-3.6.0_form.min.js' %}"></script>
 
-    <!-- Script to add Hovered class in the List item -->
-    <script type="text/javascript" src="{% static './assets/js/dashboard_script.js' %}"></script>
-    <!-- JavaScript Files -->
-   <!-- Jquery -->
-    <script src="{% static './vendors/js/jquery-3.6.0_form.min.js' %}"></script>
-    <!-- Bootstrap -->
-    <script src="{% static './vendors/js/bootstrap_form.min.js' %}"></script>
-<script>
-    $(".close").on("click",function (){
-      $(".alert").fadeOut();
-    })
+<!-- Bootstrap -->
+<script src="{% static './vendors/js/bootstrap_form.min.js' %}"></script>
 
-</script>
 </body>
 
 </html>

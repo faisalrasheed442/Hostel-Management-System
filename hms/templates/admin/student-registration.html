@@ -3,38 +3,6 @@
 {% load static %}
 <head>
     {% block title %}Registration{% endblock %}
-</head>
-
-<!-- Code 4 Pages Start from Here  -->
-
-{% block page-title %}Registration{% endblock %}
-
-{% block content %}
-
-<!doctype html>
-{% load static %}
-<html lang="en" class="no-js">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!--	CSS Files-->
-    <link rel="stylesheet" href="{% static './vendors/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/dataTables.bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/bootstrap-social.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/bootstrap-select.css' %}' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/fileinput.min.css' %}">
-    <link rel="stylesheet" href="{% static './vendors/css/awesome-bootstrap-checkbox.css' %}">
-    <link rel="stylesheet" href="{% static './assets/css/register_login_front.css' %}">
-
-    <!--	JavaScript Code-->
-    <script type="text/javascript" src="{% static './vendors/js/jquery-1.11.3-jquery.min.js' %}"></script>
-    <script type="text/javascript" src="{% static './vendors/js/validation.min.js' %}"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
     <script type="text/javascript">
 function valid()
 {
@@ -47,38 +15,53 @@ return false;
 return true;
 }
 
+
     </script>
 </head>
-<body>
 
+<!-- Code 4 Pages Start from Here  -->
+
+{% block page-title %}Registration{% endblock %}
+
+{% block content %}
+
+<!--These classes are used for spacing-->
 <div class="ts-main-content">
-
     <div class="content-wrapper">
-        <div class="container-fluid">
 
+<!--  Grid System -->
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
 
                     <div class="row">
                         <div class="col-md-12">
+
                             <div class="panel panel-primary">
+                                <!-- Panel Heading -->
                                 <div class="panel-heading">Fill all Info</div>
+                                <!-- Panel Body -->
                                 <div class="panel-body">
-                                {% if messages %}
-                                             {% for message in messages  %}
-                                                  <div class="alert alert-{{ message.tags }} alert-dismissible " role="alert">
-                                                        <strong>Message : </strong> {{ message }}
-                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                          <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                      </div>
-                                                  {% endfor %} {% endif %}
-                                    <form method="post" action="{% url 'student-registration' %}" name="registration" class="form-horizontal"
+
+                                    <!-- Show Error Message in case of invalid credentials -->
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible " role="alert">
+                                        <strong>Message : </strong> {{ message }}
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    {% endfor %} {% endif %}
+
+                                    <!-- Form Registration-->
+                                    <form method="post" action="{% url 'student-registration' %}" name="registration"
+                                          class="form-horizontal"
                                           onSubmit="return valid();">
-                                    {% csrf_token %}
+                                        {% csrf_token %}
 
 
-
+                                        <!-- Username -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">User Name : </label>
                                             <div class="col-sm-8">
@@ -87,7 +70,8 @@ return true;
                                             </div>
                                         </div>
 
-										 <div class="form-group">
+                                        <!-- Email id -->
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">Email id: </label>
                                             <div class="col-sm-8">
                                                 <input type="email" name="email" id="email" class="form-control"
@@ -96,8 +80,7 @@ return true;
                                             </div>
                                         </div>
 
-
-
+                                        <!-- Contact No -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Contact No : </label>
                                             <div class="col-sm-8">
@@ -106,10 +89,8 @@ return true;
                                             </div>
                                         </div>
 
-
-
-
-										<div class="form-group">
+                                        <!-- Gender -->
+                                        <div class="form-group">
                                             <label class="col-sm-2 control-label">Gender : </label>
                                             <div class="col-sm-8">
                                                 <select name="gender" class="form-control" required="required">
@@ -120,6 +101,8 @@ return true;
                                                 </select>
                                             </div>
                                         </div>
+
+                                        <!-- Room -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Room : </label>
                                             <div class="col-sm-8">
@@ -132,6 +115,35 @@ return true;
                                             </div>
                                         </div>
 
+                                        <!--      Food Status -->
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Food Status : </label>
+                                            <div class="col-sm-8">
+                                                <select name="foodstatus" class="form-control" required="required">
+                                                    <option value="" disabled="disabled">Select Food Status</option>
+                                                    <option value="0" selected>Without Food</option>
+                                                    <option value="1">With Food(Rs 2000.00
+                                                        Per Month Extra)
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <!--      Fee Status -->
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Fee Status : </label>
+                                            <div class="col-sm-8">
+                                                <select name="feestatus" class="form-control" required="required">
+                                                    <option value="" disabled="disabled">Select Fee Status</option>
+                                                    <option value="True">Paid</option>
+                                                    <option value="False" selected>Not Paid</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <!--     Password Fields-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Password: </label>
                                             <div class="col-sm-8">
@@ -140,7 +152,6 @@ return true;
                                             </div>
                                         </div>
 
-
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Confirm Password : </label>
                                             <div class="col-sm-8">
@@ -148,32 +159,16 @@ return true;
                                                        class="form-control" required="required">
                                             </div>
                                         </div>
-                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Food Status</label>
-                                            <div class="col-sm-8">
-                                                <input type="radio" value="0" name="foodstatus" checked="checked">
-                                                Without Food
-                                                <input type="radio" value="1" name="foodstatus"> With Food(Rs 2000.00
-                                                Per Month Extra)
-                                            </div>
-                                        </div>
-                                    <div class="form-group">
-                                            <label class="col-sm-2 control-label">Fee Status</label>
-                                            <div class="col-sm-8">
-                                                <input type="radio" value="True" name="feestatus" >
-                                                Paid
-                                                <input type="radio" value="False" name="feestatus" checked="checked"> Not Paid
-                                            </div>
-                                        </div>
 
 
+                                        <!--Cancel & Register Button-->
                                         <div class="col-sm-6 col-sm-offset-4">
                                             <button class="btn btn-default" type="submit">Cancel</button>
                                             <input type="submit" name="submit" Value="Register" class="btn btn-primary">
                                         </div>
 
 
-                                                </form>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -183,21 +178,6 @@ return true;
         </div>
     </div>
 </div>
-</div>
-</div>
-</div>
-<script src="{% static './vendors/js/jquery.min.js' %}"></script>
-<script src="{% static './vendors/js/bootstrap-select.min.js' %}"></script>
-<script src="{% static './vendors/js/bootstrap.min.js' %}"></script>
-<script src="{% static './vendors/js/jquery.dataTables.min.js' %}"></script>
-<script src="{% static './vendors/js/dataTables.bootstrap.min.js' %}"></script>
-<script src="{% static './vendors/js/Chart.min.js' %}"></script>
-<script src="{% static './vendors/js/fileinput.js' %}"></script>
-<script src="{% static './vendors/js/chartData.js' %}"></script>
-<script src="{% static './vendors/js/main.js' %}"></script>
-</body>
-
-</html>
 
 
 {% include "basic2.html" %}

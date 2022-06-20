@@ -11,78 +11,92 @@
 {% block content %}
 
 <!-- Your code goes here -->
+
+<!--Classes used for spacing-->
 <div class="ts-main-content">
-
     <div class="content-wrapper">
-        <div class="container-fluid">
 
+        <!--  Grid System      -->
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
 
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading">
 
+                            <div class="panel panel-primary">
+                                <!--Complain Heading-->
+                                <div class="panel-heading">
                                     Complain Box :
                                 </div>
 
-
+                                <!--Complain body-->
                                 <div class="panel-body">
+                                    <!--Form-->
                                     <form method="post" action="" name="registration" class="form-horizontal">
-
-                                        {% csrf_token  %}
+                                        {% csrf_token %}
+                                        <!-- Username-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label"> Name :
                                             </label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="name" id="regno" class="form-control" placeholder="Full name"
+                                                <input type="text" name="name" id="regno" class="form-control"
+                                                       placeholder="Full name"
                                                        required="required" value="{{ profile.user_name }}">
                                             </div>
                                         </div>
 
-
+                                        <!-- Email id-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Email Id: </label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="email" id="fname" class="form-control" placeholder="email@domain.com"
+                                                <input type="text" name="email" id="fname" class="form-control"
+                                                       placeholder="email@domain.com"
                                                        value="{{ profile.email }}" required="required">
                                             </div>
                                         </div>
 
+                                        <!-- Contact No-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Contact No : </label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="contact" id="mname" class="form-control" placeholder="0300-0000000"
+                                                <input type="text" name="contact" id="mname" class="form-control"
+                                                       placeholder="0300-0000000"
                                                        value="{{ profile.contact }}">
                                             </div>
                                         </div>
 
+                                        <!-- Room No-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Room No : </label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="room_no" id="rname" class="form-control" placeholder="Room 1 - 4"
+                                                <input type="text" name="room_no" id="rname" class="form-control"
+                                                       placeholder="Room 1 - 4"
                                                        value={{ profile.room }}>
                                             </div>
                                         </div>
-
+                                        <!-- Subject-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Subject : </label>
                                             <div class="col-sm-8">
-                                                <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject"
+                                                <input type="text" name="subject" id="subject" class="form-control"
+                                                       placeholder="Subject"
                                                        value="">
                                             </div>
                                         </div>
 
+                                        <!-- Complaint-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Complaint</label>
                                             <div class="col-sm-8">
-                                                <textarea name="reason_for_change" id="" cols="30" rows="10" class="form-control" required placeholder="Your Message"></textarea>
+                                                <textarea name="reason_for_change" id="" cols="30" rows="10"
+                                                          class="form-control" required
+                                                          placeholder="Your Message"></textarea>
                                             </div>
                                         </div>
 
+                                        <!-- Submit Complaint-->
                                         <div class="col-sm-6 col-sm-offset-4">
-
                                             <input type="submit" name="update" Value="File Complaint"
                                                    class="btn btn-primary">
                                         </div>
@@ -97,5 +111,10 @@
         </div>
     </div>
 </div>
+
+
+<!--Include template in header for reload resources-->
 {% include "basic2.html" %}
+
+<!--Code block end here-->
 {% endblock %}
