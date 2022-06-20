@@ -144,6 +144,7 @@ class student_view():
             user = customer.objects.get(user_id=student_id)
             register = complain(customer_id=user, subject=subject, detail=reason_for_change)
             register.save()
+            # sending email to both admin and user for new complain
             self.send_email("Your complain is registered",
                             "Your complain is registered our representative will contact you soon ", email)
             body = f"subject: {subject} \nUser name: {name} \nUser email: {email} \n Details: {reason_for_change}"
@@ -162,7 +163,7 @@ class student_view():
                 return redirect('Login')
 
     def complains(self, request):
-        # return render(request, 'complains.html')
+        # showinf all the complains for user
         if 'id' in request.session:
             data = self.get_data(request.session['id'])
             tickets = complain.objects.filter(customer_id=request.session['id'])
@@ -170,7 +171,7 @@ class student_view():
             return render(request, 'complains.html', data)
         else:
             return redirect('Login')
-
+    # create new complain for the problem
     def ticket(self, request):
         if request.method == 'POST':
             subject = request.POST.get('subject')
@@ -191,7 +192,7 @@ class student_view():
 
     def basic(self, request):
         return render(request, 'basic.html')
-
+    # showing all the chat for a particulare ticket
     def chat(self, request):
         # return render(request, 'fee.html')
 
@@ -211,7 +212,7 @@ class student_view():
             return render(request, 'chat.html', data)
         else:
             return redirect('Login')
-
+    # showing all the ffes that user has to pay
     def fee_detail(self, request):
         if 'id' in request.session:
             if request.method == 'POST':
@@ -250,7 +251,7 @@ class student_view():
             return render(request, 'fee_detail.html', data)
         else:
             return redirect('Login')
-
+    # if the user want to create installment for fee
     def installment(self, request):
         if request.method == 'POST':
             print("no")
