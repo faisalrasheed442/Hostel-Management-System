@@ -3,20 +3,6 @@
 {% load static %}
 <head>
     {% block title %}Registration{% endblock %}
-    <script type="text/javascript">
-function valid()
-{
-if(document.registration.password.value!= document.registration.cpassword.value)
-{
-alert("Password and Re-Type Password Field do not match  !!");
-document.registration.cpassword.focus();
-return false;
-}
-return true;
-}
-
-
-    </script>
 </head>
 
 <!-- Code 4 Pages Start from Here  -->
@@ -178,6 +164,31 @@ return true;
         </div>
     </div>
 </div>
+
+ <!--Function for Password Validation-->
+<script type="text/javascript">
+function valid()
+{
+if(document.registration.password.value!= document.registration.cpassword.value)
+{
+alert("Password and Re-Type Password Field do not match  !!");
+document.registration.cpassword.focus();
+return false;
+}
+return true;
+}
+
+
+</script>
+
+<!--To fade out alert message on click-->
+<script>
+    $(".close").on("click",function (){
+      $(".alert").fadeOut();
+    })
+
+
+</script>
 
 
 {% include "basic2.html" %}

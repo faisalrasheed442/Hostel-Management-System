@@ -15,335 +15,86 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-{#    <link rel="stylesheet" href="{% static './assets/css/fee.css' %}"/>#}
-        <style>
-      .card {
-        background: #fff;
-        transition: 0.5s;
-        border: 0;
-        margin-bottom: 30px;
-        border-radius: 0.55rem;
-        position: relative;
-        width: 100%;
-        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
-      }
-      .chat-app .chat {
-        border: 1px solid #0000002e;
-border-radius: 5px;
-      }
-
-      .people-list {
-        -moz-transition: 0.5s;
-        -o-transition: 0.5s;
-        -webkit-transition: 0.5s;
-        transition: 0.5s;
-      }
-
-      .people-list .chat-list li {
-        padding: 10px 15px;
-        list-style: none;
-        border-radius: 3px;
-      }
-
-      .people-list .chat-list li:hover {
-        background: #efefef;
-        cursor: pointer;
-      }
-
-      .people-list .chat-list li.active {
-        background: #efefef;
-      }
-
-      .people-list .chat-list li .name {
-        font-size: 15px;
-      }
-
-      .people-list .chat-list img {
-        width: 45px;
-        border-radius: 50%;
-      }
-
-      .people-list img {
-        float: left;
-        border-radius: 50%;
-      }
-
-      .people-list .about {
-        float: left;
-        padding-left: 8px;
-      }
-
-      .people-list .status {
-        color: #999;
-        font-size: 13px;
-      }
-
-      .chat .chat-header {
-        padding: 15px 20px;
-        border-bottom: 2px solid #f4f7f6;
-      }
-
-      .chat .chat-header img {
-        float: left;
-        border-radius: 40px;
-        width: 40px;
-      }
-
-      .chat .chat-header .chat-about {
-        float: left;
-        padding-left: 10px;
-      }
-
-      .chat .chat-history {
-        padding: 20px;
-        border-bottom: 2px solid #fff;
-      }
-
-      .chat .chat-history ul {
-        padding: 0;
-      }
-
-      .chat .chat-history ul li {
-        list-style: none;
-        margin-bottom: 30px;
-      }
-
-      .chat .chat-history ul li:last-child {
-        margin-bottom: 0px;
-      }
-
-      .chat .chat-history .message-data {
-        margin-bottom: 15px;
-      }
-
-      .chat .chat-history .message-data img {
-        border-radius: 40px;
-        width: 40px;
-      }
-
-      .chat .chat-history .message-data-time {
-        color: #434651;
-        padding-left: 6px;
-      }
-
-      .chat .chat-history .message {
-        color: #444;
-        padding: 18px 20px;
-        line-height: 26px;
-        font-size: 16px;
-        border-radius: 7px;
-        display: inline-block;
-        position: relative;
-      }
-
-      .chat .chat-history .message:after {
-        bottom: 100%;
-        left: 7%;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-        border-bottom-color: #fff;
-        border-width: 10px;
-        margin-left: -10px;
-      }
-
-      .chat .chat-history .my-message {
-        background: #efefef;
-      }
-
-      .chat .chat-history .my-message:after {
-        bottom: 100%;
-        left: 30px;
-        border: solid transparent;
-        content: " ";
-        height: 0;
-        width: 0;
-        position: absolute;
-        pointer-events: none;
-        border-bottom-color: #efefef;
-        border-width: 10px;
-        margin-left: -10px;
-      }
-
-      .chat .chat-history .other-message {
-        background: #e8f1f3;
-        text-align: right;
-      }
-
-      .chat .chat-history .other-message:after {
-        border-bottom-color: #e8f1f3;
-        left: 93%;
-      }
-
-      .chat .chat-message {
-        padding: 20px;
-      }
-
-      .online,
-      .offline,
-      .me {
-        margin-right: 2px;
-        font-size: 8px;
-        vertical-align: middle;
-      }
-
-      .online {
-        color: #86c541;
-      }
-
-      .offline {
-        color: #e47297;
-      }
-
-      .me {
-        color: #1d8ecd;
-      }
-
-      .float-right {
-        float: right;
-      }
-
-      .clearfix:after {
-        visibility: hidden;
-        display: block;
-        font-size: 0;
-        content: " ";
-        clear: both;
-        height: 0;
-      }
-
-      @media only screen and (max-width: 767px) {
-        .chat-app .people-list {
-          height: 465px;
-          width: 100%;
-          overflow-x: auto;
-          background: #fff;
-          left: -400px;
-          display: none;
-        }
-        .chat-app .people-list.open {
-          left: 0;
-        }
-        .chat-app .chat {
-          margin: 0;
-        }
-        .chat-app .chat .chat-header {
-          border-radius: 0.55rem 0.55rem 0 0;
-        }
-        .chat-app .chat-history {
-          height: 300px;
-          overflow-x: auto;
-        }
-      }
-
-      @media only screen and (min-width: 768px) and (max-width: 992px) {
-        .chat-app .chat-list {
-          height: 650px;
-          overflow-x: auto;
-        }
-        .chat-app .chat-history {
-          height: 600px;
-          overflow-x: auto;
-        }
-      }
-
-      @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
-        .chat-app .chat-list {
-          height: 480px;
-          overflow-x: auto;
-        }
-        .chat-app .chat-history {
-          height: calc(100vh - 350px);
-          overflow-x: auto;
-        }
-      }
-      .f-center{
-          display: flex;
-          justify-content: center;
-          width: 100%;
-      }
-    </style>
+    <link rel="stylesheet" href="{% static './assets/css/chat-now.css' %}">
 </head>
 <body>
 
-    <div class="container-fluid">
-      <div class="row f-center my-2">
+<div class="container-fluid">
+    <div class="row f-center my-2">
         <div class="col-lg-9 mx-auto">
-          <div class="card chat-app">
-            <div class="chat">
-              <div class="chat-header clearfix">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <a
-                      href="javascript:void(0);"
-                      data-toggle="modal"
-                      data-target="#view_info"
-                    >
-                      <img
-                        src="../{{ profile.user_image}}"
-                        alt="avatar"
-                      />
-                    </a>
-                    <div class="chat-about">
-                      <h6 class="m-b-0">{{ profile.user_name }}z</h6>
-                    </div>
-                  </div>
+            <div class="card chat-app">
+                <div class="chat">
+                    <div class="chat-header clearfix">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a
+                                        href="javascript:void(0);"
+                                        data-toggle="modal"
+                                        data-target="#view_info"
+                                >
+                                    <img
+                                            src="../{{ profile.user_image}}"
+                                            alt="avatar"
+                                    />
+                                </a>
+                                <div class="chat-about">
+                                    <h6 class="m-b-0">{{ profile.user_name }}z</h6>
+                                </div>
+                            </div>
 
-                </div>
-              </div>
-              <div class="chat-history">
-                <ul class="m-b-0">
-{#                    default customer message#}
-                    <li class="clearfix">
-                    <div class="message-data">
-                      <span class="message-data-time">{{ complain.date }}</span>
+                        </div>
                     </div>
-                    <div class="message my-message">{{ complain.detail }}</div>
-                  </li>
-{#to show user message or customer#}
-                    {% for msg in messages %}
-                    {% if msg.reply %}
-                  <li class="clearfix">
-                    <div class="message-data">
-                      <span class="message-data-time">{{ msg.date }}</span>
+                    <div class="chat-history">
+                        <ul class="m-b-0">
+                            {# default customer message#}
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">{{ complain.date }}</span>
+                                </div>
+                                <div class="message my-message">{{ complain.detail }}</div>
+                            </li>
+                            {#to show user message or customer#}
+                            {% for msg in messages %}
+                            {% if msg.reply %}
+                            <li class="clearfix">
+                                <div class="message-data">
+                                    <span class="message-data-time">{{ msg.date }}</span>
+                                </div>
+                                <div class="message my-message">{{ msg.message }}</div>
+                            </li>
+                            {# to show admin reply on chat#}
+                            {% else %}
+                            <li class="clearfix">
+                                <div class="message-data text-right">
+                                    <span class="message-data-time">{{ msg.date }}</span>
+                                    <img
+                                            src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                            alt="avatar"
+                                    />
+                                </div>
+                                <div class="message other-message float-right">
+                                    {{ msg.message }}
+                                </div>
+                            </li>
+                            {% endif %}{% endfor %}
+                        </ul>
                     </div>
-                    <div class="message my-message">{{ msg.message }}</div>
-                  </li>
-{#                    to show admin reply on chat#}
-                    {% else %}
-                   <li class="clearfix">
-                    <div class="message-data text-right">
-                      <span class="message-data-time">{{ msg.date }}</span>
-                      <img
-                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                        alt="avatar"
-                      />
-                    </div>
-                    <div class="message other-message float-right">
-                      {{ msg.message }}
-                    </div>
-                  </li>{% endif %}{% endfor %}
-                </ul>
-              </div>
-              <div class="chat-message clearfix">
-              <div class="col-lg-12">
-    <form class="input-group" method="post" action="{% url 'chat' %}">{% csrf_token %}
-        <input type="hidden" name="ticket_id" value="{{ complain.complian_id }}">
-      <input type="text" class="form-control" name="msg" placeholder="Start typing here...">
-      <span class="input-group-btn">
+                    <div class="chat-message clearfix">
+                        <div class="col-lg-12">
+                            <form class="input-group" method="post" action="{% url 'chat' %}">{% csrf_token %}
+                                <input type="hidden" name="ticket_id" value="{{ complain.complian_id }}">
+                                <input type="text" class="form-control" name="msg" placeholder="Start typing here...">
+                                <span class="input-group-btn">
         <button class="btn btn-primary" type="submit">Send</button>
       </span>
-    </form><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-              </div>
+                            </form><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
+</div>
 
 
 </body>

@@ -118,8 +118,8 @@
                                 <tr>
                                     <td>
                                         <!-- Chat Now Navigation-->
-                                        <form method="post" action="{% url " chat
-                                        " %}">{% csrf_token %}
+                                        <form method="post" action="">
+                                        {% csrf_token %}
                                         <input type="hidden" name="ticket_id" value="{{ ticket.complian_id }}">
                                         <button type="submit" class="btn btn-primary">{{ ticket.complian_id }}</button>
                                         </form>

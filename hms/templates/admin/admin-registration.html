@@ -1,51 +1,38 @@
 {% extends "basic3.html" %}
+{% load static %}
 
 <head>
     {% block title %}User Registration{% endblock %}
-
-    <!doctype html>
-    {% load static %}
-    <html lang="en" class="no-js">
-    <head>
-        <script type="text/javascript">
-function valid()
-{
-if(document.registration.password.value!= document.registration.cpassword.value)
-{
-alert("Password and Re-Type Password Field do not match  !!");
-document.registration.cpassword.focus();
-return false;
-}
-return true;
-}
+</head>
 
 
-        </script>
-    </head>
-    {% block page-title %}Register{% endblock %}
+{% block page-title %}Register{% endblock %}
 
-    {% block content %}
-    <!-- Code 4 Pages Start from Here  -->
-<body>
+{% block content %}
 
+<!-- Code 4 Pages Start from Here  -->
+
+<!--These classes are used for spacing-->
 <div class="ts-main-content">
-
     <div class="content-wrapper">
+        <!-- Grid System       -->
         <div class="container-fluid">
-
             <div class="row">
                 <div class="col-md-12">
 
                     <div class="row">
                         <div class="col-md-12">
+
                             <div class="panel panel-primary">
+                                <!--   Heading          -->
                                 <div class="panel-heading">Fill all Info</div>
+                                <!--   Body        -->
                                 <div class="panel-body">
+                                    <!--    Form          -->
                                     <form method="post" action="" name="registration" class="form-horizontal"
                                           onSubmit="return valid();">
 
-
-
+                                        <!-- Username-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">User Name : </label>
                                             <div class="col-sm-8">
@@ -54,6 +41,7 @@ return true;
                                             </div>
                                         </div>
 
+                                        <!-- Email id -->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Email id: </label>
                                             <div class="col-sm-8">
@@ -63,7 +51,7 @@ return true;
                                             </div>
                                         </div>
 
-
+                                        <!-- Contact Number-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Contact No : </label>
                                             <div class="col-sm-8">
@@ -72,7 +60,7 @@ return true;
                                             </div>
                                         </div>
 
-
+                                        <!-- Password-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Password: </label>
                                             <div class="col-sm-8">
@@ -81,7 +69,7 @@ return true;
                                             </div>
                                         </div>
 
-
+                                        <!-- Confirm Password-->
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Confirm Password : </label>
                                             <div class="col-sm-8">
@@ -90,7 +78,7 @@ return true;
                                             </div>
                                         </div>
 
-
+                                        <!--Submit & Cancel Button-->
                                         <div class="col-sm-6 col-sm-offset-4">
                                             <button class="btn btn-default" type="submit">Cancel</button>
                                             <input type="submit" name="submit" Value="Register" class="btn btn-primary">
@@ -106,12 +94,31 @@ return true;
         </div>
     </div>
 </div>
-</div>
-</div>
-</div>
-</body>
 
-</html>
+<!--Function for Password Validation-->
+<script type="text/javascript">
+function valid()
+{
+if(document.registration.password.value!= document.registration.cpassword.value)
+{
+alert("Password and Re-Type Password Field do not match  !!");
+document.registration.cpassword.focus();
+return false;
+}
+return true;
+}
+
+
+</script>
+
+<!--To fade out alert message on click-->
+<script>
+    $(".close").on("click",function (){
+      $(".alert").fadeOut();
+    })
+
+
+</script>
 
 {% include "basic2.html" %}
 {% endblock %}

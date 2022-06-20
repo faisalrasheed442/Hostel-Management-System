@@ -48,10 +48,8 @@
                                         <tbody>
                                         {% for data in fee %}
                                         <tr>
-                                            <th scope="row"><input type="hidden" , value="{{ data.fee_id}}"
-                                                                   name="fee_id">
-                                            <td>{{ data.fee_id}}</td>
-                                            </th>
+                                            <th scope="row">
+                                                <input type="hidden", value="{{ data.fee_id}}" name="fee_id">{{ data.fee_id}}</th>
                                             <td>{{ data.end_Date}}</td>
                                             <td>{{ data.total_amount}}</td>
                                             {% if data.paid %}

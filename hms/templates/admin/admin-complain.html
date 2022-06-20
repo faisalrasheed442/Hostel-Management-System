@@ -99,7 +99,8 @@
                                 {% if ticket.complain_status %}
                                 <tr>
                                     <td>
-                                        <form method="post" action="{% url 'chat-now' %}">{% csrf_token %}
+                                        <form method="post" action="">
+                                            {% csrf_token %}
                                             <input type="hidden" name="ticket_id" value="{{ ticket.complian_id }}">
                                             <button type="submit" class="btn btn-primary">{{ ticket.complian_id }}
                                             </button>
