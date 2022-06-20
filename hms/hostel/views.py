@@ -11,8 +11,11 @@ from django.shortcuts import render, HttpResponse, redirect
 from .forms import ImageForm
 from .models import customer, complain, rooms, customer_fee, message
 
-
+# we have created the classs for student view where we will show all the pages that will be shown in student dashboard
+# also all the handling for student dashboard is done there
+# also we have used if 'id' in session to validate weather the user is logged in or not if not he wont be able to access any page
 class student_view():
+    # will return the home page of user
     def index(self, request):
         return render(request, 'index.html')
 
@@ -25,20 +28,21 @@ class student_view():
             email = request.POST.get('email')
             password = request.POST.get('password')
             try:
+                # checking user data to validate
                 user_data = customer.objects.get(email=email, password=password)
                 request.session['id'] = user_data.user_id
                 return redirect('Dashboard')
             except customer.DoesNotExist:
+                # email is wrong or password
                 messages.error(request, 'Invalid email and password')
                 request.session.flush()
                 return redirect('Login')
         else:
             return render(request, 'login.html')
-
+    # function to get user register in database getting al the value from form submission
     def register(self, request):
         if request.method == "POST":
             user_name = request.POST.get("user_name")
-            print(user_name)
             email = request.POST.get("email")
             contact = request.POST.get("contact")
             gender = request.POST.get("gender")
@@ -46,21 +50,24 @@ class student_view():
             password = request.POST.get("password")
             food_status = request.POST.get("foodstatus")
             check_email = customer.objects.filter(email=email)
+            # checking if the eamils is already registered or not
             if check_email:
                 messages.error(request, 'Email Already Registered')
                 return redirect('register')
             else:
+                # if not user then will create the object for that user
                 today = date.today()
-                print(today)
                 EndDate = date.today() + timedelta(days=30)
                 room_details = rooms.objects.get(room_id=room)
                 new_user = customer(user_name=user_name, email=email, password=password, contact=contact, gender=gender,
                                     room=room_details, )
                 new_user.save()
                 user_data = customer.objects.get(email=email, password=password)
+                # generating fee for new user
                 fee = customer_fee(customer_id=user_data, start_date=today, end_Date=EndDate,
                                    total_amount=room_details.room_price)
                 fee.save()
+                # updating room details for new uer
                 room_current_space = room_details.current_capacity
                 room_details.current_capacity = room_current_space + 1
                 room_details.save()
@@ -74,7 +81,7 @@ class student_view():
                 data = {'room': data}
                 print(data)
                 return render(request, 'register.html', data)
-
+    # display user dashboard
     def dashboard(self, request):
         # return render(request,'dashboard.html')
         if 'id' in request.session:
@@ -82,7 +89,7 @@ class student_view():
             return render(request, 'dashboard.html', data)
         else:
             return redirect('Login')
-
+    # will update user data in profile and show his information
     def profile(self, request):
         form = ImageForm()
         if request.method == 'POST':
@@ -100,10 +107,14 @@ class student_view():
             data.Guardian_name = guardian_name
             data.contact = contact
             data.address = address
+            # updating user information
             try:
+                # ifuser has uploaded an image the try will save the image
                 data.user_image = form["user_image"]
                 data.save()
             except:
+                # if user hasnot uploaded image the try will through error and will go to expect
+                # and save remaing data
                 data.save()
             return redirect('profile')
         if 'id' in request.session:
@@ -112,7 +123,7 @@ class student_view():
             return render(request, 'profile.html', data)
         else:
             return redirect('Login')
-
+    # showing user room detail
     def room(self, request):
         # return render(request, 'room.html')
         if 'id' in request.session:
@@ -120,7 +131,7 @@ class student_view():
             return render(request, 'room.html', data)
         else:
             return redirect('Login')
-
+    # will send request if youser want to change room
     def change_room(self, request):
         if request.method == 'POST':
             name = request.POST.get('name')
@@ -265,14 +276,15 @@ class student_view():
                 update.password = newpassword
                 update.save()
                 messages.success(request, "Password changed")
-                return render(request, 'password.html')
+                return redirect("password")
             else:
                 messages.error(request, "some details are wrong")
-                return render(request, 'password.html')
+                return redirect("password")
 
         else:
             if 'id' in request.session:
-                return render(request, 'password.html')
+                data = self.get_data(request.session['id'])
+                return render(request, 'password.html',data)
             else:
                 return redirect('Login')
 
